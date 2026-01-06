@@ -1,14 +1,42 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaPlane, FaUmbrellaBeach, FaMountain, FaHiking } from "react-icons/fa";
-import ella_img from "../assets/Ella-Sri-Lanka.jpg";
-import galle_img from "../assets/galle-tour.jpg";
-import sigiriya_img from "../assets/Sigiriya.jpg";
-import yala_img from "../assets/yala.jpg";
-import kandy_img from "../assets/Kandy.jpg";
-import mirissa_img from "../assets/mirissa.jpg";
 import background_video from "../assets/background video.mp4";
+import { tourAPI, dayTourAPI } from "../services/api";
 
 const Home = () => {
+  const [trendingTours, setTrendingTours] = useState([]);
+  const [dayTours, setDayTours] = useState([]);
+  const [loadingTours, setLoadingTours] = useState(true);
+  const [loadingDayTours, setLoadingDayTours] = useState(true);
+
+  useEffect(() => {
+    fetchTrendingTours();
+    fetchDayTours();
+  }, []);
+
+  const fetchTrendingTours = async () => {
+    try {
+      const response = await tourAPI.getFeaturedTours();
+      setTrendingTours(response.data.data.slice(0, 3)); // Get only 3 tours
+    } catch (error) {
+      console.error("Error fetching trending tours:", error);
+    } finally {
+      setLoadingTours(false);
+    }
+  };
+
+  const fetchDayTours = async () => {
+    try {
+      const response = await dayTourAPI.getAllDayTours();
+      setDayTours(response.data.data.slice(0, 6)); // Get only 6 day tours
+    } catch (error) {
+      console.error("Error fetching day tours:", error);
+    } finally {
+      setLoadingDayTours(false);
+    }
+  };
+
   return (
     <div className="home">
       {/* Hero Section */}
@@ -318,130 +346,138 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-            {/* Tour Card 1 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-64 overflow-hidden">
-                <span className="absolute top-4 right-4 bg-sunsetOrange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
-                  Featured
-                </span>
-                <img
-                  src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80"
-                  alt="Coast Explorer"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-navy mb-2">
-                  Coast Explorer
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  9 days (8 Nights) journey offers the perfect blend of Sri
-                  Lanka's rich culture, scenic hill country, wildlife, and
-                  golden beaches.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold text-lg">
-                    9 Days / 8 Nights
-                  </span>
-                  <div className="flex items-center">
-                    <span className="text-sunsetYellow">★★★★</span>
-                    <span className="text-gray-400">★</span>
-                    <span className="text-gray-600 text-sm ml-2">(4.0)</span>
-                  </div>
-                </div>
-                <Link
-                  to="/tours/coast-explorer"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-3 rounded-full font-semibold transition duration-300"
-                >
-                  View Details
-                </Link>
-              </div>
+          {loadingTours ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-sunsetOrange"></div>
             </div>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                {trendingTours.map((tour) => (
+                  <div
+                    key={tour._id}
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group"
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      {tour.featured && (
+                        <span className="absolute top-4 right-4 bg-sunsetOrange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                          Featured
+                        </span>
+                      )}
+                      <img
+                        src={tour.mainImage}
+                        alt={tour.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-2xl font-bold text-navy mb-2">
+                        {tour.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {tour.description}
+                      </p>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-sunsetOrange font-semibold text-lg">
+                          {tour.duration?.days} Days / {tour.duration?.nights}{" "}
+                          Nights
+                        </span>
+                        <div className="flex items-center">
+                          <span className="text-sunsetYellow">
+                            {"★".repeat(Math.floor(tour.rating || 0))}
+                          </span>
+                          <span className="text-gray-400">
+                            {"★".repeat(5 - Math.floor(tour.rating || 0))}
+                          </span>
+                          <span className="text-gray-600 text-sm ml-2">
+                            ({tour.rating?.toFixed(1)})
+                          </span>
+                        </div>
+                      </div>
+                      <Link
+                        to={`/tours/${tour._id}`}
+                        className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-3 rounded-full font-semibold transition duration-300"
+                      >
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-            {/* Tour Card 2 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-64 overflow-hidden">
-                <span className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
-                  New
-                </span>
-                <img
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-                  alt="Romantic Escape"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-navy mb-2">
-                  Romantic Escape
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  8-day(7 Nights) couple tour specially designed for partners
-                  seeking romance, nature, adventure, and relaxation.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold text-lg">
-                    8 Days / 7 Nights
-                  </span>
-                  <div className="flex items-center">
-                    <span className="text-sunsetYellow">★★★★★</span>
-                    <span className="text-gray-600 text-sm ml-2">(5.0)</span>
-                  </div>
-                </div>
+              <div className="text-center">
                 <Link
-                  to="/tours/romantic-escape"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-3 rounded-full font-semibold transition duration-300"
+                  to="/tours"
+                  className="inline-block bg-navy hover:bg-navy/90 text-white px-10 py-4 rounded-full font-semibold transition duration-300 hover:scale-105 shadow-lg"
                 >
-                  View Details
+                  View All Tours
                 </Link>
               </div>
-            </div>
+            </>
+          )}
+        </div>
+      </section>
 
-            {/* Tour Card 3 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80"
-                  alt="Hidden Sri Lanka"
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-navy mb-2">
-                  Hidden Sri Lanka
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  9-day(8 Nights) journey takes you deep into Sri Lanka's
-                  lesser-known landscapes, far from busy tourist routes.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold text-lg">
-                    9 Days / 8 Nights
-                  </span>
-                  <div className="flex items-center">
-                    <span className="text-sunsetYellow">★★★★</span>
-                    <span className="text-gray-400">☆</span>
-                    <span className="text-gray-600 text-sm ml-2">(4.1)</span>
-                  </div>
-                </div>
-                <Link
-                  to="/tours/hidden-sri-lanka"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-3 rounded-full font-semibold transition duration-300"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
+      {/* Day Tours Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
+              Day Tours in Sri Lanka
+            </h3>
+            <h2 className="text-4xl font-bold text-navy mb-4">
+              Explore Sri Lanka in a Day
+            </h2>
+            <p className="text-gray-600 max-w-3xl mx-auto">
+              Our day tours are designed for travelers who want to explore Sri
+              Lanka without rushing.
+            </p>
           </div>
 
-          <div className="text-center">
-            <Link
-              to="/tours"
-              className="inline-block bg-navy hover:bg-navy/90 text-white px-10 py-4 rounded-full font-semibold transition duration-300 hover:scale-105 shadow-lg"
-            >
-              View All Tours
-            </Link>
-          </div>
+          {loadingDayTours ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-sunsetOrange"></div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {dayTours.map((dayTour) => (
+                <div
+                  key={dayTour._id}
+                  className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group"
+                >
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={dayTour.mainImage}
+                      alt={dayTour.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-navy mb-2">
+                      {dayTour.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 text-sm line-clamp-3">
+                      {dayTour.description}
+                    </p>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sunsetOrange font-semibold">
+                        {dayTour.duration}
+                      </span>
+                      <span className="text-gray-600 text-sm">
+                        From ${dayTour.price}
+                      </span>
+                    </div>
+                    <Link
+                      to={`/day-tours/${dayTour._id}`}
+                      className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
+                    >
+                      View Details
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -518,221 +554,6 @@ const Home = () => {
                   <h4 className="font-semibold text-navy">Rani</h4>
                   <p className="text-gray-600 text-sm">India</p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Day Tours Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
-              Day Tours in Sri Lanka
-            </h3>
-            <h2 className="text-4xl font-bold text-navy mb-4">
-              Explore Sri Lanka in a Day
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Our day tours are designed for travelers who want to explore Sri
-              Lanka without rushing. From cultural landmarks and scenic
-              viewpoints to wildlife encounters and coastal escapes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Day Tour 1 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={ella_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">Ella Tour</h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  The day begins quietly as you arrive in Ella, where narrow
-                  paths lead into green valleys and time seems to slow down.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $80
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/ella"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Day Tour 2 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={galle_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">Galle Tour</h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  The journey begins as the road gently leads south, where the
-                  land slowly opens to the sea. Discover historic Galle Fort.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $90
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/galle"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Day Tour 3 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={sigiriya_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">
-                  Sigiriya Tour
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  The journey begins on a quiet road where a massive rock rises
-                  from the plains. Climb the iconic Sigiriya Rock Fortress.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $100
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/sigiriya"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Day Tour 4 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={yala_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">
-                  Yala National Park Tour
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  The day begins early, while the roads are still quiet.
-                  Experience wildlife in one of Asia's best national parks.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $120
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/yala"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Day Tour 5 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={kandy_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">
-                  Kandy City Tour
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Explore the cultural capital of Sri Lanka. Visit the Temple of
-                  the Tooth and enjoy scenic lake views.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $85
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/kandy"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Day Tour 6 */}
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group">
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={mirissa_img}
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-navy mb-2">
-                  Mirissa Beach & Whale Watching
-                </h3>
-                <p className="text-gray-600 mb-4 text-sm">
-                  Enjoy pristine beaches and witness majestic blue whales in
-                  their natural habitat during whale watching season.
-                </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sunsetOrange font-semibold">
-                    1 Day Tour
-                  </span>
-                  <span className="text-gray-600 text-sm">
-                    Starting from $95
-                  </span>
-                </div>
-                <Link
-                  to="/day-tours/mirissa"
-                  className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-2.5 rounded-full font-semibold transition duration-300 text-sm"
-                >
-                  View Details
-                </Link>
               </div>
             </div>
           </div>

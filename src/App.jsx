@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 import Tours from './pages/Tours';
 import TourDetails from './pages/TourDetails';
+import DayTourDetails from './pages/DayTourDetails';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
             <Route path="/tours/:id" element={<TourDetails />} />
-            <Route path="/about" element={<h1 className="text-center py-20 text-3xl">About Page - Coming Soon</h1>} />
+            <Route path="/day-tours/:id" element={<DayTourDetails />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/contact" element={<h1 className="text-center py-20 text-3xl">Contact Page - Coming Soon</h1>} />
           </Routes>
         </main>
