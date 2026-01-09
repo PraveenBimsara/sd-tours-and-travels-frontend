@@ -313,7 +313,7 @@ const DayTourDetails = () => {
                   </Link>
 
                   <a
-                    href={`https://wa.me/94774064437?text=Hi, I'm interested in the ${dayTour.title} day tour`}
+                    href={`https://wa.me/94778875696?text=Hi, I'm interested in the ${dayTour.title} day tour`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-4 rounded-full font-bold text-lg transition duration-300 shadow-lg hover:shadow-xl"

@@ -583,7 +583,7 @@ const BookingForm = () => {
                         <p className="font-semibold text-navy mb-1">Need Help?</p>
                         <p className="text-gray-600">Contact us on WhatsApp for instant support</p>
                         <a
-                          href="https://wa.me/94774064437"
+                          href="https://wa.me/94778875696"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-green-600 hover:text-green-700 font-semibold mt-1 inline-block"

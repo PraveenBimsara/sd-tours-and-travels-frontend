@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { tourAPI } from '../services/api';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { tourAPI } from "../services/api";
 
 const Tours = () => {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState({
-    category: '',
-    search: '',
-    sort: 'newest',
+    category: "",
+    search: "",
+    sort: "newest",
   });
 
   // Fetch tours from backend
@@ -25,13 +25,13 @@ const Tours = () => {
         search: filters.search,
         sort: filters.sort,
       };
-      
+
       const response = await tourAPI.getAllTours(params);
       setTours(response.data.data);
       setError(null);
     } catch (err) {
-      console.error('Error fetching tours:', err);
-      setError('Failed to load tours. Please try again later.');
+      console.error("Error fetching tours:", err);
+      setError("Failed to load tours. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -42,21 +42,31 @@ const Tours = () => {
   };
 
   const clearFilters = () => {
-    setFilters({ category: '', search: '', sort: 'newest' });
+    setFilters({ category: "", search: "", sort: "newest" });
   };
 
   return (
     <div className="tours-page">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-navy to-navy/90 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Our Tour Packages
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Discover carefully crafted tours across Sri Lanka. From cultural heritage 
-            to wildlife adventures, find your perfect journey.
-          </p>
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1600&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
+
+        <div className="relative z-10 container mx-auto px-4 text-white flex flex-col items-center justify-center">
+          <div className="max-w-3xl flex flex-col items-center justify-center">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Our Tour Packages
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90">
+              Discover carefully crafted tours across Sri Lanka.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -70,7 +80,7 @@ const Tours = () => {
                 type="text"
                 placeholder="Search tours..."
                 value={filters.search}
-                onChange={(e) => handleFilterChange('search', e.target.value)}
+                onChange={(e) => handleFilterChange("search", e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition"
               />
             </div>
@@ -78,7 +88,7 @@ const Tours = () => {
             {/* Category Filter */}
             <select
               value={filters.category}
-              onChange={(e) => handleFilterChange('category', e.target.value)}
+              onChange={(e) => handleFilterChange("category", e.target.value)}
               className="px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition bg-white"
             >
               <option value="">All Categories</option>
@@ -93,7 +103,7 @@ const Tours = () => {
             {/* Sort */}
             <select
               value={filters.sort}
-              onChange={(e) => handleFilterChange('sort', e.target.value)}
+              onChange={(e) => handleFilterChange("sort", e.target.value)}
               className="px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition bg-white"
             >
               <option value="newest">Newest First</option>
@@ -162,7 +172,9 @@ const Tours = () => {
           {!loading && !error && tours.length > 0 && (
             <>
               <div className="mb-6 text-gray-600">
-                Found <span className="font-semibold text-navy">{tours.length}</span> tour{tours.length !== 1 ? 's' : ''}
+                Found{" "}
+                <span className="font-semibold text-navy">{tours.length}</span>{" "}
+                tour{tours.length !== 1 ? "s" : ""}
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -184,11 +196,15 @@ const Tours = () => {
                         </span>
                       )}
                       <img
-                        src={tour.mainImage || 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800'}
+                        src={
+                          tour.mainImage ||
+                          "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800"
+                        }
                         alt={tour.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                         onError={(e) => {
-                          e.target.src = 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800';
+                          e.target.src =
+                            "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800";
                         }}
                       />
                     </div>
@@ -205,17 +221,18 @@ const Tours = () => {
                       {/* Duration & Rating */}
                       <div className="flex items-center justify-between mb-4">
                         <span className="text-sunsetOrange font-semibold text-lg">
-                          {tour.duration?.days} Days / {tour.duration?.nights} Nights
+                          {tour.duration?.days} Days / {tour.duration?.nights}{" "}
+                          Nights
                         </span>
                         <div className="flex items-center">
                           <span className="text-sunsetYellow">
-                            {'★'.repeat(Math.floor(tour.rating || 0))}
+                            {"★".repeat(Math.floor(tour.rating || 0))}
                           </span>
                           <span className="text-gray-400">
-                            {'★'.repeat(5 - Math.floor(tour.rating || 0))}
+                            {"★".repeat(5 - Math.floor(tour.rating || 0))}
                           </span>
                           <span className="text-gray-600 text-sm ml-2">
-                            ({tour.rating?.toFixed(1) || 'New'})
+                            ({tour.rating?.toFixed(1) || "New"})
                           </span>
                         </div>
                       </div>
@@ -223,7 +240,9 @@ const Tours = () => {
                       {/* Price & Button */}
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className="text-gray-500 text-sm">Starting from</span>
+                          <span className="text-gray-500 text-sm">
+                            Starting from
+                          </span>
                           <div className="text-2xl font-bold text-navy">
                             ${tour.price}
                           </div>
@@ -252,8 +271,8 @@ const Tours = () => {
               Can't Find What You're Looking For?
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              We specialize in custom tours tailored to your preferences. 
-              Let us create a personalized itinerary just for you!
+              We specialize in custom tours tailored to your preferences. Let us
+              create a personalized itinerary just for you!
             </p>
             <Link
               to="/contact"

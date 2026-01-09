@@ -54,12 +54,12 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-white/80">
                 <FaMapMarkerAlt className="text-sunsetOrange mt-1 flex-shrink-0" />
-                <span>Malawana, Padagoda, Beruwala, Sri Lanka</span>
+                <span>Aluthgama, Sri Lanka</span>
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <FaPhone className="text-sunsetOrange flex-shrink-0" />
                 <a href="tel:+94774064437" className="hover:text-sunsetYellow transition">
-                  +94 77 406 4437
+                  +94 77 887 5696
                 </a>
               </li>
               <li className="flex items-center gap-3 text-white/80">
