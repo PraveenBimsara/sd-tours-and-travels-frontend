@@ -45,8 +45,17 @@ const BookingForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    fetchTourDetails();
     window.scrollTo(0, 0);
+  },[]);
+
+  useEffect(() => {
+  if (success) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}, [success]);
+
+  useEffect(() => {
+    fetchTourDetails();
   }, [id, type]);
 
   const fetchTourDetails = async () => {

@@ -12,6 +12,10 @@ const Tours = () => {
     sort: "newest",
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[]);
+
   // Fetch tours from backend
   useEffect(() => {
     fetchTours();

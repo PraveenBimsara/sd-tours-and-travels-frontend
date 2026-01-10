@@ -22,8 +22,11 @@ const DayTourDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchDayTour();
     window.scrollTo(0, 0);
+  },[]);
+
+  useEffect(() => {
+    fetchDayTour();
   }, [id]);
 
   const fetchDayTour = async () => {

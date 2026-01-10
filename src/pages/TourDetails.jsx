@@ -22,8 +22,11 @@ const TourDetails = () => {
   const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
-    fetchTour();
     window.scrollTo(0, 0);
+  },[]);
+
+  useEffect(() => {
+    fetchTour();
   }, [id]);
 
   const fetchTour = async () => {

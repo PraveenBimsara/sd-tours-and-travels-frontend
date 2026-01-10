@@ -7,6 +7,7 @@ import TourDetails from './pages/TourDetails';
 import DayTourDetails from './pages/DayTourDetails';
 import AboutUs from './pages/AboutUs';
 import BookingForm from './pages/BookingForm';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Route path="/day-tours/:id" element={<DayTourDetails />} />
             <Route path="/booking/:type/:id" element={<BookingForm />} />
             <Route path="/about" element={<AboutUs />} />
-            <Route path="/contact" element={<h1 className="text-center py-20 text-3xl">Contact Page - Coming Soon</h1>} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
 

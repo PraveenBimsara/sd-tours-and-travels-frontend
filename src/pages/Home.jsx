@@ -11,6 +11,10 @@ const Home = () => {
   const [loadingDayTours, setLoadingDayTours] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  },[]);
+
+  useEffect(() => {
     fetchTrendingTours();
     fetchDayTours();
   }, []);
