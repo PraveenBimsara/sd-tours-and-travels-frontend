@@ -10,6 +10,8 @@ import {
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -42,32 +44,66 @@ const Contact = () => {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  const handlePhoneChange = (value) => {
+  setFormData((prev) => ({
+    ...prev,
+    phone: value || '',
+  }));
 
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+  // Clear error for phone field
+  if (errors.phone) {
+    setErrors((prev) => ({ ...prev, phone: "" }));
+  }
+};
+
+ const validateForm = () => {
+  const newErrors = {};
+
+  // Name Validation
+  if (!formData.name.trim()) {
+    newErrors.name = "Name is required";
+  }
+
+  // Enhanced Email Validation
+  if (!formData.email.trim()) {
+    newErrors.email = "Email is required";
+  } else {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
     }
+  }
 
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+  // Phone Number Validation (with country code validation)
+  if (!formData.phone) {
+    newErrors.phone = "Phone number is required";
+  } else if (!formData.phone.startsWith('+')) {
+    newErrors.phone = "Phone number must include country code (e.g., +94 for Sri Lanka)";
+  } else {
+    try {
+      if (!isValidPhoneNumber(formData.phone)) {
+        newErrors.phone = "Please enter a valid phone number for the selected country";
+      }
+    } catch (error) {
+      newErrors.phone = "Invalid phone number format";
     }
+  }
 
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
-    }
+  // Subject Validation
+  if (!formData.subject.trim()) {
+    newErrors.subject = "Subject is required";
+  }
 
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = "Message must be at least 10 characters";
-    }
+  // Message Validation
+  if (!formData.message.trim()) {
+    newErrors.message = "Message is required";
+  } else if (formData.message.trim().length < 10) {
+    newErrors.message = "Message must be at least 10 characters";
+  }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -227,19 +263,28 @@ const Contact = () => {
 
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     {/* Phone */}
-                    <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
-                        Phone Number <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
-                        placeholder="+1 234 567 8900"
-                      />
-                    </div>
+<div>
+  <label className="block text-gray-700 font-semibold mb-2">
+    Phone Number <span className="text-red-500">*</span>
+  </label>
+  <PhoneInput
+    international
+    defaultCountry="LK"
+    value={formData.phone}
+    onChange={handlePhoneChange}
+    className={`w-full ${
+      errors.phone ? 'phone-input-error' : ''
+    }`}
+    numberInputProps={{
+      className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
+        errors.phone ? 'border-red-500' : 'border-gray-300'
+      }`
+    }}
+  />
+  {errors.phone && (
+    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+  )}
+</div>
 
                     {/* Subject */}
                     <div>

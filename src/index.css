@@ -50,3 +50,30 @@ html {
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-in-out;
 }
+
+.PhoneInput {
+  width: 100%;
+}
+
+.PhoneInputInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.PhoneInputInput:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: #ff6b35;
+  border-color: #ff6b35;
+}
+
+.phone-input-error .PhoneInputInput {
+  border-color: #ef4444;
+}
+
+.PhoneInputCountry {
+  margin-right: 0.5rem;
+}

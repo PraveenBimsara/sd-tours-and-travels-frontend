@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { tourAPI, dayTourAPI, bookingAPI } from '../services/api';
-import { 
-  FaUser, 
-  FaEnvelope, 
-  FaPhone, 
-  FaGlobe, 
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { tourAPI, dayTourAPI, bookingAPI } from "../services/api";
+import {
+  FaUser,
   FaWhatsapp,
   FaCalendarAlt,
-  FaUsers,
   FaCheckCircle,
-  FaExclamationCircle
-} from 'react-icons/fa';
+  FaExclamationCircle,
+} from "react-icons/fa";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
 
 const BookingForm = () => {
   const { id, type } = useParams(); // type will be 'tour' or 'day-tour'
   const navigate = useNavigate();
-  
+
   const [tour, setTour] = useState(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -25,34 +23,34 @@ const BookingForm = () => {
 
   const [formData, setFormData] = useState({
     customerInfo: {
-      name: '',
-      email: '',
-      phone: '',
-      country: '',
-      whatsapp: ''
+      name: "",
+      email: "",
+      phone: "",
+      country: "",
+      whatsapp: "",
     },
     travelDetails: {
-      startDate: '',
-      endDate: '',
+      startDate: "",
+      endDate: "",
       numberOfPeople: {
         adults: 1,
-        children: 0
+        children: 0,
       },
-      specialRequests: ''
-    }
+      specialRequests: "",
+    },
   });
 
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
 
   useEffect(() => {
-  if (success) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}, [success]);
+    if (success) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [success]);
 
   useEffect(() => {
     fetchTourDetails();
@@ -62,58 +60,58 @@ const BookingForm = () => {
     try {
       setLoading(true);
       let response;
-      
-      if (type === 'tour') {
+
+      if (type === "tour") {
         response = await tourAPI.getTour(id);
-      } else if (type === 'day-tour') {
+      } else if (type === "day-tour") {
         response = await dayTourAPI.getDayTour(id);
       } else {
-        throw new Error('Invalid tour type');
+        throw new Error("Invalid tour type");
       }
-      
+
       setTour(response.data.data);
       setError(null);
     } catch (err) {
-      console.error('Error fetching tour:', err);
-      setError('Failed to load tour details');
+      console.error("Error fetching tour:", err);
+      setError("Failed to load tour details");
     } finally {
       setLoading(false);
     }
   };
 
   const handleInputChange = (section, field, value) => {
-    if (section === 'numberOfPeople') {
-      setFormData(prev => ({
+    if (section === "numberOfPeople") {
+      setFormData((prev) => ({
         ...prev,
         travelDetails: {
           ...prev.travelDetails,
           numberOfPeople: {
             ...prev.travelDetails.numberOfPeople,
-            [field]: parseInt(value) || 0
-          }
-        }
+            [field]: parseInt(value) || 0,
+          },
+        },
       }));
-    } else if (section === 'customerInfo') {
-      setFormData(prev => ({
+    } else if (section === "customerInfo") {
+      setFormData((prev) => ({
         ...prev,
         customerInfo: {
           ...prev.customerInfo,
-          [field]: value
-        }
+          [field]: value,
+        },
       }));
     } else {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
         travelDetails: {
           ...prev.travelDetails,
-          [field]: value
-        }
+          [field]: value,
+        },
       }));
     }
-    
+
     // Clear error for this field
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
@@ -122,48 +120,82 @@ const BookingForm = () => {
 
     // Customer Info Validation
     if (!formData.customerInfo.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
+    // Enhanced Email Validation
     if (!formData.customerInfo.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.customerInfo.email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = "Email is required";
+    } else {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(formData.customerInfo.email)) {
+        newErrors.email = "Please enter a valid email address";
+      }
     }
 
-    if (!formData.customerInfo.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
+    // Phone Number Validation (with country code validation)
+    if (!formData.customerInfo.phone) {
+      newErrors.phone = "Phone number is required";
+    } else if (!formData.customerInfo.phone.startsWith("+")) {
+      newErrors.phone =
+        "Phone number must include country code (e.g., +94 for Sri Lanka)";
+    } else {
+      try {
+        if (!isValidPhoneNumber(formData.customerInfo.phone)) {
+          newErrors.phone =
+            "Please enter a valid phone number for the selected country";
+        }
+      } catch (error) {
+        newErrors.phone = "Invalid phone number format";
+      }
+    }
+
+    // WhatsApp Validation (if provided)
+    if (formData.customerInfo.whatsapp) {
+      if (!formData.customerInfo.whatsapp.startsWith("+")) {
+        newErrors.whatsapp =
+          "WhatsApp number must include country code (e.g., +94 for Sri Lanka)";
+      } else {
+        try {
+          if (!isValidPhoneNumber(formData.customerInfo.whatsapp)) {
+            newErrors.whatsapp =
+              "Please enter a valid WhatsApp number for the selected country";
+          }
+        } catch (error) {
+          newErrors.whatsapp = "Invalid WhatsApp number format";
+        }
+      }
     }
 
     // Travel Details Validation
     if (!formData.travelDetails.startDate) {
-      newErrors.startDate = 'Start date is required';
+      newErrors.startDate = "Start date is required";
     } else {
       const selectedDate = new Date(formData.travelDetails.startDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-      
+
       if (selectedDate < today) {
-        newErrors.startDate = 'Start date cannot be in the past';
+        newErrors.startDate = "Start date cannot be in the past";
       }
     }
 
     // Only validate end date for multi-day tours
-    if (type === 'tour') {
+    if (type === "tour") {
       if (!formData.travelDetails.endDate) {
-        newErrors.endDate = 'End date is required';
+        newErrors.endDate = "End date is required";
       } else if (formData.travelDetails.startDate) {
         const start = new Date(formData.travelDetails.startDate);
         const end = new Date(formData.travelDetails.endDate);
-        
+
         if (end <= start) {
-          newErrors.endDate = 'End date must be after start date';
+          newErrors.endDate = "End date must be after start date";
         }
       }
     }
 
     if (formData.travelDetails.numberOfPeople.adults < 1) {
-      newErrors.adults = 'At least 1 adult is required';
+      newErrors.adults = "At least 1 adult is required";
     }
 
     setErrors(newErrors);
@@ -182,24 +214,26 @@ const BookingForm = () => {
       setError(null);
 
       const bookingData = {
-        tourType: type === 'tour' ? 'tour' : 'dayTour',
+        tourType: type === "tour" ? "tour" : "dayTour",
         tourId: id,
         customerInfo: formData.customerInfo,
-        travelDetails: formData.travelDetails
+        travelDetails: formData.travelDetails,
       };
 
       await bookingAPI.createBooking(bookingData);
-      
+
       setSuccess(true);
-      
+
       // Redirect after 3 seconds
       setTimeout(() => {
-        navigate('/');
+        navigate("/");
       }, 3000);
-      
     } catch (err) {
-      console.error('Booking error:', err);
-      setError(err.response?.data?.message || 'Failed to submit booking. Please try again.');
+      console.error("Booking error:", err);
+      setError(
+        err.response?.data?.message ||
+          "Failed to submit booking. Please try again."
+      );
     } finally {
       setSubmitting(false);
     }
@@ -227,15 +261,20 @@ const BookingForm = () => {
             Booking Submitted!
           </h2>
           <p className="text-gray-600 mb-6">
-            Thank you for your booking inquiry! We have received your request and will contact you within 24 hours to confirm your booking details.
+            Thank you for your booking inquiry! We have received your request
+            and will contact you within 24 hours to confirm your booking
+            details.
           </p>
           <div className="bg-sunsetYellow/10 rounded-xl p-4 mb-6">
             <p className="text-sm text-gray-700">
-              A confirmation email has been sent to <span className="font-semibold">{formData.customerInfo.email}</span>
+              A confirmation email has been sent to{" "}
+              <span className="font-semibold">
+                {formData.customerInfo.email}
+              </span>
             </p>
           </div>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-8 py-3 rounded-full font-semibold transition duration-300"
           >
             Back to Home
@@ -250,7 +289,9 @@ const BookingForm = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center">
           <FaExclamationCircle className="text-red-500 text-6xl mx-auto mb-6" />
-          <h2 className="text-2xl font-bold text-navy mb-4">Unable to Load Tour</h2>
+          <h2 className="text-2xl font-bold text-navy mb-4">
+            Unable to Load Tour
+          </h2>
           <p className="text-gray-600 mb-6">{error}</p>
           <button
             onClick={() => navigate(-1)}
@@ -280,7 +321,10 @@ const BookingForm = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Left Column - Form */}
             <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8">
+              <form
+                onSubmit={handleSubmit}
+                className="bg-white rounded-2xl shadow-lg p-8"
+              >
                 {error && (
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
                     <FaExclamationCircle className="text-red-500 text-xl mt-0.5" />
@@ -306,14 +350,22 @@ const BookingForm = () => {
                       <input
                         type="text"
                         value={formData.customerInfo.name}
-                        onChange={(e) => handleInputChange('customerInfo', 'name', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "customerInfo",
+                            "name",
+                            e.target.value
+                          )
+                        }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.name ? 'border-red-500' : 'border-gray-300'
+                          errors.name ? "border-red-500" : "border-gray-300"
                         }`}
                         placeholder="John Doe"
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.name}
+                        </p>
                       )}
                     </div>
 
@@ -324,14 +376,22 @@ const BookingForm = () => {
                       <input
                         type="email"
                         value={formData.customerInfo.email}
-                        onChange={(e) => handleInputChange('customerInfo', 'email', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "customerInfo",
+                            "email",
+                            e.target.value
+                          )
+                        }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.email ? 'border-red-500' : 'border-gray-300'
+                          errors.email ? "border-red-500" : "border-gray-300"
                         }`}
                         placeholder="john@example.com"
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
 
@@ -339,17 +399,30 @@ const BookingForm = () => {
                       <label className="block text-gray-700 font-semibold mb-2">
                         Phone Number <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        type="tel"
+                      <PhoneInput
+                        international
+                        defaultCountry="LK"
                         value={formData.customerInfo.phone}
-                        onChange={(e) => handleInputChange('customerInfo', 'phone', e.target.value)}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.phone ? 'border-red-500' : 'border-gray-300'
+                        onChange={(value) =>
+                          handleInputChange(
+                            "customerInfo",
+                            "phone",
+                            value || ""
+                          )
+                        }
+                        className={`w-full ${
+                          errors.phone ? "phone-input-error" : ""
                         }`}
-                        placeholder="+1 234 567 8900"
+                        numberInputProps={{
+                          className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
+                            errors.phone ? "border-red-500" : "border-gray-300"
+                          }`,
+                        }}
                       />
                       {errors.phone && (
-                        <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.phone}
+                        </p>
                       )}
                     </div>
 
@@ -360,7 +433,13 @@ const BookingForm = () => {
                       <input
                         type="text"
                         value={formData.customerInfo.country}
-                        onChange={(e) => handleInputChange('customerInfo', 'country', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "customerInfo",
+                            "country",
+                            e.target.value
+                          )
+                        }
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
                         placeholder="United States"
                       />
@@ -370,13 +449,33 @@ const BookingForm = () => {
                       <label className="block text-gray-700 font-semibold mb-2">
                         WhatsApp Number (Optional)
                       </label>
-                      <input
-                        type="tel"
+                      <PhoneInput
+                        international
+                        defaultCountry="LK"
                         value={formData.customerInfo.whatsapp}
-                        onChange={(e) => handleInputChange('customerInfo', 'whatsapp', e.target.value)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
-                        placeholder="+1 234 567 8900"
+                        onChange={(value) =>
+                          handleInputChange(
+                            "customerInfo",
+                            "whatsapp",
+                            value || ""
+                          )
+                        }
+                        className={`w-full ${
+                          errors.whatsapp ? "phone-input-error" : ""
+                        }`}
+                        numberInputProps={{
+                          className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
+                            errors.whatsapp
+                              ? "border-red-500"
+                              : "border-gray-300"
+                          }`,
+                        }}
                       />
+                      {errors.whatsapp && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.whatsapp}
+                        </p>
+                      )}
                       <p className="text-gray-500 text-sm mt-1">
                         We can contact you via WhatsApp for faster communication
                       </p>
@@ -399,18 +498,28 @@ const BookingForm = () => {
                       <input
                         type="date"
                         value={formData.travelDetails.startDate}
-                        onChange={(e) => handleInputChange('travelDetails', 'startDate', e.target.value)}
-                        min={new Date().toISOString().split('T')[0]}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "travelDetails",
+                            "startDate",
+                            e.target.value
+                          )
+                        }
+                        min={new Date().toISOString().split("T")[0]}
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.startDate ? 'border-red-500' : 'border-gray-300'
+                          errors.startDate
+                            ? "border-red-500"
+                            : "border-gray-300"
                         }`}
                       />
                       {errors.startDate && (
-                        <p className="text-red-500 text-sm mt-1">{errors.startDate}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.startDate}
+                        </p>
                       )}
                     </div>
 
-                    {type === 'tour' && (
+                    {type === "tour" && (
                       <div>
                         <label className="block text-gray-700 font-semibold mb-2">
                           End Date <span className="text-red-500">*</span>
@@ -418,14 +527,27 @@ const BookingForm = () => {
                         <input
                           type="date"
                           value={formData.travelDetails.endDate}
-                          onChange={(e) => handleInputChange('travelDetails', 'endDate', e.target.value)}
-                          min={formData.travelDetails.startDate || new Date().toISOString().split('T')[0]}
+                          onChange={(e) =>
+                            handleInputChange(
+                              "travelDetails",
+                              "endDate",
+                              e.target.value
+                            )
+                          }
+                          min={
+                            formData.travelDetails.startDate ||
+                            new Date().toISOString().split("T")[0]
+                          }
                           className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                            errors.endDate ? 'border-red-500' : 'border-gray-300'
+                            errors.endDate
+                              ? "border-red-500"
+                              : "border-gray-300"
                           }`}
                         />
                         {errors.endDate && (
-                          <p className="text-red-500 text-sm mt-1">{errors.endDate}</p>
+                          <p className="text-red-500 text-sm mt-1">
+                            {errors.endDate}
+                          </p>
                         )}
                       </div>
                     )}
@@ -438,13 +560,21 @@ const BookingForm = () => {
                         type="number"
                         min="1"
                         value={formData.travelDetails.numberOfPeople.adults}
-                        onChange={(e) => handleInputChange('numberOfPeople', 'adults', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "numberOfPeople",
+                            "adults",
+                            e.target.value
+                          )
+                        }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.adults ? 'border-red-500' : 'border-gray-300'
+                          errors.adults ? "border-red-500" : "border-gray-300"
                         }`}
                       />
                       {errors.adults && (
-                        <p className="text-red-500 text-sm mt-1">{errors.adults}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.adults}
+                        </p>
                       )}
                     </div>
 
@@ -456,10 +586,18 @@ const BookingForm = () => {
                         type="number"
                         min="0"
                         value={formData.travelDetails.numberOfPeople.children}
-                        onChange={(e) => handleInputChange('numberOfPeople', 'children', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "numberOfPeople",
+                            "children",
+                            e.target.value
+                          )
+                        }
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
                       />
-                      <p className="text-gray-500 text-sm mt-1">Under 12 years old</p>
+                      <p className="text-gray-500 text-sm mt-1">
+                        Under 12 years old
+                      </p>
                     </div>
 
                     <div className="md:col-span-2">
@@ -468,7 +606,13 @@ const BookingForm = () => {
                       </label>
                       <textarea
                         value={formData.travelDetails.specialRequests}
-                        onChange={(e) => handleInputChange('travelDetails', 'specialRequests', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange(
+                            "travelDetails",
+                            "specialRequests",
+                            e.target.value
+                          )
+                        }
                         rows="4"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition resize-none"
                         placeholder="Dietary restrictions, accessibility needs, special occasions, etc."
@@ -490,10 +634,10 @@ const BookingForm = () => {
                         Processing...
                       </span>
                     ) : (
-                      'Submit'
+                      "Submit"
                     )}
                   </button>
-                  
+
                   <button
                     type="button"
                     onClick={() => navigate(-1)}
@@ -513,8 +657,10 @@ const BookingForm = () => {
             {tour && (
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
-                  <h3 className="text-xl font-bold text-navy mb-4">Booking Summary</h3>
-                  
+                  <h3 className="text-xl font-bold text-navy mb-4">
+                    Booking Summary
+                  </h3>
+
                   <div className="mb-4">
                     <img
                       src={tour.mainImage}
@@ -523,22 +669,27 @@ const BookingForm = () => {
                     />
                   </div>
 
-                  <h4 className="text-lg font-bold text-navy mb-3">{tour.title}</h4>
+                  <h4 className="text-lg font-bold text-navy mb-3">
+                    {tour.title}
+                  </h4>
 
                   <div className="space-y-3 mb-6">
-                    {type === 'tour' && tour.duration && (
+                    {type === "tour" && tour.duration && (
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Duration:</span>
                         <span className="font-semibold text-navy">
-                          {tour.duration.days} Days / {tour.duration.nights} Nights
+                          {tour.duration.days} Days / {tour.duration.nights}{" "}
+                          Nights
                         </span>
                       </div>
                     )}
-                    
-                    {type === 'day-tour' && tour.duration && (
+
+                    {type === "day-tour" && tour.duration && (
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Duration:</span>
-                        <span className="font-semibold text-navy">{tour.duration}</span>
+                        <span className="font-semibold text-navy">
+                          {tour.duration}
+                        </span>
                       </div>
                     )}
 
@@ -555,7 +706,9 @@ const BookingForm = () => {
                           Adults: {formData.travelDetails.numberOfPeople.adults}
                         </span>
                         <span className="font-semibold text-navy">
-                          ${tour.price * formData.travelDetails.numberOfPeople.adults}
+                          $
+                          {tour.price *
+                            formData.travelDetails.numberOfPeople.adults}
                         </span>
                       </div>
                     )}
@@ -564,7 +717,9 @@ const BookingForm = () => {
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Start Date:</span>
                         <span className="font-semibold text-navy">
-                          {new Date(formData.travelDetails.startDate).toLocaleDateString()}
+                          {new Date(
+                            formData.travelDetails.startDate
+                          ).toLocaleDateString()}
                         </span>
                       </div>
                     )}
@@ -575,9 +730,9 @@ const BookingForm = () => {
                       <span className="text-gray-700">Estimated Total:</span>
                       <span className="text-sunsetOrange">
                         $
-                        {tour.price * 
-                          (formData.travelDetails.numberOfPeople.adults + 
-                           formData.travelDetails.numberOfPeople.children)}
+                        {tour.price *
+                          (formData.travelDetails.numberOfPeople.adults +
+                            formData.travelDetails.numberOfPeople.children)}
                       </span>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
@@ -589,8 +744,12 @@ const BookingForm = () => {
                     <div className="flex items-start gap-2">
                       <FaWhatsapp className="text-green-500 text-xl mt-0.5" />
                       <div className="text-sm">
-                        <p className="font-semibold text-navy mb-1">Need Help?</p>
-                        <p className="text-gray-600">Contact us on WhatsApp for instant support</p>
+                        <p className="font-semibold text-navy mb-1">
+                          Need Help?
+                        </p>
+                        <p className="text-gray-600">
+                          Contact us on WhatsApp for instant support
+                        </p>
                         <a
                           href="https://wa.me/94778875696"
                           target="_blank"

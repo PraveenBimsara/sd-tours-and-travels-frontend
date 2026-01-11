@@ -1,46 +1,50 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  FaAward, 
-  FaUsers, 
-  FaGlobe, 
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  FaAward,
+  FaUsers,
+  FaGlobe,
   FaHeart,
   FaShieldAlt,
   FaCar,
   FaMapMarkedAlt,
   FaHandshake,
   FaLeaf,
-  FaStar
-} from 'react-icons/fa';
+  FaStar,
+} from "react-icons/fa";
 
 const AboutUs = () => {
   const [activeValue, setActiveValue] = useState(0);
 
   useEffect(() => {
-      window.scrollTo(0, 0);
-    },[]);
+    window.scrollTo(0, 0);
+  }, []);
 
   const values = [
     {
       icon: <FaHeart className="text-4xl" />,
       title: "Passion for Travel",
-      description: "We love what we do and it shows in every tour we create. Our passion for Sri Lanka drives us to share its beauty with the world."
+      description:
+        "We love what we do and it shows in every tour we create. Our passion for Sri Lanka drives us to share its beauty with the world.",
     },
     {
       icon: <FaShieldAlt className="text-4xl" />,
       title: "Safety First",
-      description: "Your safety is our top priority. We maintain the highest standards in vehicle maintenance, driver training, and tour planning."
+      description:
+        "Your safety is our top priority. We maintain the highest standards in vehicle maintenance, driver training, and tour planning.",
     },
     {
       icon: <FaHandshake className="text-4xl" />,
       title: "Personal Service",
-      description: "Every traveler is unique. We customize experiences to match your interests, budget, and travel style for unforgettable memories."
+      description:
+        "Every traveler is unique. We customize experiences to match your interests, budget, and travel style for unforgettable memories.",
     },
     {
       icon: <FaLeaf className="text-4xl" />,
       title: "Sustainable Tourism",
-      description: "We're committed to responsible tourism that preserves Sri Lanka's natural beauty and supports local communities."
-    }
+      description:
+        "We're committed to responsible tourism that preserves Sri Lanka's natural beauty and supports local communities.",
+    },
   ];
 
   const stats = [
@@ -53,43 +57,53 @@ const AboutUs = () => {
     {
       name: "Sunil De Silva",
       role: "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-      description: "With over 15 years in tourism, Sunil founded SD Tours to share his love for Sri Lanka's hidden gems."
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+      description:
+        "With over 15 years in tourism, Sunil founded SD Tours to share his love for Sri Lanka's hidden gems.",
     },
     {
       name: "Nimal Perera",
       role: "Head Guide",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
-      description: "A certified tour guide with deep knowledge of Sri Lankan history, culture, and wildlife."
+      image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
+      description:
+        "A certified tour guide with deep knowledge of Sri Lankan history, culture, and wildlife.",
     },
     {
       name: "Chaminda Silva",
       role: "Operations Manager",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-      description: "Ensures every tour runs smoothly with meticulous planning and attention to detail."
-    }
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+      description:
+        "Ensures every tour runs smoothly with meticulous planning and attention to detail.",
+    },
   ];
 
   const whyChooseUs = [
     {
       icon: <FaMapMarkedAlt className="text-4xl text-skyBlue" />,
       title: "Local Expertise",
-      description: "Born and raised in Sri Lanka, we know every corner of this beautiful island and share insider knowledge you won't find in guidebooks."
+      description:
+        "Born and raised in Sri Lanka, we know every corner of this beautiful island and share insider knowledge you won't find in guidebooks.",
     },
     {
       icon: <FaCar className="text-4xl text-sunsetOrange" />,
       title: "Premium Vehicles",
-      description: "Travel in comfort with our fleet of modern, air-conditioned vehicles maintained to the highest standards."
+      description:
+        "Travel in comfort with our fleet of modern, air-conditioned vehicles maintained to the highest standards.",
     },
     {
       icon: <FaUsers className="text-4xl text-sunsetYellow" />,
       title: "Expert Guides",
-      description: "Our licensed guides are passionate storytellers who bring Sri Lanka's history and culture to life."
+      description:
+        "Our licensed guides are passionate storytellers who bring Sri Lanka's history and culture to life.",
     },
     {
       icon: <FaGlobe className="text-4xl text-skyBlue" />,
       title: "Custom Itineraries",
-      description: "Every traveler is different. We design personalized tours that match your interests and pace."
+      description:
+        "Every traveler is different. We design personalized tours that match your interests and pace.",
     },
   ];
 
@@ -97,22 +111,26 @@ const AboutUs = () => {
     <div className="about-us">
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80')"
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWJvdXQlMjB1c3xlbnwwfHwwfHx8MA%3D%3D')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
-        
+
         <div className="relative z-10 container mx-auto px-4 text-white flex items-center justify-center flex-col">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              About SD Tours & Travel
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white/90">
-              Your trusted partner for authentic Sri Lankan experiences since 2014
-            </p>
+            <div className="flex flex-col items-center justify-center text-center">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6">
+                About SD Tours & Travel
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-white/90">
+                My name is Samith Uddika and I live in Sri Lanka. Would you like to get
+                to know my wonderful homeland?
+              </p>
+            </div>
             <div className="flex items-center justify-center gap-4">
               <Link
                 to="/tours"
@@ -152,25 +170,33 @@ const AboutUs = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-sunsetYellow font-semibold text-lg mb-2">Our Story</h3>
+              <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
+                Our Story
+              </h3>
               <h2 className="text-4xl font-bold text-navy mb-6">
                 Born from a Love for Sri Lanka
               </h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  SD Tours & Travel was founded in 2014 by Samith Uddika, a Sri Lankan native with an 
-                  unquenchable passion for his homeland. After years of working in the tourism industry, 
-                  Samith recognized a gap in the market for authentic, personalized travel experiences.
+                  SD Tours & Travel was founded by Samith Uddika, a Sri
+                  Lankan native with an unquenchable passion for his homeland.
+                  After years of working in the tourism industry, Samith
+                  recognized a gap in the market for authentic, personalized
+                  travel experiences.
                 </p>
                 <p>
-                  What started as a small operation with a single vehicle has grown into one of Sri Lanka's 
-                  most trusted tour companies. Today, we're proud to employ a team of dedicated professionals 
-                  who share our commitment to showcasing the very best of Sri Lanka.
+                  Sri Lanka is an island in the Indian Ocean that captivates
+                  visitors with its stunning natural beauty and diversity. It
+                  boasts picturesque beaches as well as mountains, forests, and
+                  waterfalls. The diverse cultures and religions make Sri Lanka
+                  a truly unique experience. It is therefore rightly known as
+                  the "Pearl of the Indian Ocean."
                 </p>
                 <p>
-                  Our mission remains unchanged: to create unforgettable journeys that go beyond typical 
-                  tourist experiences, connecting travelers with the heart and soul of Sri Lanka through 
-                  its culture, nature, and warm-hearted people.
+                  Our mission remains unchanged: to create unforgettable
+                  journeys that go beyond typical tourist experiences,
+                  connecting travelers with the heart and soul of Sri Lanka
+                  through its culture, nature, and warm-hearted people.
                 </p>
               </div>
             </div>
@@ -258,8 +284,8 @@ const AboutUs = () => {
                   onClick={() => setActiveValue(index)}
                   className={`px-6 py-3 rounded-full font-semibold transition duration-300 ${
                     activeValue === index
-                      ? 'bg-sunsetYellow text-white'
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      ? "bg-sunsetYellow text-white"
+                      : "bg-white/10 text-white hover:bg-white/20"
                   }`}
                 >
                   {value.title}
@@ -301,8 +327,9 @@ const AboutUs = () => {
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "SD Tours made our honeymoon magical! From ancient temples to pristine beaches, 
-                every moment was perfect. Their attention to detail is unmatched."
+                "SD Tours made our honeymoon magical! From ancient temples to
+                pristine beaches, every moment was perfect. Their attention to
+                detail is unmatched."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-sunsetOrange rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -320,8 +347,9 @@ const AboutUs = () => {
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "The most authentic travel experience we've ever had. Our guide's knowledge and 
-                passion for Sri Lanka truly brought the culture and history to life."
+                "The most authentic travel experience we've ever had. Our
+                guide's knowledge and passion for Sri Lanka truly brought the
+                culture and history to life."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-skyBlue rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -339,8 +367,9 @@ const AboutUs = () => {
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "Professional, reliable, and incredibly friendly. SD Tours exceeded all our 
-                expectations. We'll definitely be back and recommending them to everyone!"
+                "Professional, reliable, and incredibly friendly. SD Tours
+                exceeded all our expectations. We'll definitely be back and
+                recommending them to everyone!"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-sunsetYellow rounded-full flex items-center justify-center text-white font-bold text-xl">
@@ -363,8 +392,8 @@ const AboutUs = () => {
             Ready to Explore Sri Lanka?
           </h2>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Let us create a personalized journey that matches your dreams. 
-            Your Sri Lankan adventure awaits!
+            Let us create a personalized journey that matches your dreams. Your
+            Sri Lankan adventure awaits!
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

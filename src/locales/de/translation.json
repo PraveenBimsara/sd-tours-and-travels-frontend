@@ -1,0 +1,226 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Unsere Dienstleistungen",
+    "tours": "Tourpakete",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "hero": {
+      "title": "SD Tours & Travel",
+      "subtitle": "Entdecken Sie Sri Lanka in Komfort, Kultur und Stil",
+      "description": "SD Tours & Travel ist ein in Sri Lanka ansässiges Reiseunternehmen, das sorgfältig gestaltete Kultur-, Abenteuer-, Luxus- und maßgeschneiderte Touren anbietet.",
+      "exploreTours": "Touren erkunden",
+      "contactUs": "Kontaktieren Sie uns"
+    },
+    "about": {
+      "badge": "Über SD Tours & Travel",
+      "title": "Entdecken Sie die Seele Sri Lankas",
+      "description1": "SD Tours & Travel lädt Sie ein, die wahre Schönheit Sri Lankas zu erleben – von antiken Kulturstätten und üppigen grünen Bergen bis hin zu atemberaubenden Stränden und reicher Tierwelt. Reisen Sie mit Komfort, Sicherheit und lokaler Expertise, während wir jede Reise zu einer unvergesslichen Geschichte machen.",
+      "description2": "Wir sind ein in Sri Lanka ansässiges Reiseunternehmen, das sorgfältig gestaltete Kultur-, Abenteuer-, Luxus- und maßgeschneiderte Touren anbietet. Unser tiefes lokales Wissen und persönlicher Service gewährleisten authentische Erlebnisse, die das Beste unserer wunderschönen Insel zeigen.",
+      "learnMore": "Mehr über uns erfahren"
+    },
+    "features": {
+      "title": "Warum mit uns reisen",
+      "subtitle": "Wir bieten authentische Sri-Lanka-Erlebnisse mit persönlichem Service und lokaler Expertise",
+      "localExperts": {
+        "title": "Lokale Experten",
+        "description": "In Sri Lanka ansässiges Reiseunternehmen mit tiefem lokalen Wissen"
+      },
+      "customized": {
+        "title": "Maßgeschneiderte Touren",
+        "description": "Jede Reise ist auf Ihre Interessen und Ihr Budget zugeschnitten"
+      },
+      "comfort": {
+        "title": "Komfort & Sicherheit",
+        "description": "Reisen Sie in sauberen Fahrzeugen mit erfahrenen, freundlichen Fahrern"
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Unser Team steht Ihnen jederzeit zur Verfügung"
+      }
+    },
+    "thingsToDo": {
+      "badge": "Wohin geht Ihre nächste Reise",
+      "title": "Aktivitäten",
+      "adventure": {
+        "title": "Abenteuer",
+        "description": "Erleben Sie aufregende Abenteuer in ganz Sri Lanka – von malerischen Wanderwegen bis zu Wasserfallexpeditionen"
+      },
+      "wildlife": {
+        "title": "Tierwelt & Safari",
+        "description": "Exklusive Wildtiersafaris mit nahen Begegnungen mit Sri Lankas ikonischsten Tieren"
+      },
+      "relaxation": {
+        "title": "Erholungsurlaube",
+        "description": "Luxusaufenthalte, beruhigende Spa-Erlebnisse und ruhige Küstenziele zur puren Entspannung"
+      },
+      "train": {
+        "title": "Zugfahrt",
+        "description": "Eine entspannende und ikonische Zugfahrt durch Sri Lankas schönste Landschaften"
+      },
+      "culture": {
+        "title": "Kultur",
+        "description": "Eine kulturelle Reise durch antikes Erbe, heilige Stätten und authentische lokale Traditionen"
+      },
+      "beach": {
+        "title": "Strandflucht",
+        "description": "Unberührte Strände mit goldenem Sand und kristallklarem Wasser, perfekt zum Entspannen"
+      }
+    },
+    "trendingTours": {
+      "badge": "Tourpakete",
+      "title": "Beliebte Touren",
+      "subtitle": "Entdecken Sie unsere beliebtesten Tourpakete für das beste Sri-Lanka-Erlebnis",
+      "featured": "Empfohlen",
+      "days": "Tage",
+      "nights": "Nächte",
+      "viewDetails": "Details anzeigen",
+      "viewAll": "Alle Touren anzeigen"
+    },
+    "dayTours": {
+      "badge": "Tagestouren in Sri Lanka",
+      "title": "Sri Lanka an einem Tag erkunden",
+      "subtitle": "Unsere Tagestouren sind für Reisende konzipiert, die Sri Lanka ohne Eile erkunden möchten.",
+      "from": "Ab"
+    },
+    "testimonials": {
+      "badge": "Gästebewertungen",
+      "title": "Was unsere Reisenden sagen"
+    },
+    "transportation": {
+      "badge": "Unser Transport",
+      "title": "Zuverlässiger Transport für eine reibungslose Reise",
+      "subtitle": "Wir bieten saubere, moderne, klimatisierte Fahrzeuge mit professionellen, erfahrenen Fahrern für sichere, komfortable und zuverlässige Reisen in ganz Sri Lanka.",
+      "sedan": {
+        "title": "Limousinen",
+        "description": "Perfekt für Paare oder kleine Familien (1-3 Personen)"
+      },
+      "suv": {
+        "title": "SUVs",
+        "description": "Ideal für Familien oder Gruppen (4-6 Personen)"
+      },
+      "van": {
+        "title": "Transporter",
+        "description": "Am besten für größere Gruppen (7-10 Personen)"
+      },
+      "coach": {
+        "title": "Luxusbusse",
+        "description": "Für große Gruppen (15+ Personen)"
+      },
+      "allInclude": "Alle Fahrzeuge beinhalten:",
+      "airConditioning": "Klimaanlage",
+      "driver": "Erfahrener Fahrer",
+      "insured": "Vollständig versichert",
+      "clean": "Sauber & desinfiziert"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Kontaktieren Sie uns",
+      "subtitle": "Haben Sie eine Frage oder möchten Sie Ihr Traum-Sri-Lanka-Abenteuer buchen? Wir sind hier, um zu helfen!"
+    },
+    "form": {
+      "title": "Senden Sie uns eine Nachricht",
+      "name": "Ihr Name",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer",
+      "subject": "Betreff",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Erzählen Sie uns von Ihren Reiseplänen, Fragen oder besonderen Wünschen...",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Erfolg!",
+      "successMessage": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden.",
+      "error": "Fehler",
+      "required": "*"
+    },
+    "info": {
+      "title": "Kontaktinformationen",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "email": "E-Mail",
+      "location": "Standort",
+      "locationText": "Aluthgama, Sri Lanka"
+    },
+    "social": {
+      "title": "Folgen Sie uns",
+      "subtitle": "Bleiben Sie über unsere neuesten Touren und Reisetipps auf dem Laufenden"
+    },
+    "quickResponse": {
+      "title": "Schnelle Antwort garantiert",
+      "description": "Wir antworten in der Regel innerhalb von 24 Stunden auf alle Anfragen. Für dringende Angelegenheiten rufen Sie uns bitte an oder kontaktieren Sie uns per WhatsApp."
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Schnelle Antworten auf häufige Fragen zu unseren Touren und Dienstleistungen",
+      "q1": {
+        "question": "Wie buche ich eine Tour?",
+        "answer": "Sie können direkt über unsere Website buchen, indem Sie Ihre bevorzugte Tour auswählen und das Buchungsformular ausfüllen. Alternativ kontaktieren Sie uns per WhatsApp oder Telefon für persönliche Unterstützung."
+      },
+      "q2": {
+        "question": "Können Touren angepasst werden?",
+        "answer": "Ja! Wir sind spezialisiert auf maßgeschneiderte Touren, die auf Ihre Interessen, Ihr Budget und Ihren Zeitplan zugeschnitten sind. Kontaktieren Sie uns, um Ihre Wünsche zu besprechen."
+      }
+    }
+  },
+  "booking": {
+    "title": "Buchen Sie Ihr Abenteuer",
+    "subtitle": "Füllen Sie das Formular unten aus, um Ihren Platz zu reservieren",
+    "personalInfo": "Persönliche Informationen",
+    "travelDetails": "Reisedetails",
+    "fullName": "Vollständiger Name",
+    "emailAddress": "E-Mail-Adresse",
+    "phoneNumber": "Telefonnummer",
+    "country": "Land",
+    "whatsapp": "WhatsApp-Nummer (Optional)",
+    "whatsappHelp": "Wir können Sie über WhatsApp für schnellere Kommunikation kontaktieren",
+    "startDate": "Startdatum",
+    "endDate": "Enddatum",
+    "adults": "Anzahl Erwachsene",
+    "children": "Anzahl Kinder",
+    "childrenNote": "Unter 12 Jahren",
+    "specialRequests": "Besondere Wünsche oder Anforderungen",
+    "specialRequestsPlaceholder": "Ernährungseinschränkungen, Barrierefreiheitsbedarf, besondere Anlässe usw.",
+    "submit": "Absenden",
+    "processing": "Wird verarbeitet...",
+    "cancel": "Abbrechen",
+    "termsText": "Durch das Absenden dieses Formulars stimmen Sie unseren Allgemeinen Geschäftsbedingungen zu",
+    "bookingSummary": "Buchungszusammenfassung",
+    "duration": "Dauer",
+    "pricePerPerson": "Preis pro Person:",
+    "estimatedTotal": "Geschätzter Gesamtbetrag:",
+    "finalPriceNote": "Der endgültige Preis wird von unserem Team bestätigt",
+    "needHelp": "Brauchen Sie Hilfe?",
+    "needHelpText": "Kontaktieren Sie uns auf WhatsApp für sofortige Unterstützung",
+    "chatNow": "Jetzt chatten →",
+    "success": {
+      "title": "Buchung eingereicht!",
+      "message": "Vielen Dank für Ihre Buchungsanfrage! Wir haben Ihre Anfrage erhalten und werden Sie innerhalb von 24 Stunden kontaktieren, um Ihre Buchungsdetails zu bestätigen.",
+      "emailSent": "Eine Bestätigungs-E-Mail wurde gesendet an",
+      "backHome": "Zurück zur Startseite"
+    },
+    "errors": {
+      "nameRequired": "Name ist erforderlich",
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer für das ausgewählte Land ein",
+      "phoneCountryCode": "Telefonnummer muss Ländervorwahl enthalten (z.B. +94 für Sri Lanka)",
+      "whatsappInvalid": "Bitte geben Sie eine gültige WhatsApp-Nummer für das ausgewählte Land ein",
+      "whatsappCountryCode": "WhatsApp-Nummer muss Ländervorwahl enthalten (z.B. +94 für Sri Lanka)",
+      "startDateRequired": "Startdatum ist erforderlich",
+      "startDatePast": "Startdatum kann nicht in der Vergangenheit liegen",
+      "endDateRequired": "Enddatum ist erforderlich",
+      "endDateInvalid": "Enddatum muss nach dem Startdatum liegen",
+      "adultsRequired": "Mindestens 1 Erwachsener erforderlich"
+    }
+  },
+  "common": {
+    "loading": "Laden...",
+    "chatWithUs": "Chatten Sie mit uns!",
+    "required": "*",
+    "phoneHelper": "Ländervorwahl angeben (z.B. +94 77 123 4567 für Sri Lanka)"
+  }
+}

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes, FaWhatsapp } from 'react-icons/fa';
 import logo from '../assets/logo.png';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,17 +19,18 @@ const Header = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Tours Packages', path: '/tours' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.services'), path: '/services' },
+    { name: t('nav.tours'), path: '/tours' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   return (
     <>
       <header className="bg-white shadow-md sticky top-0 z-50">
         <nav className="container mx-auto px-4 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-2">
             {/* Logo */}
             <Link to="/" className="flex items-center hover:opacity-90 transition">
               <img 
@@ -51,6 +55,9 @@ const Header = () => {
                   {link.name}
                 </Link>
               ))}
+              
+              {/* Language Switcher */}
+              <LanguageSwitcher />
             </div>
 
             {/* Mobile Menu Button */}
@@ -81,6 +88,11 @@ const Header = () => {
                     {link.name}
                   </Link>
                 ))}
+                
+                {/* Language Switcher for Mobile */}
+                <div className="pt-2 border-t">
+                  <LanguageSwitcher />
+                </div>
               </div>
             </div>
           )}
@@ -97,7 +109,7 @@ const Header = () => {
       >
         <FaWhatsapp size={32} />
         <span className="absolute right-full mr-3 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          Chat with us!
+          {t('common.chatWithUs')}
         </span>
       </a>
     </>
