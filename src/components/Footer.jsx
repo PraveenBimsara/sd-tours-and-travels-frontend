@@ -64,8 +64,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-white/80">
                 <FaEnvelope className="text-sunsetOrange flex-shrink-0" />
-                <a href="mailto:info@sdtours.com" className="hover:text-sunsetYellow transition">
-                  info@sdtours.com
+                <a href="mailto:sdtoursandtravelcompany@gmail.com" className="hover:text-sunsetYellow transition">
+                  sdtoursandtravelcompany@gmail.com
                 </a>
               </li>
             </ul>

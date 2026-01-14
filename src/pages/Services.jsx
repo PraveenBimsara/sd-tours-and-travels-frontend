@@ -1,118 +1,137 @@
-import { 
-  FaCar, 
-  FaHotel, 
-  FaPlane, 
-  FaMapMarkedAlt, 
+import { useEffect } from "react";
+import {
+  FaCar,
+  FaHotel,
+  FaPlane,
+  FaMapMarkedAlt,
   FaUsers,
   FaCamera,
   FaUtensils,
   FaPassport,
   FaHeadset,
-  FaShieldAlt,
   FaCheckCircle,
-  FaWhatsapp
-} from 'react-icons/fa';
+  FaWhatsapp,
+} from "react-icons/fa";
+import cultural_triangle from "../assets/cultural triangle.png";
+import hill_places from "../assets/hill places.png";
+import coastal_area from "../assets/coastal area.png";
+import wildlife_zones from "../assets/wildlife zones.png";
+import urban_centers from "../assets/urban centers.png";
+import hidden_places from "../assets/hidden places.png";
 
 const Services = () => {
+  
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const services = [
     {
       icon: <FaCar className="text-5xl text-sunsetOrange" />,
       title: "Private Transportation",
-      description: "Travel in comfort with our modern, air-conditioned vehicles. Experienced, English-speaking drivers ensure safe and pleasant journeys throughout Sri Lanka.",
+      description:
+        "Travel in comfort with our modern, air-conditioned vehicles. Experienced, English-speaking drivers ensure safe and pleasant journeys throughout Sri Lanka.",
       features: [
         "Modern, well-maintained vehicles",
         "Professional, licensed drivers",
         "Air-conditioned comfort",
-        "Flexible pickup locations"
-      ]
+        "Flexible pickup locations",
+      ],
     },
     {
       icon: <FaHotel className="text-5xl text-skyBlue" />,
       title: "Accommodation Booking",
-      description: "From luxury hotels to boutique guesthouses, we arrange the perfect accommodation to match your preferences and budget.",
+      description:
+        "From luxury hotels to boutique guesthouses, we arrange the perfect accommodation to match your preferences and budget.",
       features: [
         "Handpicked hotels & resorts",
         "Best rates guaranteed",
         "Various budget options",
-        "Beach, mountain, or city stays"
-      ]
+        "Beach, mountain, or city stays",
+      ],
     },
     {
       icon: <FaMapMarkedAlt className="text-5xl text-sunsetYellow" />,
       title: "Customized Tours",
-      description: "Design your perfect Sri Lankan adventure. We create personalized itineraries based on your interests, schedule, and travel style.",
+      description:
+        "Design your perfect Sri Lankan adventure. We create personalized itineraries based on your interests, schedule, and travel style.",
       features: [
         "Tailored to your preferences",
         "Flexible scheduling",
         "Cultural, adventure, or relaxation",
-        "Expert local guidance"
-      ]
+        "Expert local guidance",
+      ],
     },
     {
       icon: <FaPlane className="text-5xl text-navy" />,
       title: "Airport Transfers",
-      description: "Hassle-free pickups and drop-offs from Bandaranaike International Airport. Welcome service with comfortable, direct transfers to your destination.",
+      description:
+        "Hassle-free pickups and drop-offs from Bandaranaike International Airport. Welcome service with comfortable, direct transfers to your destination.",
       features: [
         "Meet & greet service",
         "24/7 availability",
         "Direct to your hotel",
-        "Flight monitoring included"
-      ]
+        "Flight monitoring included",
+      ],
     },
     {
       icon: <FaUsers className="text-5xl text-sunsetOrange" />,
       title: "Expert Tour Guides",
-      description: "Our knowledgeable, multilingual guides bring Sri Lanka's history and culture to life with engaging stories and local insights.",
+      description:
+        "Our knowledgeable, multilingual guides bring Sri Lanka's history and culture to life with engaging stories and local insights.",
       features: [
         "Licensed professional guides",
         "Multiple languages available",
         "Deep cultural knowledge",
-        "Passionate storytellers"
-      ]
+        "Passionate storytellers",
+      ],
     },
     {
       icon: <FaCamera className="text-5xl text-skyBlue" />,
       title: "Photography Tours",
-      description: "Capture Sri Lanka's stunning landscapes and vibrant culture. We know the best spots and perfect timing for incredible photographs.",
+      description:
+        "Capture Sri Lanka's stunning landscapes and vibrant culture. We know the best spots and perfect timing for incredible photographs.",
       features: [
         "Scenic photography locations",
         "Golden hour planning",
         "Wildlife photography",
-        "Cultural event access"
-      ]
+        "Cultural event access",
+      ],
     },
     {
       icon: <FaUtensils className="text-5xl text-sunsetYellow" />,
       title: "Culinary Experiences",
-      description: "Discover authentic Sri Lankan cuisine through cooking classes, food tours, and reservations at the finest local restaurants.",
+      description:
+        "Discover authentic Sri Lankan cuisine through cooking classes, food tours, and reservations at the finest local restaurants.",
       features: [
         "Traditional cooking classes",
         "Street food tours",
         "Restaurant recommendations",
-        "Tea plantation visits"
-      ]
+        "Tea plantation visits",
+      ],
     },
     {
       icon: <FaPassport className="text-5xl text-navy" />,
       title: "Visa Assistance",
-      description: "We guide you through the visa application process for Sri Lanka, making your travel preparation smooth and stress-free.",
+      description:
+        "We guide you through the visa application process for Sri Lanka, making your travel preparation smooth and stress-free.",
       features: [
         "ETA application help",
         "Document guidance",
         "Requirement clarification",
-        "Fast processing support"
-      ]
+        "Fast processing support",
+      ],
     },
     {
       icon: <FaHeadset className="text-5xl text-sunsetOrange" />,
       title: "24/7 Support",
-      description: "Round-the-clock assistance throughout your journey. We're always available via phone, WhatsApp, or email for any needs.",
+      description:
+        "Round-the-clock assistance throughout your journey. We're always available via phone, WhatsApp, or email for any needs.",
       features: [
         "Immediate response",
         "Emergency assistance",
         "Travel adjustments",
-        "Local problem solving"
-      ]
+        "Local problem solving",
+      ],
     },
   ];
 
@@ -126,7 +145,7 @@ const Services = () => {
     "Wedding & honeymoon planning",
     "Group tour coordination",
     "Corporate travel services",
-    "Event planning assistance"
+    "Event planning assistance",
   ];
 
   return (
@@ -146,10 +165,11 @@ const Services = () => {
           <div className="max-w-3xl">
             <div className="flex flex-col items-center justify-center text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                 Our Services
+                Our Services
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/90">
-                Comprehensive travel solutions for your perfect Sri Lankan experience
+                Comprehensive travel solutions for your perfect Sri Lankan
+                experience
               </p>
             </div>
           </div>
@@ -164,10 +184,14 @@ const Services = () => {
               Everything You Need for an Unforgettable Journey
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed mb-8">
-              At <span className="text-sunsetOrange font-semibold">SD Tours & Travel</span>, 
-              we offer a complete range of services to ensure your Sri Lankan adventure is seamless, 
-              comfortable, and memorable. From the moment you arrive until your departure, we handle 
-              every detail with care and professionalism.
+              At{" "}
+              <span className="text-sunsetOrange font-semibold">
+                SD Tours & Travel
+              </span>
+              , we offer a complete range of services to ensure your Sri Lankan
+              adventure is seamless, comfortable, and memorable. From the moment
+              you arrive until your departure, we handle every detail with care
+              and professionalism.
             </p>
           </div>
         </div>
@@ -202,7 +226,10 @@ const Services = () => {
                 {/* Features */}
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-gray-700">
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2 text-gray-700"
+                    >
                       <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
                       <span className="text-sm">{feature}</span>
                     </li>
@@ -250,7 +277,9 @@ const Services = () => {
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🏆</span>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-2">Local Expertise</h3>
+              <h3 className="text-xl font-bold text-navy mb-2">
+                Local Expertise
+              </h3>
               <p className="text-gray-600">
                 Sri Lanka-based company with deep knowledge of the island
               </p>
@@ -261,7 +290,9 @@ const Services = () => {
               <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💎</span>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-2">Quality Service</h3>
+              <h3 className="text-xl font-bold text-navy mb-2">
+                Quality Service
+              </h3>
               <p className="text-gray-600">
                 High standards of service with attention to every detail
               </p>
@@ -283,7 +314,9 @@ const Services = () => {
               <div className="bg-navy/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🤝</span>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-2">Personal Touch</h3>
+              <h3 className="text-xl font-bold text-navy mb-2">
+                Personal Touch
+              </h3>
               <p className="text-gray-600">
                 Customized experiences tailored to your preferences
               </p>
@@ -295,51 +328,149 @@ const Services = () => {
       {/* Service Areas */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-navy text-center mb-8">
               Where We Operate
             </h2>
             <p className="text-gray-700 text-center text-lg mb-12">
-              We provide services throughout Sri Lanka, covering all major destinations and hidden gems
+              We provide services throughout Sri Lanka, covering all major
+              destinations and hidden gems
             </p>
 
-            <div className="bg-gradient-to-br from-skyBlue/10 to-sunsetYellow/10 rounded-2xl p-8">
-              <div className="grid md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Cultural Triangle</h3>
-                  <p className="text-gray-600 text-sm">
-                    Anuradhapura, Polonnaruwa, Sigiriya, Dambulla, Kandy
-                  </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Cultural Triangle */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={cultural_triangle}
+                    alt="Cultural Triangle"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-3">
+                      Cultural Triangle
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Anuradhapura", "Polonnaruwa", "Sigiriya", "Dambulla", "Kandy"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Hill Country</h3>
-                  <p className="text-gray-600 text-sm">
-                    Nuwara Eliya, Ella, Horton Plains, Tea Plantations
-                  </p>
+              </div>
+
+              {/* Hill Places */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={hill_places}
+                    alt="Hill Country"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-3">Hill Places</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Nuwara Eliya", "Ella", "Horton Plains", "Tea Plantations"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Coastal Areas</h3>
-                  <p className="text-gray-600 text-sm">
-                    Galle, Mirissa, Bentota, Trincomalee, Arugam Bay
-                  </p>
+              </div>
+
+              {/* Coastal Areas */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={coastal_area}
+                    alt="Coastal Areas"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-2">Coastal Areas</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Galle", "Mirissa", "Bentota", "Trincomalee", "Arugam Bay"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Wildlife Zones</h3>
-                  <p className="text-gray-600 text-sm">
-                    Yala, Udawalawe, Minneriya, Wilpattu National Parks
-                  </p>
+              </div>
+
+              {/* Wildlife Zones */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={wildlife_zones}
+                    alt="Wildlife Zones"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-2">Wildlife Zones</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Yala", "Udawalawa", "Minneriya", "Wilpattu"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Urban Centers</h3>
-                  <p className="text-gray-600 text-sm">
-                    Colombo, Negombo, Kandy, Galle Fort
-                  </p>
+              </div>
+
+              {/* Urban Centers */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={urban_centers}
+                    alt="Urban Centers"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-2">Urban Centers</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Colombo", "Negombo", "Galle", "Kandy"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-navy text-xl mb-3">Off the Beaten Path</h3>
-                  <p className="text-gray-600 text-sm">
-                    Hidden temples, local villages, secret beaches
-                  </p>
+              </div>
+
+              {/* Off the Beaten Path */}
+              <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition duration-500 cursor-pointer">
+                <div className="relative h-80">
+                  <img
+                    src={hidden_places}
+                    alt="Off the Beaten Path"
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <h3 className="text-2xl font-bold mb-2">
+                      Off the Beaten Path
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {["Hidden temples", "Local villages", "Secret beaches"].map((place, idx) => (
+                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                          {place}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -355,7 +486,8 @@ const Services = () => {
               Ready to Experience Sri Lanka?
             </h2>
             <p className="text-white text-xl mb-8">
-              Let us handle the details while you enjoy the journey. Contact us today to plan your perfect Sri Lankan adventure!
+              Let us handle the details while you enjoy the journey. Contact us
+              today to plan your perfect Sri Lankan adventure!
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a

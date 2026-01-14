@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import { FaPlane, FaUmbrellaBeach, FaMountain, FaHiking } from "react-icons/fa";
 import background_video from "../assets/background video.mp4";
 import { tourAPI, dayTourAPI } from "../services/api";
+import adventure_img from '../assets/adventure.jpg'
+import wildlife_img from '../assets/wildlife.jpg'
+import holiday_img from '../assets/hoildays.jpg'
+import train_img from '../assets/train.jpg'
+import culture_img from '../assets/culture.jpeg'
+import beach_img from '../assets/beach.jpg'
+import soul_sri_lanka_img from '../assets/soul sri lanka.png'
 
 const Home = () => {
   const [trendingTours, setTrendingTours] = useState([]);
@@ -12,7 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
 
   useEffect(() => {
     fetchTrendingTours();
@@ -126,34 +133,29 @@ const Home = () => {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
                 <img
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
-                  alt="Sri Lankan Cultural Festival"
-                  className="w-full h-[500px] object-cover"
+                  src={soul_sri_lanka_img}
+                  className="w-full h-[600px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent"></div>
               </div>
-
-              {/* Decorative Elements */}
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-sunsetYellow rounded-full opacity-20 blur-2xl"></div>
-              <div className="absolute -top-6 -right-6 w-40 h-40 bg-skyBlue rounded-full opacity-20 blur-2xl"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
+      {/* Why Travel With Us Section */}
+      <section className="py-20 bg-gradient-to-br from-navy to-navy/90">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-navy mb-4">
+          <h2 className="text-4xl font-bold text-center text-white mb-4">
             Why Travel With Us
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-white/80 mb-12 max-w-2xl mx-auto">
             We provide authentic Sri Lankan experiences with personalized
             service and local expertise
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 hover:scale-105">
+            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaPlane className="text-4xl text-skyBlue" />
               </div>
@@ -165,7 +167,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 hover:scale-105">
+            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaUmbrellaBeach className="text-4xl text-sunsetOrange" />
               </div>
@@ -177,7 +179,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 hover:scale-105">
+            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaMountain className="text-4xl text-sunsetYellow" />
               </div>
@@ -189,7 +191,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-xl hover:shadow-xl transition duration-300 hover:scale-105">
+            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaHiking className="text-4xl text-skyBlue" />
               </div>
@@ -219,7 +221,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80"
+                  src={adventure_img}
                   alt="Adventure"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -238,7 +240,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=800&q=80"
+                  src={wildlife_img}
                   alt="Wildlife Safari"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -257,7 +259,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80"
+                  src={holiday_img}
                   alt="Relaxation"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -278,7 +280,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80"
+                  src={train_img}
                   alt="Train Ride"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -297,7 +299,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+                  src={culture_img}
                   alt="Culture"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -316,7 +318,7 @@ const Home = () => {
             <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
               <div className="relative h-80">
                 <img
-                  src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80"
+                  src={beach_img}
                   alt="Beach"
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                 />
@@ -565,135 +567,91 @@ const Home = () => {
       </section>
 
       {/* Transportation Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
-              Our Transportation
-            </h3>
-            <h2 className="text-4xl font-bold text-navy mb-4">
-              Reliable Transportation for a Smooth Journey
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              We provide clean, modern, air-conditioned vehicles with
-              professional, experienced drivers to ensure safe, comfortable, and
-              reliable travel throughout Sri Lanka.
-            </p>
-          </div>
+      {/* <section className="py-20 bg-gradient-to-br from-navy to-navy/90">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
+        Our Transportation
+      </h3>
+      <h2 className="text-4xl font-bold text-white mb-4">
+        Reliable Transportation for a Smooth Journey
+      </h2>
+      <p className="text-white/80 max-w-3xl mx-auto">
+        We provide clean, modern, air-conditioned vehicles with professional,
+        experienced drivers to ensure safe and comfortable travel throughout
+        Sri Lanka.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Vehicle 1 */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition duration-300 text-center">
-              <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-12 h-12 text-skyBlue"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-navy mb-2">
-                Sedan Cars
-              </h3>
-              <p className="text-gray-600 text-sm mb-3">
-                Perfect for couples or small families (1-3 people)
-              </p>
-              <p className="text-sunsetOrange font-semibold">Air-conditioned</p>
-            </div>
-
-            {/* Vehicle 2 */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition duration-300 text-center">
-              <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-12 h-12 text-sunsetOrange"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-navy mb-2">SUVs</h3>
-              <p className="text-gray-600 text-sm mb-3">
-                Ideal for families or groups (4-6 people)
-              </p>
-              <p className="text-sunsetOrange font-semibold">
-                Spacious & Comfortable
-              </p>
-            </div>
-
-            {/* Vehicle 3 */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition duration-300 text-center">
-              <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-12 h-12 text-sunsetYellow"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-navy mb-2">Vans</h3>
-              <p className="text-gray-600 text-sm mb-3">
-                Best for larger groups (7-10 people)
-              </p>
-              <p className="text-sunsetOrange font-semibold">
-                Extra Luggage Space
-              </p>
-            </div>
-
-            {/* Vehicle 4 */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition duration-300 text-center">
-              <div className="bg-navy/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-12 h-12 text-navy"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                  <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-navy mb-2">
-                Luxury Coaches
-              </h3>
-              <p className="text-gray-600 text-sm mb-3">
-                For large groups (15+ people)
-              </p>
-              <p className="text-sunsetOrange font-semibold">
-                Premium Experience
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-12 bg-gradient-to-r from-sunsetOrange/10 to-sunsetYellow/10 rounded-2xl p-8 text-center">
-            <h3 className="text-2xl font-bold text-navy mb-3">
-              All Vehicles Include:
-            </h3>
-            <div className="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-sunsetOrange text-xl">✓</span>
-                <span className="text-gray-700">Air Conditioning</span>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-sunsetOrange text-xl">✓</span>
-                <span className="text-gray-700">Experienced Driver</span>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-sunsetOrange text-xl">✓</span>
-                <span className="text-gray-700">Fully Insured</span>
-              </div>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-sunsetOrange text-xl">✓</span>
-                <span className="text-gray-700">Clean & Sanitized</span>
-              </div>
-            </div>
-          </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="bg-white/95 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-12 h-12 text-skyBlue" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
+          </svg>
         </div>
-      </section>
+        <h3 className="text-lg font-semibold text-navy mb-2">
+          Sedan Cars
+        </h3>
+        <p className="text-gray-600 text-sm mb-3">
+          Perfect for couples or small families (1–3 people)
+        </p>
+        <p className="text-sunsetOrange font-semibold">Air-conditioned</p>
+      </div>
+
+      <div className="bg-white/95 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-12 h-12 text-sunsetOrange" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-semibold text-navy mb-2">SUVs</h3>
+        <p className="text-gray-600 text-sm mb-3">
+          Ideal for families or groups (4–6 people)
+        </p>
+        <p className="text-sunsetOrange font-semibold">
+          Spacious & Comfortable
+        </p>
+      </div>
+
+      <div className="bg-white/95 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-12 h-12 text-sunsetYellow" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-semibold text-navy mb-2">Vans</h3>
+        <p className="text-gray-600 text-sm mb-3">
+          Best for larger groups (7–10 people)
+        </p>
+        <p className="text-sunsetOrange font-semibold">
+          Extra Luggage Space
+        </p>
+      </div>
+
+      <div className="bg-white/95 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition duration-300 text-center">
+        <div className="bg-navy/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-12 h-12 text-navy" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+            <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3z" />
+          </svg>
+        </div>
+        <h3 className="text-lg font-semibold text-navy mb-2">
+          Luxury Coaches
+        </h3>
+        <p className="text-gray-600 text-sm mb-3">
+          For large groups (15+ people)
+        </p>
+        <p className="text-sunsetOrange font-semibold">
+          Premium Experience
+        </p>
+      </div>
+    </div>
+  </div>
+      </section> */}
     </div>
   );
 };
