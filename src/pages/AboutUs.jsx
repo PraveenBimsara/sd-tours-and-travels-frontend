@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  FaAward,
   FaUsers,
   FaGlobe,
   FaHeart,
@@ -10,14 +10,113 @@ import {
   FaMapMarkedAlt,
   FaHandshake,
   FaLeaf,
-  FaStar,
 } from "react-icons/fa";
+import wildlife_img from "../assets/wildlife.jpg";
+import culture_img from "../assets/culture.jpeg";
+import beach_img from "../assets/beach.jpg";
+import adventure_img from "../assets/adventure.jpg";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
 
 const AboutUs = () => {
+  const sectionRef = useRef(null);
+  const stats = [
+    { number: 3, suffix: "+", label: "Years Experience" },
+    { number: 40, suffix: "+", label: "Happy Travelers" },
+    { number: 50, suffix: "+", label: "Tours Completed" },
+  ];
+
   const [activeValue, setActiveValue] = useState(0);
+
+  const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0));
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  const startCountUp = () => {
+    setAnimatedStats(stats.map(() => 0));
+
+    const duration = 2000;
+    const interval = 30;
+    const steps = duration / interval;
+
+    stats.forEach((stat, index) => {
+      let current = 0;
+      const increment = stat.number / steps;
+
+      const counter = setInterval(() => {
+        current += increment;
+
+        setAnimatedStats((prev) => {
+          const updated = [...prev];
+          updated[index] =
+            current >= stat.number ? stat.number : Math.ceil(current);
+          return updated;
+        });
+
+        if (current >= stat.number) {
+          clearInterval(counter);
+        }
+      }, interval);
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startCountUp();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const duration = 2000; // total animation time (ms)
+    const interval = 30;
+    const steps = duration / interval;
+
+    const counters = stats.map((stat, index) => {
+      let current = 0;
+      const increment = stat.number / steps;
+
+      return setInterval(() => {
+        current += increment;
+
+        setAnimatedStats((prev) => {
+          const updated = [...prev];
+          updated[index] =
+            current >= stat.number ? stat.number : Math.ceil(current);
+          return updated;
+        });
+
+        if (current >= stat.number) {
+          clearInterval(counters[index]);
+        }
+      }, interval);
+    });
+
+    return () => counters.forEach(clearInterval);
   }, []);
 
   const values = [
@@ -45,12 +144,6 @@ const AboutUs = () => {
       description:
         "We're committed to responsible tourism that preserves Sri Lanka's natural beauty and supports local communities.",
     },
-  ];
-
-  const stats = [
-    { number: "10+", label: "Years Experience" },
-    { number: "5000+", label: "Happy Travelers" },
-    { number: "200+", label: "Tours Completed" },
   ];
 
   const teamMembers = [
@@ -127,8 +220,8 @@ const AboutUs = () => {
                 About SD Tours & Travel
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/90">
-                My name is Samith Uddika and I live in Sri Lanka. Would you like to get
-                to know my wonderful homeland?
+                My name is Samith Uddika and I live in Sri Lanka. Would you like
+                to get to know my wonderful homeland?
               </p>
             </div>
             <div className="flex items-center justify-center gap-4">
@@ -150,18 +243,20 @@ const AboutUs = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-5xl md:text-6xl font-bold text-sunsetOrange mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 text-lg">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+      <section ref={sectionRef} className="py-16 bg-white">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-md rounded-xl p-6 text-center"
+            >
+              <h3 className="text-5xl font-bold text-sunsetOrange">
+                {animatedStats[index]}
+                {stat.suffix}
+              </h3>
+              <p className="text-gray-600 font-bold mt-2">{stat.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -178,11 +273,11 @@ const AboutUs = () => {
               </h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  SD Tours & Travel was founded by Samith Uddika, a Sri
-                  Lankan native with an unquenchable passion for his homeland.
-                  After years of working in the tourism industry, Samith
-                  recognized a gap in the market for authentic, personalized
-                  travel experiences.
+                  SD Tours & Travel was founded by Samith Uddika, a Sri Lankan
+                  native with an unquenchable passion for his homeland. After
+                  years of working in the tourism industry, Samith recognized a
+                  gap in the market for authentic, personalized travel
+                  experiences.
                 </p>
                 <p>
                   Sri Lanka is an island in the Indian Ocean that captivates
@@ -204,22 +299,22 @@ const AboutUs = () => {
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=400&q=80"
+                  src={wildlife_img}
                   alt="Sri Lankan Wildlife"
                   className="rounded-2xl shadow-xl h-64 w-full object-cover"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80"
+                  src={culture_img}
                   alt="Sri Lankan Culture"
                   className="rounded-2xl shadow-xl h-64 w-full object-cover mt-8"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=400&q=80"
+                  src={beach_img}
                   alt="Sri Lankan Beach"
                   className="rounded-2xl shadow-xl h-64 w-full object-cover -mt-8"
                 />
                 <img
-                  src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&q=80"
+                  src={adventure_img}
                   alt="Sri Lankan Adventure"
                   className="rounded-2xl shadow-xl h-64 w-full object-cover"
                 />
@@ -230,40 +325,52 @@ const AboutUs = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
-              What Makes Us Different
-            </h3>
-            <h2 className="text-4xl font-bold text-navy mb-4">
-              Why Choose SD Tours & Travel
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We're not just another tour company. Here's what sets us apart.
-            </p>
-          </div>
+      <motion.section
+  className="py-20 bg-white"
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.2 }}
+>
+  <div className="container mx-auto px-4">
+    <div
+      className="text-center mb-12"
+      variants={fadeUp}
+    >
+      <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
+        What Makes Us Different
+      </h3>
+      <h2 className="text-4xl font-bold text-navy mb-4">
+        Why Choose SD Tours & Travel
+      </h2>
+      <p className="text-gray-600 max-w-2xl mx-auto">
+        We're not just another tour company. Here's what sets us apart.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 hover:scale-105"
-              >
-                <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mb-6 shadow-md">
-                  {item.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-navy mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+      {whyChooseUs.map((item, index) => (
+        <motion.div
+          key={index}
+          variants={fadeUp}
+          whileHover={{ scale: 1.05 }}
+          className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300"
+        >
+          <div className="bg-white rounded-full w-20 h-20 flex items-center justify-center mb-6 shadow-md">
+            {item.icon}
           </div>
-        </div>
-      </section>
+          <h3 className="text-2xl font-bold text-navy mb-3">
+            {item.title}
+          </h3>
+          <p className="text-gray-600 leading-relaxed">
+            {item.description}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</motion.section>
+
 
       {/* Our Values Section */}
       <section className="py-20 bg-gradient-to-br from-navy to-navy/90 text-white">
@@ -310,80 +417,98 @@ const AboutUs = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <motion.section
+        className="py-20 bg-gradient-to-br from-navy to-navy/90"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
               Guest Testimonials
             </h3>
-            <h2 className="text-4xl font-bold text-navy mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               What Our Travelers Say
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg">
+            {/* Testimonial 1 */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "SD Tours made our honeymoon magical! From ancient temples to
-                pristine beaches, every moment was perfect. Their attention to
-                detail is unmatched."
+                "Our 9-day luxury tour was perfectly planned. From cultural
+                sites and scenic hills to private safaris and beach resorts,
+                everything was seamless and stress-free. Highly recommended!"
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-sunsetOrange rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  J
+                  D
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-navy">James & Sarah</h4>
-                  <p className="text-gray-600 text-sm">United Kingdom</p>
+                  <h4 className="font-semibold text-navy">Daniel R</h4>
+                  <p className="text-gray-600 text-sm">Australia</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg">
+            {/* Testimonial 2 */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "The most authentic travel experience we've ever had. Our
-                guide's knowledge and passion for Sri Lanka truly brought the
-                culture and history to life."
+                "Professional, reliable, and extremely attentive. SD Tours &
+                Travel made our Sri Lanka holiday unforgettable with excellent
+                service and beautiful locations."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-skyBlue rounded-full flex items-center justify-center text-white font-bold text-xl">
                   M
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-navy">Maria & Carlos</h4>
-                  <p className="text-gray-600 text-sm">Spain</p>
+                  <h4 className="font-semibold text-navy">Maria & Luca</h4>
+                  <p className="text-gray-600 text-sm">Italy</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-lg">
+            {/* Testimonial 3 */}
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "Professional, reliable, and incredibly friendly. SD Tours
-                exceeded all our expectations. We'll definitely be back and
-                recommending them to everyone!"
+                "SD Tours delivered an exceptional luxury experience from start
+                to finish. Every hotel was stunning, the transport was
+                comfortable, and the service was truly personalized."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 bg-sunsetYellow rounded-full flex items-center justify-center text-white font-bold text-xl">
-                  K
+                  R
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-navy">Kenji & Yuki</h4>
-                  <p className="text-gray-600 text-sm">Japan</p>
+                  <h4 className="font-semibold text-navy">Rani</h4>
+                  <p className="text-gray-600 text-sm">India</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-sunsetOrange to-sunsetYellow">

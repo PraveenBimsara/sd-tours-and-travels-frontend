@@ -120,12 +120,12 @@ const DayTourDetails = () => {
                   {dayTour.rating ? dayTour.rating.toFixed(1) : "New"}
                 </span>
               </div>
-              {dayTour.maxGroupSize && (
+              {/* {dayTour.maxGroupSize && (
                 <div className="flex items-center gap-2">
                   <FaUsers className="text-sunsetYellow" />
                   <span>Max {dayTour.maxGroupSize} people</span>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ const DayTourDetails = () => {
                 </p>
 
                 {/* Schedule */}
-                {(dayTour.pickupTime || dayTour.dropoffTime) && (
+                {/* {(dayTour.pickupTime || dayTour.dropoffTime) && (
                   <div className="bg-skyBlue/10 rounded-xl p-6 mb-6">
                     <h3 className="text-xl font-bold text-navy mb-3">
                       Tour Schedule
@@ -177,7 +177,7 @@ const DayTourDetails = () => {
                       )}
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* Highlights */}
                 {dayTour.highlights && dayTour.highlights.length > 0 && (
@@ -200,7 +200,7 @@ const DayTourDetails = () => {
                 )}
 
                 {/* Itinerary */}
-                {dayTour.itinerary && (
+                {/* {dayTour.itinerary && (
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold text-navy mb-4">
                       Day Itinerary
@@ -211,10 +211,10 @@ const DayTourDetails = () => {
                       </p>
                     </div>
                   </div>
-                )}
+                )} */}
               </div>
 
-              {/* Included/Excluded */}
+              {/* Included */}
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Included */}
@@ -239,7 +239,7 @@ const DayTourDetails = () => {
                   </div>
 
                   {/* Excluded */}
-                  <div>
+                  {/* <div>
                     <h2 className="text-2xl font-bold text-navy mb-4">
                       What's Not Included
                     </h2>
@@ -257,7 +257,7 @@ const DayTourDetails = () => {
                         Information not available.
                       </p>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -265,7 +265,7 @@ const DayTourDetails = () => {
             {/* Right Column - Booking Card (Sticky) */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-                <div className="text-center mb-6 pb-6 border-b">
+                {/* <div className="text-center mb-6 pb-6 border-b">
                   <p className="text-gray-600 mb-2">Price per person</p>
                   <div className="flex items-center justify-center gap-2">
                     <FaDollarSign className="text-3xl text-sunsetOrange" />
@@ -273,10 +273,10 @@ const DayTourDetails = () => {
                       {dayTour.price}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Quick Info */}
-                <div className="space-y-4 mb-6">
+                {/* <div className="space-y-4 mb-6">
                   <div className="flex items-center justify-between py-3 border-b">
                     <span className="text-gray-600 flex items-center gap-2">
                       <FaClock className="text-sunsetOrange" /> Duration
@@ -303,7 +303,7 @@ const DayTourDetails = () => {
                         : "New Tour"}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Booking Buttons */}
                 <div className="space-y-3">

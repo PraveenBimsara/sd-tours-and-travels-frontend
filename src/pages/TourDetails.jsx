@@ -108,25 +108,26 @@ const TourDetails = () => {
               {tour.title}
             </h1>
             <div className="flex flex-wrap items-center gap-6 text-lg">
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <FaClock className="text-sunsetYellow" />
                 <span>
                   {tour.duration.days} Days / {tour.duration.nights} Nights
                 </span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2">
                 <FaStar className="text-sunsetYellow" />
                 <span>
-                  {tour.rating ? tour.rating.toFixed(1) : "New"} (
-                  {tour.reviewCount || 0} reviews)
+                  {tour.rating ? tour.rating.toFixed(1) : "New"} 
+                  {/* (
+                  {tour.reviewCount || 0} reviews) */}
                 </span>
               </div>
-              {tour.maxGroupSize && (
+              {/* {tour.maxGroupSize && (
                 <div className="flex items-center gap-2">
                   <FaUsers className="text-sunsetYellow" />
                   <span>Max {tour.maxGroupSize} people</span>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
@@ -141,7 +142,7 @@ const TourDetails = () => {
               {/* Tabs */}
               <div className="bg-white rounded-xl shadow-lg mb-6 overflow-hidden">
                 <div className="flex border-b overflow-x-auto">
-                  {["overview", "itinerary", "included"].map((tab) => (
+                  {["overview", "included"].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
@@ -188,7 +189,7 @@ const TourDetails = () => {
                         </div>
                       )}
 
-                      {tour.difficulty && (
+                      {/* {tour.difficulty && (
                         <div className="bg-skyBlue/10 rounded-xl p-6 mb-6">
                           <h3 className="text-xl font-bold text-navy mb-2">
                             Difficulty Level
@@ -208,12 +209,12 @@ const TourDetails = () => {
                               " Requires excellent fitness level"}
                           </p>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   )}
 
                   {/* Itinerary Tab */}
-                  {activeTab === "itinerary" && (
+                  {/* {activeTab === "itinerary" && (
                     <div>
                       <h2 className="text-3xl font-bold text-navy mb-6">
                         Tour Itinerary
@@ -258,9 +259,9 @@ const TourDetails = () => {
                         </p>
                       )}
                     </div>
-                  )}
+                  )} */}
 
-                  {/* Included/Excluded Tab */}
+                  {/* Included Tab */}
                   {activeTab === "included" && (
                     <div>
                       <div className="grid md:grid-cols-2 gap-8">
@@ -289,7 +290,7 @@ const TourDetails = () => {
                         </div>
 
                         {/* Excluded */}
-                        <div>
+                        {/* <div>
                           <h2 className="text-2xl font-bold text-navy mb-4">
                             What's Not Included
                           </h2>
@@ -310,7 +311,7 @@ const TourDetails = () => {
                               Information not available.
                             </p>
                           )}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   )}
@@ -321,7 +322,7 @@ const TourDetails = () => {
             {/* Right Column - Booking Card (Sticky) */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-                <div className="text-center mb-6 pb-6 border-b">
+                {/* <div className="text-center mb-6 pb-6 border-b">
                   <p className="text-gray-600 mb-2">Starting from</p>
                   <div className="flex items-center justify-center gap-2">
                     <FaDollarSign className="text-3xl text-sunsetOrange" />
@@ -330,10 +331,10 @@ const TourDetails = () => {
                     </span>
                   </div>
                   <p className="text-gray-600 mt-2">per person</p>
-                </div>
+                </div> */}
 
                 {/* Quick Info */}
-                <div className="space-y-4 mb-6">
+                {/* <div className="space-y-4 mb-6">
                   <div className="flex items-center justify-between py-3 border-b">
                     <span className="text-gray-600 flex items-center gap-2">
                       <FaClock className="text-sunsetOrange" /> Duration
@@ -358,7 +359,7 @@ const TourDetails = () => {
                       {tour.rating ? `${tour.rating.toFixed(1)}/5` : "New Tour"}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Booking Buttons */}
                 <div className="space-y-3">

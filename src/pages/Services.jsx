@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   FaCar,
   FaHotel,
@@ -19,11 +20,24 @@ import wildlife_zones from "../assets/wildlife zones.png";
 import urban_centers from "../assets/urban centers.png";
 import hidden_places from "../assets/hidden places.png";
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
 const Services = () => {
-  
-   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const services = [
     {
       icon: <FaCar className="text-5xl text-sunsetOrange" />,
@@ -198,11 +212,18 @@ const Services = () => {
       </section>
 
       {/* Main Services Grid */}
-      <section className="py-16 bg-gray-50">
+      <motion.section
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="py-16 bg-navy"
+      >
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div
+              <motion.div
+                variants={fadeUp}
                 key={index}
                 className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105"
               >
@@ -235,11 +256,11 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Additional Services */}
       <section className="py-16 bg-white">
@@ -265,7 +286,10 @@ const Services = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+      <motion.section variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }} className="py-16 bg-navy">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-navy text-center mb-12">
             Why Choose SD Tours & Travel?
@@ -273,7 +297,7 @@ const Services = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {/* Reason 1 */}
-            <div className="text-center">
+            <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🏆</span>
               </div>
@@ -283,10 +307,10 @@ const Services = () => {
               <p className="text-gray-600">
                 Sri Lanka-based company with deep knowledge of the island
               </p>
-            </div>
+            </motion.div>
 
             {/* Reason 2 */}
-            <div className="text-center">
+            <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💎</span>
               </div>
@@ -296,10 +320,10 @@ const Services = () => {
               <p className="text-gray-600">
                 High standards of service with attention to every detail
               </p>
-            </div>
+            </motion.div>
 
             {/* Reason 3 */}
-            <div className="text-center">
+            <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💰</span>
               </div>
@@ -307,10 +331,10 @@ const Services = () => {
               <p className="text-gray-600">
                 Competitive prices without compromising on quality
               </p>
-            </div>
+            </motion.div>
 
             {/* Reason 4 */}
-            <div className="text-center">
+            <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-navy/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🤝</span>
               </div>
@@ -320,10 +344,10 @@ const Services = () => {
               <p className="text-gray-600">
                 Customized experiences tailored to your preferences
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Service Areas */}
       <section className="py-16 bg-white">
@@ -352,8 +376,17 @@ const Services = () => {
                       Cultural Triangle
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Anuradhapura", "Polonnaruwa", "Sigiriya", "Dambulla", "Kandy"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {[
+                        "Anuradhapura",
+                        "Polonnaruwa",
+                        "Sigiriya",
+                        "Dambulla",
+                        "Kandy",
+                      ].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
                           {place}
                         </span>
                       ))}
@@ -374,8 +407,16 @@ const Services = () => {
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-3">Hill Places</h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Nuwara Eliya", "Ella", "Horton Plains", "Tea Plantations"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {[
+                        "Nuwara Eliya",
+                        "Ella",
+                        "Horton Plains",
+                        "Tea Plantations",
+                      ].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
                           {place}
                         </span>
                       ))}
@@ -396,8 +437,17 @@ const Services = () => {
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-2">Coastal Areas</h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Galle", "Mirissa", "Bentota", "Trincomalee", "Arugam Bay"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {[
+                        "Galle",
+                        "Mirissa",
+                        "Bentota",
+                        "Trincomalee",
+                        "Arugam Bay",
+                      ].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
                           {place}
                         </span>
                       ))}
@@ -418,11 +468,16 @@ const Services = () => {
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-2">Wildlife Zones</h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Yala", "Udawalawa", "Minneriya", "Wilpattu"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                          {place}
-                        </span>
-                      ))}
+                      {["Yala", "Udawalawa", "Minneriya", "Wilpattu"].map(
+                        (place, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                          >
+                            {place}
+                          </span>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
@@ -440,11 +495,16 @@ const Services = () => {
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-2">Urban Centers</h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Colombo", "Negombo", "Galle", "Kandy"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                          {place}
-                        </span>
-                      ))}
+                      {["Colombo", "Negombo", "Galle", "Kandy"].map(
+                        (place, idx) => (
+                          <span
+                            key={idx}
+                            className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                          >
+                            {place}
+                          </span>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
@@ -464,8 +524,15 @@ const Services = () => {
                       Off the Beaten Path
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Hidden temples", "Local villages", "Secret beaches"].map((place, idx) => (
-                        <span key={idx} className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                      {[
+                        "Hidden temples",
+                        "Local villages",
+                        "Secret beaches",
+                      ].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
                           {place}
                         </span>
                       ))}

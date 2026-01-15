@@ -1,15 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaPlane, FaUmbrellaBeach, FaMountain, FaHiking } from "react-icons/fa";
 import background_video from "../assets/background video.mp4";
 import { tourAPI, dayTourAPI } from "../services/api";
-import adventure_img from '../assets/adventure.jpg'
-import wildlife_img from '../assets/wildlife.jpg'
-import holiday_img from '../assets/hoildays.jpg'
-import train_img from '../assets/train.jpg'
-import culture_img from '../assets/culture.jpeg'
-import beach_img from '../assets/beach.jpg'
-import soul_sri_lanka_img from '../assets/soul sri lanka.png'
+import { motion } from "framer-motion";
+import adventure_img from "../assets/adventure.jpg";
+import wildlife_img from "../assets/wildlife.jpg";
+import holiday_img from "../assets/hoildays.jpg";
+import train_img from "../assets/train.jpg";
+import culture_img from "../assets/culture.jpeg";
+import beach_img from "../assets/beach.jpg";
+import soul_sri_lanka_img from "../assets/soul sri lanka.png";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
 
 const Home = () => {
   const [trendingTours, setTrendingTours] = useState([]);
@@ -29,7 +44,7 @@ const Home = () => {
   const fetchTrendingTours = async () => {
     try {
       const response = await tourAPI.getFeaturedTours();
-      setTrendingTours(response.data.data.slice(0, 3)); // Get only 3 tours
+      setTrendingTours(response.data.data.slice(0, 6)); // Get only 3 tours
     } catch (error) {
       console.error("Error fetching trending tours:", error);
     } finally {
@@ -144,7 +159,13 @@ const Home = () => {
       </section>
 
       {/* Why Travel With Us Section */}
-      <section className="py-20 bg-gradient-to-br from-navy to-navy/90">
+      <motion.section
+        className="py-20 bg-gradient-to-br from-navy to-navy/90"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-white mb-4">
             Why Travel With Us
@@ -155,7 +176,10 @@ const Home = () => {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
+            <motion.div
+              variants={fadeUp}
+              className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105"
+            >
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaPlane className="text-4xl text-skyBlue" />
               </div>
@@ -165,9 +189,12 @@ const Home = () => {
               <p className="text-gray-600">
                 Sri Lanka-based travel company with deep local knowledge
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
+            <motion.div
+              variants={fadeUp}
+              className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105"
+            >
               <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaUmbrellaBeach className="text-4xl text-sunsetOrange" />
               </div>
@@ -177,9 +204,12 @@ const Home = () => {
               <p className="text-gray-600">
                 Every journey designed to match your interests and budget
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
+            <motion.div
+              variants={fadeUp}
+              className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105"
+            >
               <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaMountain className="text-4xl text-sunsetYellow" />
               </div>
@@ -189,9 +219,12 @@ const Home = () => {
               <p className="text-gray-600">
                 Travel in clean vehicles with experienced, friendly drivers
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105">
+            <motion.div
+              variants={fadeUp}
+              className="text-center p-6 rounded-xl bg-white/95 hover:shadow-2xl transition duration-300 hover:scale-105"
+            >
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaHiking className="text-4xl text-skyBlue" />
               </div>
@@ -201,13 +234,19 @@ const Home = () => {
               <p className="text-gray-600">
                 Our team is always available to assist you whenever needed
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Things To Do Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <motion.section
+        className="py-20 bg-gradient-to-br from-gray-50 to-white"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
@@ -218,7 +257,10 @@ const Home = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Adventure */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={adventure_img}
@@ -234,10 +276,13 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Wildlife & Safari */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={wildlife_img}
@@ -253,10 +298,13 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Relaxation */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={holiday_img}
@@ -274,10 +322,13 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Train Ride */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={train_img}
@@ -293,10 +344,13 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Culture */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={culture_img}
@@ -312,10 +366,13 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Beach */}
-            <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer">
+            <motion.div
+              variants={fadeUp}
+              className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition duration-500 cursor-pointer"
+            >
               <div className="relative h-80">
                 <img
                   src={beach_img}
@@ -331,10 +388,10 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Trending Tours Section */}
       <section className="py-20 bg-white">
@@ -365,11 +422,11 @@ const Home = () => {
                     className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 group"
                   >
                     <div className="relative h-64 overflow-hidden">
-                      {tour.featured && (
+                      {/* {tour.featured && (
                         <span className="absolute top-4 right-4 bg-sunsetOrange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
                           Featured
                         </span>
-                      )}
+                      )} */}
                       <img
                         src={tour.mainImage}
                         alt={tour.title}
@@ -384,10 +441,10 @@ const Home = () => {
                         {tour.description}
                       </p>
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-sunsetOrange font-semibold text-lg">
+                        {/* <span className="text-sunsetOrange font-semibold text-lg">
                           {tour.duration?.days} Days / {tour.duration?.nights}{" "}
                           Nights
-                        </span>
+                        </span> */}
                         <div className="flex items-center">
                           <span className="text-sunsetYellow">
                             {"★".repeat(Math.floor(tour.rating || 0))}
@@ -469,9 +526,20 @@ const Home = () => {
                       <span className="text-sunsetOrange font-semibold">
                         {dayTour.duration}
                       </span>
-                      <span className="text-gray-600 text-sm">
+                      <div className="flex items-center">
+                        <span className="text-sunsetYellow">
+                          {"★".repeat(Math.floor(dayTour.rating || 0))}
+                        </span>
+                        <span className="text-gray-400">
+                          {"★".repeat(5 - Math.floor(dayTour.rating || 0))}
+                        </span>
+                        <span className="text-gray-600 text-sm ml-2">
+                          ({dayTour.rating?.toFixed(1)})
+                        </span>
+                      </div>
+                      {/* <span className="text-gray-600 text-sm">
                         From ${dayTour.price}
-                      </span>
+                      </span> */}
                     </div>
                     <Link
                       to={`/day-tours/${dayTour._id}`}
@@ -488,7 +556,13 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gradient-to-br from-navy to-navy/90">
+      <motion.section
+        className="py-20 bg-gradient-to-br from-navy to-navy/90"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-sunsetYellow font-semibold text-lg mb-2">
@@ -501,7 +575,10 @@ const Home = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Testimonial 1 */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
@@ -519,10 +596,13 @@ const Home = () => {
                   <p className="text-gray-600 text-sm">Australia</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Testimonial 2 */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
@@ -540,10 +620,13 @@ const Home = () => {
                   <p className="text-gray-600 text-sm">Italy</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Testimonial 3 */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <motion.div
+              variants={fadeUp}
+              className="bg-white rounded-2xl p-8 shadow-xl"
+            >
               <div className="flex items-center mb-4">
                 <span className="text-sunsetYellow text-2xl">★★★★★</span>
               </div>
@@ -561,10 +644,10 @@ const Home = () => {
                   <p className="text-gray-600 text-sm">India</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Transportation Section */}
       {/* <section className="py-20 bg-gradient-to-br from-navy to-navy/90">

@@ -673,7 +673,7 @@ const BookingForm = () => {
                     {tour.title}
                   </h4>
 
-                  <div className="space-y-3 mb-6">
+                  {/* <div className="space-y-3 mb-6">
                     {type === "tour" && tour.duration && (
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Duration:</span>
@@ -723,9 +723,9 @@ const BookingForm = () => {
                         </span>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
-                  <div className="border-t pt-4">
+                  {/* <div className="border-t pt-4">
                     <div className="flex justify-between text-lg font-bold">
                       <span className="text-gray-700">Estimated Total:</span>
                       <span className="text-sunsetOrange">
@@ -738,7 +738,7 @@ const BookingForm = () => {
                     <p className="text-xs text-gray-500 mt-2">
                       Final price will be confirmed by our team
                     </p>
-                  </div>
+                  </div> */}
 
                   <div className="mt-6 p-4 bg-skyBlue/10 rounded-lg">
                     <div className="flex items-start gap-2">
