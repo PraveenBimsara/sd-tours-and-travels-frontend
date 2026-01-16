@@ -101,19 +101,6 @@ const Tours = () => {
               <option value="Culture">Culture</option>
               <option value="Relaxation">Relaxation</option>
               <option value="Romantic">Romantic</option>
-              <option value="Budget">Budget</option>
-            </select>
-
-            {/* Sort */}
-            <select
-              value={filters.sort}
-              onChange={(e) => handleFilterChange("sort", e.target.value)}
-              className="px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition bg-white"
-            >
-              <option value="newest">Newest First</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
             </select>
 
             {/* Clear Filters */}
@@ -189,13 +176,8 @@ const Tours = () => {
                   >
                     {/* Tour Image */}
                     <div className="relative h-64 overflow-hidden">
-                      {tour.featured && (
-                        <span className="absolute top-4 right-4 bg-sunsetOrange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
-                          Featured
-                        </span>
-                      )}
                       {tour.category && (
-                        <span className="absolute top-4 left-4 bg-navy/80 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        <span className="absolute top-4 left-4 bg-sunsetOrange text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
                           {tour.category}
                         </span>
                       )}
@@ -224,10 +206,6 @@ const Tours = () => {
 
                       {/* Duration & Rating */}
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-sunsetOrange font-semibold text-lg">
-                          {tour.duration?.days} Days / {tour.duration?.nights}{" "}
-                          Nights
-                        </span>
                         <div className="flex items-center">
                           <span className="text-sunsetYellow">
                             {"★".repeat(Math.floor(tour.rating || 0))}
@@ -243,14 +221,6 @@ const Tours = () => {
 
                       {/* Price & Button */}
                       <div className="flex items-center justify-between">
-                        <div>
-                          <span className="text-gray-500 text-sm">
-                            Starting from
-                          </span>
-                          <div className="text-2xl font-bold text-navy">
-                            ${tour.price}
-                          </div>
-                        </div>
                         <Link
                           to={`/tours/${tour._id}`}
                           className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-6 py-3 rounded-full font-semibold transition duration-300"

@@ -55,7 +55,7 @@ const Home = () => {
   const fetchDayTours = async () => {
     try {
       const response = await dayTourAPI.getAllDayTours();
-      setDayTours(response.data.data.slice(0, 6)); // Get only 6 day tours
+      setDayTours(response.data.data.slice(0, 8)); // Get only 6 day tours
     } catch (error) {
       console.error("Error fetching day tours:", error);
     } finally {
