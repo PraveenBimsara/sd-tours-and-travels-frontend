@@ -4,6 +4,7 @@
     "about": "Über uns",
     "services": "Unsere Dienstleistungen",
     "tours": "Tourpakete",
+    "reviews": "Bewertungen",
     "contact": "Kontakt"
   },
   "home": {
@@ -222,5 +223,468 @@
     "chatWithUs": "Chatten Sie mit uns!",
     "required": "*",
     "phoneHelper": "Ländervorwahl angeben (z.B. +94 77 123 4567 für Sri Lanka)"
+  },
+  "footer": {
+    "companyDescription": "SD Tours & Travel bietet sorgfältig gestaltete Reisen durch Sri Lanka, die beliebte Reiseziele mit versteckten Orten kombinieren.",
+    "quickLinks": "Schnelllinks",
+    "ourServices": "Unsere Dienstleistungen",
+    "contactUs": "Kontaktieren Sie uns",
+    "services": {
+      "cultural": "Kulturtouren",
+      "adventure": "Abenteuertouren",
+      "wildlife": "Wildtiersafaris",
+      "beach": "Strandurlaube",
+      "customized": "Maßgeschneiderte Touren"
+    },
+    "copyright": "© 2026 SD Tours & Travel. Alle Rechte vorbehalten."
+  },
+  "about": {
+    "hero": {
+      "title": "Über SD Tours & Travel",
+      "subtitle": "Mein Name ist Samith Uddika und ich lebe in Sri Lanka. Möchten Sie meine wunderbare Heimat kennenlernen?",
+      "exploreTours": "Touren erkunden",
+      "contactUs": "Kontaktieren Sie uns"
+    },
+    "stats": {
+      "experience": "Jahre Erfahrung",
+      "travelers": "Zufriedene Reisende",
+      "tours": "Abgeschlossene Touren"
+    },
+    "story": {
+      "badge": "Unsere Geschichte",
+      "title": "Geboren aus Liebe zu Sri Lanka",
+      "paragraph1": "SD Tours & Travel wurde von Samith Uddika gegründet, einem gebürtigen Sri Lanker mit einer unstillbaren Leidenschaft für seine Heimat. Nach Jahren in der Tourismusbranche erkannte Samith eine Marktlücke für authentische, personalisierte Reiseerlebnisse.",
+      "paragraph2": "Sri Lanka ist eine Insel im Indischen Ozean, die Besucher mit ihrer atemberaubenden natürlichen Schönheit und Vielfalt fasziniert. Es bietet malerische Strände sowie Berge, Wälder und Wasserfälle. Die vielfältigen Kulturen und Religionen machen Sri Lanka zu einem wirklich einzigartigen Erlebnis. Es wird daher zu Recht als \"Perle des Indischen Ozeans\" bezeichnet.",
+      "paragraph3": "Unsere Mission bleibt unverändert: unvergessliche Reisen zu schaffen, die über typische Touristenerlebnisse hinausgehen und Reisende mit dem Herzen und der Seele Sri Lankas durch seine Kultur, Natur und warmherzigen Menschen verbinden."
+    },
+    "whyChoose": {
+      "badge": "Was uns anders macht",
+      "title": "Warum SD Tours & Travel wählen",
+      "subtitle": "Wir sind nicht nur ein weiteres Reiseunternehmen. Das unterscheidet uns.",
+      "expertise": {
+        "title": "Lokale Expertise",
+        "description": "Geboren und aufgewachsen in Sri Lanka kennen wir jede Ecke dieser wunderschönen Insel und teilen Insider-Wissen, das Sie in Reiseführern nicht finden."
+      },
+      "vehicles": {
+        "title": "Premium-Fahrzeuge",
+        "description": "Reisen Sie komfortabel mit unserer Flotte moderner, klimatisierter Fahrzeuge, die nach höchsten Standards gewartet werden."
+      },
+      "guides": {
+        "title": "Experten-Guides",
+        "description": "Unsere lizenzierten Guides sind leidenschaftliche Geschichtenerzähler, die Sri Lankas Geschichte und Kultur zum Leben erwecken."
+      },
+      "custom": {
+        "title": "Individuelle Reisepläne",
+        "description": "Jeder Reisende ist anders. Wir entwerfen personalisierte Touren, die zu Ihren Interessen und Ihrem Tempo passen."
+      }
+    },
+    "values": {
+      "badge": "Wofür wir stehen",
+      "title": "Unsere Grundwerte",
+      "passion": {
+        "title": "Leidenschaft fürs Reisen",
+        "description": "Wir lieben, was wir tun, und das zeigt sich in jeder Tour, die wir kreieren. Unsere Leidenschaft für Sri Lanka treibt uns an, seine Schönheit mit der Welt zu teilen."
+      },
+      "safety": {
+        "title": "Sicherheit zuerst",
+        "description": "Ihre Sicherheit hat höchste Priorität. Wir halten die höchsten Standards bei Fahrzeugwartung, Fahrerschulung und Tourplanung ein."
+      },
+      "service": {
+        "title": "Persönlicher Service",
+        "description": "Jeder Reisende ist einzigartig. Wir passen Erlebnisse an Ihre Interessen, Ihr Budget und Ihren Reisestil an, um unvergessliche Erinnerungen zu schaffen."
+      },
+      "sustainable": {
+        "title": "Nachhaltiger Tourismus",
+        "description": "Wir engagieren uns für verantwortungsvollen Tourismus, der Sri Lankas natürliche Schönheit bewahrt und lokale Gemeinden unterstützt."
+      }
+    },
+    "testimonials": {
+      "noReviews": "Derzeit keine Bewertungen verfügbar.",
+      "tour": "Tour",
+      "viewAll": "Alle Bewertungen anzeigen"
+    },
+    "cta": {
+      "title": "Bereit, Sri Lanka zu erkunden?",
+      "subtitle": "Lassen Sie uns eine personalisierte Reise erstellen, die Ihren Träumen entspricht. Ihr Sri-Lanka-Abenteuer wartet!",
+      "viewTours": "Unsere Touren ansehen",
+      "getInTouch": "Kontakt aufnehmen"
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Unsere Dienstleistungen",
+      "subtitle": "Umfassende Reisedienstleistungen für Ihr perfektes Sri-Lanka-Erlebnis"
+    },
+    "intro": {
+      "title": "Alles, was Sie für eine unvergessliche Reise brauchen",
+      "description": "Bei SD Tours & Travel bieten wir eine komplette Palette an Dienstleistungen, um sicherzustellen, dass Ihr Sri-Lanka-Abenteuer reibungslos, komfortabel und unvergesslich ist. Vom Moment Ihrer Ankunft bis zu Ihrer Abreise kümmern wir uns sorgfältig und professionell um jedes Detail."
+    },
+    "main": {
+      "transportation": {
+        "title": "Privater Transport",
+        "description": "Reisen Sie komfortabel in unseren modernen, klimatisierten Fahrzeugen. Erfahrene, englischsprachige Fahrer sorgen für sichere und angenehme Reisen in ganz Sri Lanka.",
+        "features": [
+          "Moderne, gut gewartete Fahrzeuge",
+          "Professionelle, lizenzierte Fahrer",
+          "Klimatisierter Komfort",
+          "Flexible Abholorte"
+        ]
+      },
+      "accommodation": {
+        "title": "Unterkunftsbuchung",
+        "description": "Von Luxushotels bis zu Boutique-Gästehäusern arrangieren wir die perfekte Unterkunft entsprechend Ihren Vorlieben und Ihrem Budget.",
+        "features": [
+          "Handverlesene Hotels & Resorts",
+          "Beste Preise garantiert",
+          "Verschiedene Budgetoptionen",
+          "Strand-, Berg- oder Stadtaufenthalte"
+        ]
+      },
+      "customized": {
+        "title": "Maßgeschneiderte Touren",
+        "description": "Gestalten Sie Ihr perfektes Sri-Lanka-Abenteuer. Wir erstellen personalisierte Reisepläne basierend auf Ihren Interessen, Zeitplan und Reisestil.",
+        "features": [
+          "Auf Ihre Vorlieben zugeschnitten",
+          "Flexible Terminplanung",
+          "Kultur, Abenteuer oder Entspannung",
+          "Fachkundige lokale Beratung"
+        ]
+      },
+      "airport": {
+        "title": "Flughafentransfers",
+        "description": "Problemlose Abholungen und Absetzungen vom internationalen Flughafen Bandaranaike. Begrüßungsservice mit komfortablen, direkten Transfers zu Ihrem Ziel.",
+        "features": [
+          "Meet & Greet Service",
+          "24/7 Verfügbarkeit",
+          "Direkt zu Ihrem Hotel",
+          "Flugüberwachung inklusive"
+        ]
+      },
+      "guides": {
+        "title": "Experten-Reiseleiter",
+        "description": "Unsere sachkundigen, mehrsprachigen Guides erwecken Sri Lankas Geschichte und Kultur mit fesselnden Geschichten und lokalen Einblicken zum Leben.",
+        "features": [
+          "Lizenzierte professionelle Guides",
+          "Mehrere Sprachen verfügbar",
+          "Tiefes kulturelles Wissen",
+          "Leidenschaftliche Geschichtenerzähler"
+        ]
+      },
+      "photography": {
+        "title": "Fotografie-Touren",
+        "description": "Erfassen Sie Sri Lankas atemberaubende Landschaften und lebendige Kultur. Wir kennen die besten Orte und das perfekte Timing für unglaubliche Fotografien.",
+        "features": [
+          "Malerische Fotografie-Standorte",
+          "Planung der goldenen Stunde",
+          "Wildtierfotografie",
+          "Zugang zu kulturellen Veranstaltungen"
+        ]
+      },
+      "culinary": {
+        "title": "Kulinarische Erlebnisse",
+        "description": "Entdecken Sie authentische sri-lankische Küche durch Kochkurse, Food-Touren und Reservierungen in den besten lokalen Restaurants.",
+        "features": [
+          "Traditionelle Kochkurse",
+          "Street-Food-Touren",
+          "Restaurantempfehlungen",
+          "Teeplantagen-Besuche"
+        ]
+      },
+      "visa": {
+        "title": "Visa-Unterstützung",
+        "description": "Wir begleiten Sie durch den Visumsantragsprozess für Sri Lanka und machen Ihre Reisevorbereitung reibungslos und stressfrei.",
+        "features": [
+          "ETA-Antragsunterstützung",
+          "Dokumentenberatung",
+          "Anforderungsklärung",
+          "Schnelle Bearbeitungsunterstützung"
+        ]
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Rund-um-die-Uhr-Unterstützung während Ihrer gesamten Reise. Wir sind immer per Telefon, WhatsApp oder E-Mail für alle Bedürfnisse verfügbar.",
+        "features": [
+          "Sofortige Antwort",
+          "Notfallhilfe",
+          "Reiseanpassungen",
+          "Lokale Problemlösung"
+        ]
+      }
+    },
+    "additional": {
+      "title": "Zusätzliche Dienstleistungen, die wir anbieten",
+      "train": "Zugticket-Reservierungen",
+      "flight": "Inlandsflugbuchungen",
+      "safari": "Safari-Park-Reservierungen",
+      "cultural": "Kulturshow-Tickets",
+      "spa": "Spa & Wellness-Buchungen",
+      "adventure": "Abenteueraktivitäten-Arrangements",
+      "wedding": "Hochzeits- & Flitterwochen-Planung",
+      "group": "Gruppenreisen-Koordination",
+      "corporate": "Geschäftsreise-Dienstleistungen",
+      "event": "Veranstaltungsplanungs-Unterstützung"
+    },
+    "whyChoose": {
+      "title": "Warum SD Tours & Travel wählen?",
+      "expertise": {
+        "title": "Lokale Expertise",
+        "description": "In Sri Lanka ansässiges Unternehmen mit tiefem Wissen über die Insel"
+      },
+      "quality": {
+        "title": "Qualitätsservice",
+        "description": "Hohe Servicestandards mit Aufmerksamkeit für jedes Detail"
+      },
+      "value": {
+        "title": "Bestes Preis-Leistungs-Verhältnis",
+        "description": "Wettbewerbsfähige Preise ohne Qualitätseinbußen"
+      },
+      "personal": {
+        "title": "Persönliche Note",
+        "description": "Maßgeschneiderte Erlebnisse auf Ihre Vorlieben zugeschnitten"
+      }
+    },
+    "areas": {
+      "title": "Wo wir tätig sind",
+      "subtitle": "Wir bieten Dienstleistungen in ganz Sri Lanka an und decken alle wichtigen Reiseziele und versteckte Schätze ab",
+      "cultural": {
+        "title": "Kulturelles Dreieck"
+      },
+      "hill": {
+        "title": "Bergregionen"
+      },
+      "coastal": {
+        "title": "Küstengebiete"
+      },
+      "wildlife": {
+        "title": "Wildtierzonen"
+      },
+      "urban": {
+        "title": "Städtische Zentren"
+      },
+      "hidden": {
+        "title": "Abseits der ausgetretenen Pfade",
+        "places": [
+          "Versteckte Tempel",
+          "Lokale Dörfer",
+          "Geheime Strände"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Bereit, Sri Lanka zu erleben?",
+      "subtitle": "Lassen Sie uns die Details regeln, während Sie die Reise genießen. Kontaktieren Sie uns noch heute, um Ihr perfektes Sri-Lanka-Abenteuer zu planen!",
+      "contact": "Kontakt aufnehmen",
+      "viewTours": "Unsere Touren ansehen",
+      "whatsapp": "WhatsApp uns"
+    }
+  },
+  "tours": {
+    "hero": {
+      "title": "Unsere Tourpakete",
+      "subtitle": "Entdecken Sie sorgfältig gestaltete Touren in ganz Sri Lanka."
+    },
+    "filters": {
+      "searchPlaceholder": "Touren suchen...",
+      "allCategories": "Alle Kategorien",
+      "categories": {
+        "adventure": "Abenteuer",
+        "wildlife": "Tierwelt",
+        "culture": "Kultur",
+        "relaxation": "Entspannung",
+        "romantic": "Romantisch"
+      },
+      "clear": "Filter löschen"
+    },
+    "loading": "Touren werden geladen...",
+    "error": "Fehler beim Laden der Touren. Bitte versuchen Sie es später erneut.",
+    "tryAgain": "Erneut versuchen",
+    "noTours": "Keine Touren gefunden, die Ihren Kriterien entsprechen.",
+    "viewAll": "Alle Touren anzeigen",
+    "found": {
+      "start": "Gefunden",
+      "tour": "Tour",
+      "tours": "Touren"
+    },
+    "new": "Neu",
+    "viewDetails": "Details anzeigen",
+    "cta": {
+      "title": "Können Sie nicht finden, was Sie suchen?",
+      "subtitle": "Wir sind spezialisiert auf maßgeschneiderte Touren, die auf Ihre Vorlieben zugeschnitten sind. Lassen Sie uns eine personalisierte Reiseroute nur für Sie erstellen!",
+      "button": "Maßgeschneiderte Tour anfordern"
+    }
+  },
+  "testimonials": {
+    "hero": {
+      "title": "Gästebewertungen",
+      "subtitle": "Lesen Sie, was unsere Reisenden über ihre Sri-Lanka-Abenteuer mit SD Tours sagen"
+    },
+    "success": {
+      "title": "Vielen Dank für Ihre Bewertung!",
+      "message": "Ihr Erfahrungsbericht wurde eingereicht und wird nach Genehmigung veröffentlicht."
+    },
+    "loading": "Bewertungen werden geladen...",
+    "noReviews": "Noch keine Bewertungen. Seien Sie der Erste, der seine Erfahrung teilt!",
+    "writeReview": "Bewertung schreiben",
+    "title": "Was unsere Reisenden sagen",
+    "tour": "Tour",
+    "form": {
+      "title": "Teilen Sie Ihre Erfahrung",
+      "name": "Ihr Name",
+      "namePlaceholder": "Max Mustermann",
+      "country": "Land",
+      "countryPlaceholder": "Deutschland",
+      "tourName": "Tourname (Optional)",
+      "tourNamePlaceholder": "Welche Tour haben Sie gemacht?",
+      "rating": "Bewertung",
+      "review": "Ihre Bewertung",
+      "reviewPlaceholder": "Erzählen Sie uns von Ihrer Erfahrung mit SD Tours...",
+      "characters": "Zeichen",
+      "submit": "Bewertung absenden",
+      "submitting": "Wird gesendet...",
+      "cancel": "Abbrechen",
+      "note": "Ihre Bewertung wird nach Genehmigung durch den Administrator veröffentlicht",
+      "errors": {
+        "nameRequired": "Name ist erforderlich",
+        "countryRequired": "Land ist erforderlich",
+        "reviewRequired": "Bewertung ist erforderlich",
+        "reviewMinLength": "Bewertung muss mindestens 20 Zeichen lang sein",
+        "reviewMaxLength": "Bewertung darf 500 Zeichen nicht überschreiten",
+        "submitFailed": "Fehler beim Absenden der Bewertung. Bitte versuchen Sie es erneut."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Kontaktieren Sie uns",
+      "subtitle": "Haben Sie eine Frage oder möchten Sie Ihr Traum-Sri-Lanka-Abenteuer buchen? Wir sind hier, um zu helfen!"
+    },
+    "form": {
+      "title": "Senden Sie uns eine Nachricht",
+      "success": {
+        "title": "Erfolg!",
+        "message": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden."
+      },
+      "error": "Fehler",
+      "name": "Ihr Name",
+      "namePlaceholder": "Max Mustermann",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "max@beispiel.de",
+      "phone": "Telefonnummer",
+      "subject": "Betreff",
+      "subjectPlaceholder": "Anfrage zu Touren",
+      "message": "Ihre Nachricht",
+      "messagePlaceholder": "Erzählen Sie uns von Ihren Reiseplänen, Fragen oder besonderen Wünschen...",
+      "sending": "Wird gesendet...",
+      "send": "Nachricht senden",
+      "errors": {
+        "nameRequired": "Name ist erforderlich",
+        "emailRequired": "E-Mail ist erforderlich",
+        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "phoneRequired": "Telefonnummer ist erforderlich",
+        "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer für das ausgewählte Land ein",
+        "phoneCountryCode": "Telefonnummer muss Ländervorwahl enthalten (z.B. +94 für Sri Lanka)",
+        "subjectRequired": "Betreff ist erforderlich",
+        "messageRequired": "Nachricht ist erforderlich",
+        "messageMinLength": "Nachricht muss mindestens 10 Zeichen lang sein"
+      }
+    },
+    "info": {
+      "title": "Kontaktinformationen",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "email": "E-Mail",
+      "location": "Standort",
+      "locationText": "Aluthgama, Sri Lanka"
+    },
+    "social": {
+      "title": "Folgen Sie uns",
+      "subtitle": "Bleiben Sie über unsere neuesten Touren und Reisetipps auf dem Laufenden"
+    },
+    "quickResponse": {
+      "title": "Schnelle Antwort garantiert",
+      "description": "Wir antworten in der Regel innerhalb von 24 Stunden auf alle Anfragen. Für dringende Angelegenheiten rufen Sie uns bitte an oder kontaktieren Sie uns per WhatsApp."
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "subtitle": "Schnelle Antworten auf häufige Fragen zu unseren Touren und Dienstleistungen",
+      "q1": {
+        "question": "Wie buche ich eine Tour?",
+        "answer": "Sie können direkt über unsere Website buchen, indem Sie Ihre bevorzugte Tour auswählen und das Buchungsformular ausfüllen. Alternativ kontaktieren Sie uns per WhatsApp oder Telefon für persönliche Unterstützung."
+      },
+      "q2": {
+        "question": "Können Touren angepasst werden?",
+        "answer": "Ja! Wir sind spezialisiert auf maßgeschneiderte Touren, die auf Ihre Interessen, Ihr Budget und Ihren Zeitplan zugeschnitten sind. Kontaktieren Sie uns, um Ihre Wünsche zu besprechen."
+      }
+    }
+  },
+  "tourDetails": {
+    "loading": "Tourdetails werden geladen...",
+    "error": "Fehler beim Laden der Tourdetails. Bitte versuchen Sie es später erneut.",
+    "notFound": "Tour nicht gefunden",
+    "backToTours": "Zurück zu Touren",
+    "featured": "Empfohlen",
+    "new": "Neu",
+    "tabs": {
+      "overview": "Übersicht",
+      "included": "Inbegriffen"
+    },
+    "overview": {
+      "title": "Tour-Übersicht",
+      "highlights": "Tour-Highlights"
+    },
+    "included": {
+      "title": "Was ist inbegriffen",
+      "notAvailable": "Information nicht verfügbar."
+    },
+    "booking": {
+      "bookNow": "Diese Tour buchen",
+      "whatsapp": "Auf WhatsApp chatten",
+      "contact": "Kontaktieren Sie uns"
+    },
+    "badges": {
+      "bestPrice": "Bester Preis",
+      "support": "24/7 Support",
+      "verified": "Verifiziert"
+    },
+    "related": {
+      "title": "Das könnte Ihnen auch gefallen",
+      "viewAll": "Alle Touren anzeigen"
+    }
+  },
+  "dayTourDetails": {
+    "loading": "Tagestour-Details werden geladen...",
+    "error": "Fehler beim Laden der Tagestour-Details. Bitte versuchen Sie es später erneut.",
+    "notFound": "Tagestour nicht gefunden",
+    "back": "Zurück",
+    "dayTour": "Tagestour",
+    "popular": "Beliebt",
+    "new": "Neu",
+    "overview": {
+      "title": "Tour-Übersicht",
+      "highlights": "Tour-Highlights"
+    },
+    "included": {
+      "title": "Was ist inbegriffen",
+      "notAvailable": "Information nicht verfügbar."
+    },
+    "booking": {
+      "bookNow": "Diese Tour buchen",
+      "whatsapp": "Auf WhatsApp chatten",
+      "contact": "Kontaktieren Sie uns",
+      "pickup": {
+        "title": "Abholung verfügbar",
+        "description": "Wir bieten Hotelabholung und -rückkehr an. Der Standort wird nach der Buchung bestätigt."
+      }
+    },
+    "badges": {
+      "bestPrice": "Bester Preis",
+      "localGuide": "Lokaler Guide",
+      "flexible": "Flexibel"
+    },
+    "related": {
+      "title": "Weitere Tagestouren",
+      "viewAll": "Alle Tagestouren anzeigen"
+    }
   }
+
 }

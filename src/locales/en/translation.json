@@ -4,6 +4,7 @@
     "about": "About Us",
     "services": "Our Services",
     "tours": "Tours Packages",
+    "reviews": "Reviews",
     "contact": "Contact Us"
   },
   "home": {
@@ -222,5 +223,469 @@
     "chatWithUs": "Chat with us!",
     "required": "*",
     "phoneHelper": "Include country code (e.g., +94 77 123 4567 for Sri Lanka)"
+  },
+  "footer": {
+    "companyDescription": "SD Tours & Travel offers carefully crafted journeys across Sri Lanka, combining popular destinations with hidden places.",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "contactUs": "Contact Us",
+    "services": {
+      "cultural": "Cultural Tours",
+      "adventure": "Adventure Tours",
+      "wildlife": "Wildlife Safaris",
+      "beach": "Beach Holidays",
+      "customized": "Customized Tours"
+    },
+    "copyright": "© 2026 SD Tours & Travel. All rights reserved."
+  },
+   "about": {
+    "hero": {
+      "title": "About SD Tours & Travel",
+      "subtitle": "My name is Samith Uddika and I live in Sri Lanka. Would you like to get to know my wonderful homeland?",
+      "exploreTours": "Explore Tours",
+      "contactUs": "Contact Us"
+    },
+    "stats": {
+      "experience": "Years Experience",
+      "travelers": "Happy Travelers",
+      "tours": "Tours Completed"
+    },
+    "story": {
+      "badge": "Our Story",
+      "title": "Born from a Love for Sri Lanka",
+      "paragraph1": "SD Tours & Travel was founded by Samith Uddika, a Sri Lankan native with an unquenchable passion for his homeland. After years of working in the tourism industry, Samith recognized a gap in the market for authentic, personalized travel experiences.",
+      "paragraph2": "Sri Lanka is an island in the Indian Ocean that captivates visitors with its stunning natural beauty and diversity. It boasts picturesque beaches as well as mountains, forests, and waterfalls. The diverse cultures and religions make Sri Lanka a truly unique experience. It is therefore rightly known as the \"Pearl of the Indian Ocean.\"",
+      "paragraph3": "Our mission remains unchanged: to create unforgettable journeys that go beyond typical tourist experiences, connecting travelers with the heart and soul of Sri Lanka through its culture, nature, and warm-hearted people."
+    },
+    "whyChoose": {
+      "badge": "What Makes Us Different",
+      "title": "Why Choose SD Tours & Travel",
+      "subtitle": "We're not just another tour company. Here's what sets us apart.",
+      "expertise": {
+        "title": "Local Expertise",
+        "description": "Born and raised in Sri Lanka, we know every corner of this beautiful island and share insider knowledge you won't find in guidebooks."
+      },
+      "vehicles": {
+        "title": "Premium Vehicles",
+        "description": "Travel in comfort with our fleet of modern, air-conditioned vehicles maintained to the highest standards."
+      },
+      "guides": {
+        "title": "Expert Guides",
+        "description": "Our licensed guides are passionate storytellers who bring Sri Lanka's history and culture to life."
+      },
+      "custom": {
+        "title": "Custom Itineraries",
+        "description": "Every traveler is different. We design personalized tours that match your interests and pace."
+      }
+    },
+    "values": {
+      "badge": "What We Stand For",
+      "title": "Our Core Values",
+      "passion": {
+        "title": "Passion for Travel",
+        "description": "We love what we do and it shows in every tour we create. Our passion for Sri Lanka drives us to share its beauty with the world."
+      },
+      "safety": {
+        "title": "Safety First",
+        "description": "Your safety is our top priority. We maintain the highest standards in vehicle maintenance, driver training, and tour planning."
+      },
+      "service": {
+        "title": "Personal Service",
+        "description": "Every traveler is unique. We customize experiences to match your interests, budget, and travel style for unforgettable memories."
+      },
+      "sustainable": {
+        "title": "Sustainable Tourism",
+        "description": "We're committed to responsible tourism that preserves Sri Lanka's natural beauty and supports local communities."
+      }
+    },
+    "testimonials": {
+      "noReviews": "No testimonials available at the moment.",
+      "tour": "Tour",
+      "viewAll": "View All Reviews"
+    },
+    "cta": {
+      "title": "Ready to Explore Sri Lanka?",
+      "subtitle": "Let us create a personalized journey that matches your dreams. Your Sri Lankan adventure awaits!",
+      "viewTours": "View Our Tours",
+      "getInTouch": "Get in Touch"
+    }
+  },
+   "services": {
+    "hero": {
+      "title": "Our Services",
+      "subtitle": "Comprehensive travel solutions for your perfect Sri Lankan experience"
+    },
+    "intro": {
+      "title": "Everything You Need for an Unforgettable Journey",
+      "description": "At SD Tours & Travel, we offer a complete range of services to ensure your Sri Lankan adventure is seamless, comfortable, and memorable. From the moment you arrive until your departure, we handle every detail with care and professionalism."
+    },
+    "main": {
+      "transportation": {
+        "title": "Private Transportation",
+        "description": "Travel in comfort with our modern, air-conditioned vehicles. Experienced, English-speaking drivers ensure safe and pleasant journeys throughout Sri Lanka.",
+        "features": [
+          "Modern, well-maintained vehicles",
+          "Professional, licensed drivers",
+          "Air-conditioned comfort",
+          "Flexible pickup locations"
+        ]
+      },
+      "accommodation": {
+        "title": "Accommodation Booking",
+        "description": "From luxury hotels to boutique guesthouses, we arrange the perfect accommodation to match your preferences and budget.",
+        "features": [
+          "Handpicked hotels & resorts",
+          "Best rates guaranteed",
+          "Various budget options",
+          "Beach, mountain, or city stays"
+        ]
+      },
+      "customized": {
+        "title": "Customized Tours",
+        "description": "Design your perfect Sri Lankan adventure. We create personalized itineraries based on your interests, schedule, and travel style.",
+        "features": [
+          "Tailored to your preferences",
+          "Flexible scheduling",
+          "Cultural, adventure, or relaxation",
+          "Expert local guidance"
+        ]
+      },
+      "airport": {
+        "title": "Airport Transfers",
+        "description": "Hassle-free pickups and drop-offs from Bandaranaike International Airport. Welcome service with comfortable, direct transfers to your destination.",
+        "features": [
+          "Meet & greet service",
+          "24/7 availability",
+          "Direct to your hotel",
+          "Flight monitoring included"
+        ]
+      },
+      "guides": {
+        "title": "Expert Tour Guides",
+        "description": "Our knowledgeable, multilingual guides bring Sri Lanka's history and culture to life with engaging stories and local insights.",
+        "features": [
+          "Licensed professional guides",
+          "Multiple languages available",
+          "Deep cultural knowledge",
+          "Passionate storytellers"
+        ]
+      },
+      "photography": {
+        "title": "Photography Tours",
+        "description": "Capture Sri Lanka's stunning landscapes and vibrant culture. We know the best spots and perfect timing for incredible photographs.",
+        "features": [
+          "Scenic photography locations",
+          "Golden hour planning",
+          "Wildlife photography",
+          "Cultural event access"
+        ]
+      },
+      "culinary": {
+        "title": "Culinary Experiences",
+        "description": "Discover authentic Sri Lankan cuisine through cooking classes, food tours, and reservations at the finest local restaurants.",
+        "features": [
+          "Traditional cooking classes",
+          "Street food tours",
+          "Restaurant recommendations",
+          "Tea plantation visits"
+        ]
+      },
+      "visa": {
+        "title": "Visa Assistance",
+        "description": "We guide you through the visa application process for Sri Lanka, making your travel preparation smooth and stress-free.",
+        "features": [
+          "ETA application help",
+          "Document guidance",
+          "Requirement clarification",
+          "Fast processing support"
+        ]
+      },
+      "support": {
+        "title": "24/7 Support",
+        "description": "Round-the-clock assistance throughout your journey. We're always available via phone, WhatsApp, or email for any needs.",
+        "features": [
+          "Immediate response",
+          "Emergency assistance",
+          "Travel adjustments",
+          "Local problem solving"
+        ]
+      }
+    },
+    "additional": {
+      "title": "Additional Services We Offer",
+      "train": "Train ticket reservations",
+      "flight": "Domestic flight bookings",
+      "safari": "Safari park reservations",
+      "cultural": "Cultural show tickets",
+      "spa": "Spa & wellness bookings",
+      "adventure": "Adventure activity arrangements",
+      "wedding": "Wedding & honeymoon planning",
+      "group": "Group tour coordination",
+      "corporate": "Corporate travel services",
+      "event": "Event planning assistance"
+    },
+    "whyChoose": {
+      "title": "Why Choose SD Tours & Travel?",
+      "expertise": {
+        "title": "Local Expertise",
+        "description": "Sri Lanka-based company with deep knowledge of the island"
+      },
+      "quality": {
+        "title": "Quality Service",
+        "description": "High standards of service with attention to every detail"
+      },
+      "value": {
+        "title": "Best Value",
+        "description": "Competitive prices without compromising on quality"
+      },
+      "personal": {
+        "title": "Personal Touch",
+        "description": "Customized experiences tailored to your preferences"
+      }
+    },
+    "areas": {
+      "title": "Where We Operate",
+      "subtitle": "We provide services throughout Sri Lanka, covering all major destinations and hidden gems",
+      "cultural": {
+        "title": "Cultural Triangle"
+      },
+      "hill": {
+        "title": "Hill Places"
+      },
+      "coastal": {
+        "title": "Coastal Areas"
+      },
+      "wildlife": {
+        "title": "Wildlife Zones"
+      },
+      "urban": {
+        "title": "Urban Centers"
+      },
+      "hidden": {
+        "title": "Off the Beaten Path",
+        "places": [
+          "Hidden temples",
+          "Local villages",
+          "Secret beaches"
+        ]
+      }
+    },
+    "cta": {
+      "title": "Ready to Experience Sri Lanka?",
+      "subtitle": "Let us handle the details while you enjoy the journey. Contact us today to plan your perfect Sri Lankan adventure!",
+      "contact": "Get in Touch",
+      "viewTours": "View Our Tours",
+      "whatsapp": "WhatsApp Us"
+    }
+  },
+  "tours": {
+    "hero": {
+      "title": "Our Tour Packages",
+      "subtitle": "Discover carefully crafted tours across Sri Lanka."
+    },
+    "filters": {
+      "searchPlaceholder": "Search tours...",
+      "allCategories": "All Categories",
+      "categories": {
+        "adventure": "Adventure",
+        "wildlife": "Wildlife",
+        "culture": "Culture",
+        "relaxation": "Relaxation",
+        "romantic": "Romantic"
+      },
+      "clear": "Clear Filters"
+    },
+    "loading": "Loading tours...",
+    "error": "Failed to load tours. Please try again later.",
+    "tryAgain": "Try Again",
+    "noTours": "No tours found matching your criteria.",
+    "viewAll": "View All Tours",
+    "found": {
+      "start": "Found",
+      "tour": "tour",
+      "tours": "tours"
+    },
+    "new": "New",
+    "viewDetails": "View Details",
+    "cta": {
+      "title": "Can't Find What You're Looking For?",
+      "subtitle": "We specialize in custom tours tailored to your preferences. Let us create a personalized itinerary just for you!",
+      "button": "Request Custom Tour"
+    }
+  },
+  
+  "testimonials": {
+    "hero": {
+      "title": "Guest Reviews",
+      "subtitle": "Read what our travelers say about their Sri Lankan adventures with SD Tours"
+    },
+    "success": {
+      "title": "Thank you for your review!",
+      "message": "Your testimonial has been submitted and will be published after approval."
+    },
+    "loading": "Loading testimonials...",
+    "noReviews": "No testimonials yet. Be the first to share your experience!",
+    "writeReview": "Write a Review",
+    "title": "What Our Travelers Say",
+    "tour": "Tour",
+    "form": {
+      "title": "Share Your Experience",
+      "name": "Your Name",
+      "namePlaceholder": "John Doe",
+      "country": "Country",
+      "countryPlaceholder": "United States",
+      "tourName": "Tour Name (Optional)",
+      "tourNamePlaceholder": "Which tour did you take?",
+      "rating": "Rating",
+      "review": "Your Review",
+      "reviewPlaceholder": "Tell us about your experience with SD Tours...",
+      "characters": "characters",
+      "submit": "Submit Review",
+      "submitting": "Submitting...",
+      "cancel": "Cancel",
+      "note": "Your review will be published after admin approval",
+      "errors": {
+        "nameRequired": "Name is required",
+        "countryRequired": "Country is required",
+        "reviewRequired": "Review is required",
+        "reviewMinLength": "Review must be at least 20 characters",
+        "reviewMaxLength": "Review cannot exceed 500 characters",
+        "submitFailed": "Failed to submit review. Please try again."
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Get in Touch",
+      "subtitle": "Have a question or ready to book your dream Sri Lankan adventure? We're here to help!"
+    },
+    "form": {
+      "title": "Send Us a Message",
+      "success": {
+        "title": "Success!",
+        "message": "Thank you for contacting us! We'll get back to you within 24 hours."
+      },
+      "error": "Error",
+      "name": "Your Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "subjectPlaceholder": "Inquiry about tours",
+      "message": "Your Message",
+      "messagePlaceholder": "Tell us about your travel plans, questions, or special requests...",
+      "sending": "Sending...",
+      "send": "Send Message",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Please enter a valid email address",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Please enter a valid phone number for the selected country",
+        "phoneCountryCode": "Phone number must include country code (e.g., +94 for Sri Lanka)",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required",
+        "messageMinLength": "Message must be at least 10 characters"
+      }
+    },
+    "info": {
+      "title": "Contact Information",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "location": "Location",
+      "locationText": "Aluthgama, Sri Lanka"
+    },
+    "social": {
+      "title": "Follow Us",
+      "subtitle": "Stay updated with our latest tours and travel tips"
+    },
+    "quickResponse": {
+      "title": "Quick Response Guaranteed",
+      "description": "We typically respond to all inquiries within 24 hours. For urgent matters, please call or WhatsApp us directly."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers to common questions about our tours and services",
+      "q1": {
+        "question": "How do I book a tour?",
+        "answer": "You can book directly through our website by selecting your preferred tour and filling out the booking form. Alternatively, contact us via WhatsApp or phone for personalized assistance."
+      },
+      "q2": {
+        "question": "Can tours be customized?",
+        "answer": "Yes! We specialize in customized tours tailored to your interests, budget, and schedule. Contact us to discuss your preferences."
+      }
+    }
+  },
+  "tourDetails": {
+    "loading": "Loading tour details...",
+    "error": "Failed to load tour details. Please try again later.",
+    "notFound": "Tour not found",
+    "backToTours": "Back to Tours",
+    "featured": "Featured",
+    "new": "New",
+    "tabs": {
+      "overview": "Overview",
+      "included": "Included"
+    },
+    "overview": {
+      "title": "Tour Overview",
+      "highlights": "Tour Highlights"
+    },
+    "included": {
+      "title": "What's Included",
+      "notAvailable": "Information not available."
+    },
+    "booking": {
+      "bookNow": "Book This Tour",
+      "whatsapp": "Chat on WhatsApp",
+      "contact": "Contact Us"
+    },
+    "badges": {
+      "bestPrice": "Best Price",
+      "support": "24/7 Support",
+      "verified": "Verified"
+    },
+    "related": {
+      "title": "You May Also Like",
+      "viewAll": "View All Tours"
+    }
+  },
+  "dayTourDetails": {
+    "loading": "Loading day tour details...",
+    "error": "Failed to load day tour details. Please try again later.",
+    "notFound": "Day tour not found",
+    "back": "Back",
+    "dayTour": "Day Tour",
+    "popular": "Popular",
+    "new": "New",
+    "overview": {
+      "title": "Tour Overview",
+      "highlights": "Tour Highlights"
+    },
+    "included": {
+      "title": "What's Included",
+      "notAvailable": "Information not available."
+    },
+    "booking": {
+      "bookNow": "Book This Tour",
+      "whatsapp": "Chat on WhatsApp",
+      "contact": "Contact Us",
+      "pickup": {
+        "title": "Pickup Available",
+        "description": "We provide hotel pickup and drop-off. Location will be confirmed after booking."
+      }
+    },
+    "badges": {
+      "bestPrice": "Best Price",
+      "localGuide": "Local Guide",
+      "flexible": "Flexible"
+    },
+    "related": {
+      "title": "More Day Tours",
+      "viewAll": "View All Day Tours"
+    }
   }
 }
+

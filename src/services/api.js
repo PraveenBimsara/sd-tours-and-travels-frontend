@@ -45,6 +45,8 @@ export const bookingAPI = {
 
 export const testimonialAPI = {
   getTestimonials: (params) => api.get('/testimonials', { params }),
+  getTestimonial: (id) => api.get(`/testimonials/${id}`),
+  createTestimonial: (data) => api.post('/testimonials', data),
 };
 
 export const contactAPI = {

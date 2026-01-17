@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   FaEnvelope,
   FaPhone,
@@ -14,6 +15,7 @@ import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +31,7 @@ const Contact = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,72 +40,65 @@ const Contact = () => {
       [name]: value,
     }));
 
-    // Clear error for this field
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handlePhoneChange = (value) => {
-  setFormData((prev) => ({
-    ...prev,
-    phone: value || '',
-  }));
+    setFormData((prev) => ({
+      ...prev,
+      phone: value || '',
+    }));
 
-  // Clear error for phone field
-  if (errors.phone) {
-    setErrors((prev) => ({ ...prev, phone: "" }));
-  }
-};
-
- const validateForm = () => {
-  const newErrors = {};
-
-  // Name Validation
-  if (!formData.name.trim()) {
-    newErrors.name = "Name is required";
-  }
-
-  // Enhanced Email Validation
-  if (!formData.email.trim()) {
-    newErrors.email = "Email is required";
-  } else {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+    if (errors.phone) {
+      setErrors((prev) => ({ ...prev, phone: "" }));
     }
-  }
+  };
 
-  // Phone Number Validation (with country code validation)
-  if (!formData.phone) {
-    newErrors.phone = "Phone number is required";
-  } else if (!formData.phone.startsWith('+')) {
-    newErrors.phone = "Phone number must include country code (e.g., +94 for Sri Lanka)";
-  } else {
-    try {
-      if (!isValidPhoneNumber(formData.phone)) {
-        newErrors.phone = "Please enter a valid phone number for the selected country";
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = t('contact.form.errors.nameRequired');
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = t('contact.form.errors.emailRequired');
+    } else {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = t('contact.form.errors.emailInvalid');
       }
-    } catch (error) {
-      newErrors.phone = "Invalid phone number format";
     }
-  }
 
-  // Subject Validation
-  if (!formData.subject.trim()) {
-    newErrors.subject = "Subject is required";
-  }
+    if (!formData.phone) {
+      newErrors.phone = t('contact.form.errors.phoneRequired');
+    } else if (!formData.phone.startsWith('+')) {
+      newErrors.phone = t('contact.form.errors.phoneCountryCode');
+    } else {
+      try {
+        if (!isValidPhoneNumber(formData.phone)) {
+          newErrors.phone = t('contact.form.errors.phoneInvalid');
+        }
+      } catch (error) {
+        newErrors.phone = t('contact.form.errors.phoneInvalid');
+      }
+    }
 
-  // Message Validation
-  if (!formData.message.trim()) {
-    newErrors.message = "Message is required";
-  } else if (formData.message.trim().length < 10) {
-    newErrors.message = "Message must be at least 10 characters";
-  }
+    if (!formData.subject.trim()) {
+      newErrors.subject = t('contact.form.errors.subjectRequired');
+    }
 
-  setErrors(newErrors);
-  return Object.keys(newErrors).length === 0;
-};
+    if (!formData.message.trim()) {
+      newErrors.message = t('contact.form.errors.messageRequired');
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = t('contact.form.errors.messageMinLength');
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,7 +134,6 @@ const Contact = () => {
         message: "",
       });
 
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setSuccess(false);
       }, 5000);
@@ -154,51 +148,44 @@ const Contact = () => {
   return (
     <div className="contact-page">
       {/* Hero Section */}
-<section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-  {/* Background Image */}
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{
-      backgroundImage:
-        "url('https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg')",
-    }}
-  />
+      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
-
-  {/* Content */}
-  <div className="relative z-10 container mx-auto px-4 text-center text-white">
-    <h1 className="text-5xl md:text-6xl font-bold mb-4">
-      Get in Touch
-    </h1>
-    <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-      Have a question or ready to book your dream Sri Lankan adventure?
-      We're here to help!
-    </p>
-  </div>
-</section>
-
+        <div className="relative z-10 container mx-auto px-4 text-center text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            {t('contact.hero.title')}
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            {t('contact.hero.subtitle')}
+          </p>
+        </div>
+      </section>
 
       {/* Main Content */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Contact Form - Left Column (2 columns) */}
+            {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-3xl font-bold text-navy mb-6">
-                  Send Us a Message
+                  {t('contact.form.title')}
                 </h2>
 
                 {success && (
                   <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
                     <FaCheckCircle className="text-green-500 text-xl mt-0.5" />
                     <div>
-                      <p className="text-green-800 font-semibold">Success!</p>
+                      <p className="text-green-800 font-semibold">{t('contact.form.success.title')}</p>
                       <p className="text-green-600">
-                        Thank you for contacting us! We'll get back to you
-                        within 24 hours.
+                        {t('contact.form.success.message')}
                       </p>
                     </div>
                   </div>
@@ -208,7 +195,7 @@ const Contact = () => {
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
                     <FaExclamationCircle className="text-red-500 text-xl mt-0.5" />
                     <div>
-                      <p className="text-red-800 font-semibold">Error</p>
+                      <p className="text-red-800 font-semibold">{t('contact.form.error')}</p>
                       <p className="text-red-600">{error}</p>
                     </div>
                   </div>
@@ -216,10 +203,9 @@ const Contact = () => {
 
                 <form onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    {/* Name */}
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Your Name <span className="text-red-500">*</span>
+                        {t('contact.form.name')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -229,19 +215,16 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.name ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="John Doe"
+                        placeholder={t('contact.form.namePlaceholder')}
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.name}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                       )}
                     </div>
 
-                    {/* Email */}
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Email Address <span className="text-red-500">*</span>
+                        {t('contact.form.email')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -251,45 +234,39 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.email ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="john@example.com"
+                        placeholder={t('contact.form.emailPlaceholder')}
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.email}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                       )}
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    {/* Phone */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-2">
-    Phone Number <span className="text-red-500">*</span>
-  </label>
-  <PhoneInput
-    international
-    defaultCountry="LK"
-    value={formData.phone}
-    onChange={handlePhoneChange}
-    className={`w-full ${
-      errors.phone ? 'phone-input-error' : ''
-    }`}
-    numberInputProps={{
-      className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-        errors.phone ? 'border-red-500' : 'border-gray-300'
-      }`
-    }}
-  />
-  {errors.phone && (
-    <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
-  )}
-</div>
-
-                    {/* Subject */}
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Subject <span className="text-red-500">*</span>
+                        {t('contact.form.phone')} <span className="text-red-500">*</span>
+                      </label>
+                      <PhoneInput
+                        international
+                        defaultCountry="LK"
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        className={`w-full ${errors.phone ? 'phone-input-error' : ''}`}
+                        numberInputProps={{
+                          className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
+                            errors.phone ? 'border-red-500' : 'border-gray-300'
+                          }`
+                        }}
+                      />
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        {t('contact.form.subject')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -299,20 +276,17 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.subject ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder="Inquiry about tours"
+                        placeholder={t('contact.form.subjectPlaceholder')}
                       />
                       {errors.subject && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.subject}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
                       )}
                     </div>
                   </div>
 
-                  {/* Message */}
                   <div className="mb-6">
                     <label className="block text-gray-700 font-semibold mb-2">
-                      Your Message <span className="text-red-500">*</span>
+                      {t('contact.form.message')} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       name="message"
@@ -322,16 +296,13 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition resize-none ${
                         errors.message ? "border-red-500" : "border-gray-300"
                       }`}
-                      placeholder="Tell us about your travel plans, questions, or special requests..."
+                      placeholder={t('contact.form.messagePlaceholder')}
                     ></textarea>
                     {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.message}
-                      </p>
+                      <p className="text-red-500 text-sm mt-1">{errors.message}</p>
                     )}
                   </div>
 
-                  {/* Submit Button */}
                   <button
                     type="submit"
                     disabled={submitting}
@@ -340,33 +311,31 @@ const Contact = () => {
                     {submitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-                        Sending...
+                        {t('contact.form.sending')}
                       </span>
                     ) : (
-                      "Send Message"
+                      t('contact.form.send')
                     )}
                   </button>
                 </form>
               </div>
             </div>
 
-            {/* Contact Information - Right Column */}
+            {/* Contact Information */}
             <div className="lg:col-span-1">
               <div className="space-y-6">
-                {/* Contact Details */}
                 <div className="bg-white rounded-2xl shadow-lg p-6">
                   <h3 className="text-2xl font-bold text-navy mb-6">
-                    Contact Information
+                    {t('contact.info.title')}
                   </h3>
 
                   <div className="space-y-4">
-                    {/* Phone */}
                     <div className="flex items-start gap-4">
                       <div className="bg-skyBlue/10 p-3 rounded-lg">
                         <FaPhone className="text-skyBlue text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">Phone</h4>
+                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.phone')}</h4>
                         <a
                           href="tel:+94778875696"
                           className="text-gray-600 hover:text-sunsetOrange transition"
@@ -376,15 +345,12 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    {/* WhatsApp */}
                     <div className="flex items-start gap-4">
                       <div className="bg-green-50 p-3 rounded-lg">
                         <FaWhatsapp className="text-green-500 text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">
-                          WhatsApp
-                        </h4>
+                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.whatsapp')}</h4>
                         <a
                           href="https://wa.me/94778875696"
                           target="_blank"
@@ -396,13 +362,12 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    {/* Email */}
                     <div className="flex items-start gap-4">
                       <div className="bg-sunsetOrange/10 p-3 rounded-lg">
                         <FaEnvelope className="text-sunsetOrange text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">Email</h4>
+                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.email')}</h4>
                         <a
                           href="mailto:sdtoursandtravelcompany@gmail.com"
                           className="text-gray-600 hover:text-sunsetOrange transition break-all"
@@ -412,26 +377,22 @@ const Contact = () => {
                       </div>
                     </div>
 
-                    {/* Location */}
                     <div className="flex items-start gap-4">
                       <div className="bg-sunsetYellow/10 p-3 rounded-lg">
                         <FaMapMarkerAlt className="text-sunsetYellow text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">
-                          Location
-                        </h4>
-                        <p className="text-gray-600">Aluthgama, Sri Lanka</p>
+                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.location')}</h4>
+                        <p className="text-gray-600">{t('contact.info.locationText')}</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Social Media */}
                 <div className="bg-gradient-to-br from-navy to-navy/90 rounded-2xl shadow-lg p-6 text-white">
-                  <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+                  <h3 className="text-xl font-bold mb-4">{t('contact.social.title')}</h3>
                   <p className="text-white/80 mb-4 text-sm">
-                    Stay updated with our latest tours and travel tips
+                    {t('contact.social.subtitle')}
                   </p>
                   <div className="flex gap-3">
                     <a
@@ -458,14 +419,12 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Quick Response */}
                 <div className="bg-sunsetYellow/10 border-l-4 border-sunsetYellow rounded-lg p-6">
                   <h4 className="font-bold text-navy mb-2">
-                    Quick Response Guaranteed
+                    {t('contact.quickResponse.title')}
                   </h4>
                   <p className="text-gray-600 text-sm">
-                    We typically respond to all inquiries within 24 hours. For
-                    urgent matters, please call or WhatsApp us directly.
+                    {t('contact.quickResponse.description')}
                   </p>
                 </div>
               </div>
@@ -479,35 +438,29 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-navy mb-4">
-              Frequently Asked Questions
+              {t('contact.faq.title')}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Quick answers to common questions about our tours and services
+              {t('contact.faq.subtitle')}
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid gap-6">
-            {/* FAQ 1 */}
             <div className="bg-white rounded-xl p-6 shadow-md">
               <h3 className="text-lg font-bold text-navy mb-2">
-                How do I book a tour?
+                {t('contact.faq.q1.question')}
               </h3>
               <p className="text-gray-600">
-                You can book directly through our website by selecting your
-                preferred tour and filling out the booking form. Alternatively,
-                contact us via WhatsApp or phone for personalized assistance.
+                {t('contact.faq.q1.answer')}
               </p>
             </div>
 
-            {/* FAQ 2 */}
             <div className="bg-white rounded-xl p-6 shadow-md">
               <h3 className="text-lg font-bold text-navy mb-2">
-                Can tours be customized?
+                {t('contact.faq.q2.question')}
               </h3>
               <p className="text-gray-600">
-                Yes! We specialize in customized tours tailored to your
-                interests, budget, and schedule. Contact us to discuss your
-                preferences.
+                {t('contact.faq.q2.answer')}
               </p>
             </div>
           </div>

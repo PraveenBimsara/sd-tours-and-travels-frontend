@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { tourAPI } from "../services/api";
 
 const Tours = () => {
+  const { t } = useTranslation();
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,9 +16,8 @@ const Tours = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
 
-  // Fetch tours from backend
   useEffect(() => {
     fetchTours();
   }, [filters]);
@@ -35,7 +36,7 @@ const Tours = () => {
       setError(null);
     } catch (err) {
       console.error("Error fetching tours:", err);
-      setError("Failed to load tours. Please try again later.");
+      setError(t('tours.error'));
     } finally {
       setLoading(false);
     }
@@ -65,10 +66,10 @@ const Tours = () => {
         <div className="relative z-10 container mx-auto px-4 text-white flex flex-col items-center justify-center">
           <div className="max-w-3xl flex flex-col items-center justify-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Our Tour Packages
+              {t('tours.hero.title')}
             </h1>
             <p className="text-xl md:text-2xl text-white/90">
-              Discover carefully crafted tours across Sri Lanka.
+              {t('tours.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -82,7 +83,7 @@ const Tours = () => {
             <div className="flex-1 min-w-[250px]">
               <input
                 type="text"
-                placeholder="Search tours..."
+                placeholder={t('tours.filters.searchPlaceholder')}
                 value={filters.search}
                 onChange={(e) => handleFilterChange("search", e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition"
@@ -95,12 +96,12 @@ const Tours = () => {
               onChange={(e) => handleFilterChange("category", e.target.value)}
               className="px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-sunsetOrange transition bg-white"
             >
-              <option value="">All Categories</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Wildlife">Wildlife</option>
-              <option value="Culture">Culture</option>
-              <option value="Relaxation">Relaxation</option>
-              <option value="Romantic">Romantic</option>
+              <option value="">{t('tours.filters.allCategories')}</option>
+              <option value="Adventure">{t('tours.filters.categories.adventure')}</option>
+              <option value="Wildlife">{t('tours.filters.categories.wildlife')}</option>
+              <option value="Culture">{t('tours.filters.categories.culture')}</option>
+              <option value="Relaxation">{t('tours.filters.categories.relaxation')}</option>
+              <option value="Romantic">{t('tours.filters.categories.romantic')}</option>
             </select>
 
             {/* Clear Filters */}
@@ -109,7 +110,7 @@ const Tours = () => {
                 onClick={clearFilters}
                 className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full font-semibold transition"
               >
-                Clear Filters
+                {t('tours.filters.clear')}
               </button>
             )}
           </div>
@@ -123,7 +124,7 @@ const Tours = () => {
           {loading && (
             <div className="text-center py-20">
               <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-sunsetOrange"></div>
-              <p className="mt-4 text-gray-600 text-lg">Loading tours...</p>
+              <p className="mt-4 text-gray-600 text-lg">{t('tours.loading')}</p>
             </div>
           )}
 
@@ -136,7 +137,7 @@ const Tours = () => {
                   onClick={fetchTours}
                   className="bg-sunsetOrange hover:bg-sunsetYellow text-white px-6 py-3 rounded-full font-semibold transition"
                 >
-                  Try Again
+                  {t('tours.tryAgain')}
                 </button>
               </div>
             </div>
@@ -147,13 +148,13 @@ const Tours = () => {
             <div className="text-center py-20">
               <div className="bg-white rounded-xl shadow-lg p-8 max-w-md mx-auto">
                 <p className="text-gray-600 text-lg mb-4">
-                  No tours found matching your criteria.
+                  {t('tours.noTours')}
                 </p>
                 <button
                   onClick={clearFilters}
                   className="bg-sunsetOrange hover:bg-sunsetYellow text-white px-6 py-3 rounded-full font-semibold transition"
                 >
-                  View All Tours
+                  {t('tours.viewAll')}
                 </button>
               </div>
             </div>
@@ -163,9 +164,9 @@ const Tours = () => {
           {!loading && !error && tours.length > 0 && (
             <>
               <div className="mb-6 text-gray-600">
-                Found{" "}
+                {t('tours.found.start')}{" "}
                 <span className="font-semibold text-navy">{tours.length}</span>{" "}
-                tour{tours.length !== 1 ? "s" : ""}
+                {tours.length === 1 ? t('tours.found.tour') : t('tours.found.tours')}
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -214,7 +215,7 @@ const Tours = () => {
                             {"★".repeat(5 - Math.floor(tour.rating || 0))}
                           </span>
                           <span className="text-gray-600 text-sm ml-2">
-                            ({tour.rating?.toFixed(1) || "New"})
+                            ({tour.rating?.toFixed(1) || t('tours.new')})
                           </span>
                         </div>
                       </div>
@@ -225,7 +226,7 @@ const Tours = () => {
                           to={`/tours/${tour._id}`}
                           className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-6 py-3 rounded-full font-semibold transition duration-300"
                         >
-                          View Details
+                          {t('tours.viewDetails')}
                         </Link>
                       </div>
                     </div>
@@ -242,17 +243,16 @@ const Tours = () => {
         <div className="container mx-auto px-4">
           <div className="bg-gradient-to-r from-sunsetOrange to-sunsetYellow rounded-3xl p-12 text-center text-white">
             <h2 className="text-4xl font-bold mb-4">
-              Can't Find What You're Looking For?
+              {t('tours.cta.title')}
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              We specialize in custom tours tailored to your preferences. Let us
-              create a personalized itinerary just for you!
+              {t('tours.cta.subtitle')}
             </p>
             <Link
               to="/contact"
               className="inline-block bg-white text-sunsetOrange hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-semibold transition duration-300 hover:scale-105 shadow-lg"
             >
-              Request Custom Tour
+              {t('tours.cta.button')}
             </Link>
           </div>
         </div>

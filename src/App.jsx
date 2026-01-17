@@ -9,6 +9,7 @@ import AboutUs from './pages/AboutUs';
 import BookingForm from './pages/BookingForm';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
+import Testimonials from './pages/Testimonials';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/tours/:id" element={<TourDetails />} />
             <Route path="/day-tours/:id" element={<DayTourDetails />} />
             <Route path="/booking/:type/:id" element={<BookingForm />} />
+            <Route path="/reviews" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

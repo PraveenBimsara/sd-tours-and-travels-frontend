@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   FaCar,
   FaHotel,
@@ -35,131 +36,125 @@ const staggerContainer = {
 };
 
 const Services = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const services = [
     {
       icon: <FaCar className="text-5xl text-sunsetOrange" />,
-      title: "Private Transportation",
-      description:
-        "Travel in comfort with our modern, air-conditioned vehicles. Experienced, English-speaking drivers ensure safe and pleasant journeys throughout Sri Lanka.",
+      title: t('services.main.transportation.title'),
+      description: t('services.main.transportation.description'),
       features: [
-        "Modern, well-maintained vehicles",
-        "Professional, licensed drivers",
-        "Air-conditioned comfort",
-        "Flexible pickup locations",
+        t('services.main.transportation.features.0'),
+        t('services.main.transportation.features.1'),
+        t('services.main.transportation.features.2'),
+        t('services.main.transportation.features.3'),
       ],
     },
     {
       icon: <FaHotel className="text-5xl text-skyBlue" />,
-      title: "Accommodation Booking",
-      description:
-        "From luxury hotels to boutique guesthouses, we arrange the perfect accommodation to match your preferences and budget.",
+      title: t('services.main.accommodation.title'),
+      description: t('services.main.accommodation.description'),
       features: [
-        "Handpicked hotels & resorts",
-        "Best rates guaranteed",
-        "Various budget options",
-        "Beach, mountain, or city stays",
+        t('services.main.accommodation.features.0'),
+        t('services.main.accommodation.features.1'),
+        t('services.main.accommodation.features.2'),
+        t('services.main.accommodation.features.3'),
       ],
     },
     {
       icon: <FaMapMarkedAlt className="text-5xl text-sunsetYellow" />,
-      title: "Customized Tours",
-      description:
-        "Design your perfect Sri Lankan adventure. We create personalized itineraries based on your interests, schedule, and travel style.",
+      title: t('services.main.customized.title'),
+      description: t('services.main.customized.description'),
       features: [
-        "Tailored to your preferences",
-        "Flexible scheduling",
-        "Cultural, adventure, or relaxation",
-        "Expert local guidance",
+        t('services.main.customized.features.0'),
+        t('services.main.customized.features.1'),
+        t('services.main.customized.features.2'),
+        t('services.main.customized.features.3'),
       ],
     },
     {
       icon: <FaPlane className="text-5xl text-navy" />,
-      title: "Airport Transfers",
-      description:
-        "Hassle-free pickups and drop-offs from Bandaranaike International Airport. Welcome service with comfortable, direct transfers to your destination.",
+      title: t('services.main.airport.title'),
+      description: t('services.main.airport.description'),
       features: [
-        "Meet & greet service",
-        "24/7 availability",
-        "Direct to your hotel",
-        "Flight monitoring included",
+        t('services.main.airport.features.0'),
+        t('services.main.airport.features.1'),
+        t('services.main.airport.features.2'),
+        t('services.main.airport.features.3'),
       ],
     },
     {
       icon: <FaUsers className="text-5xl text-sunsetOrange" />,
-      title: "Expert Tour Guides",
-      description:
-        "Our knowledgeable, multilingual guides bring Sri Lanka's history and culture to life with engaging stories and local insights.",
+      title: t('services.main.guides.title'),
+      description: t('services.main.guides.description'),
       features: [
-        "Licensed professional guides",
-        "Multiple languages available",
-        "Deep cultural knowledge",
-        "Passionate storytellers",
+        t('services.main.guides.features.0'),
+        t('services.main.guides.features.1'),
+        t('services.main.guides.features.2'),
+        t('services.main.guides.features.3'),
       ],
     },
     {
       icon: <FaCamera className="text-5xl text-skyBlue" />,
-      title: "Photography Tours",
-      description:
-        "Capture Sri Lanka's stunning landscapes and vibrant culture. We know the best spots and perfect timing for incredible photographs.",
+      title: t('services.main.photography.title'),
+      description: t('services.main.photography.description'),
       features: [
-        "Scenic photography locations",
-        "Golden hour planning",
-        "Wildlife photography",
-        "Cultural event access",
+        t('services.main.photography.features.0'),
+        t('services.main.photography.features.1'),
+        t('services.main.photography.features.2'),
+        t('services.main.photography.features.3'),
       ],
     },
     {
       icon: <FaUtensils className="text-5xl text-sunsetYellow" />,
-      title: "Culinary Experiences",
-      description:
-        "Discover authentic Sri Lankan cuisine through cooking classes, food tours, and reservations at the finest local restaurants.",
+      title: t('services.main.culinary.title'),
+      description: t('services.main.culinary.description'),
       features: [
-        "Traditional cooking classes",
-        "Street food tours",
-        "Restaurant recommendations",
-        "Tea plantation visits",
+        t('services.main.culinary.features.0'),
+        t('services.main.culinary.features.1'),
+        t('services.main.culinary.features.2'),
+        t('services.main.culinary.features.3'),
       ],
     },
     {
       icon: <FaPassport className="text-5xl text-navy" />,
-      title: "Visa Assistance",
-      description:
-        "We guide you through the visa application process for Sri Lanka, making your travel preparation smooth and stress-free.",
+      title: t('services.main.visa.title'),
+      description: t('services.main.visa.description'),
       features: [
-        "ETA application help",
-        "Document guidance",
-        "Requirement clarification",
-        "Fast processing support",
+        t('services.main.visa.features.0'),
+        t('services.main.visa.features.1'),
+        t('services.main.visa.features.2'),
+        t('services.main.visa.features.3'),
       ],
     },
     {
       icon: <FaHeadset className="text-5xl text-sunsetOrange" />,
-      title: "24/7 Support",
-      description:
-        "Round-the-clock assistance throughout your journey. We're always available via phone, WhatsApp, or email for any needs.",
+      title: t('services.main.support.title'),
+      description: t('services.main.support.description'),
       features: [
-        "Immediate response",
-        "Emergency assistance",
-        "Travel adjustments",
-        "Local problem solving",
+        t('services.main.support.features.0'),
+        t('services.main.support.features.1'),
+        t('services.main.support.features.2'),
+        t('services.main.support.features.3'),
       ],
     },
   ];
 
   const additionalServices = [
-    "Train ticket reservations",
-    "Domestic flight bookings",
-    "Safari park reservations",
-    "Cultural show tickets",
-    "Spa & wellness bookings",
-    "Adventure activity arrangements",
-    "Wedding & honeymoon planning",
-    "Group tour coordination",
-    "Corporate travel services",
-    "Event planning assistance",
+    t('services.additional.train'),
+    t('services.additional.flight'),
+    t('services.additional.safari'),
+    t('services.additional.cultural'),
+    t('services.additional.spa'),
+    t('services.additional.adventure'),
+    t('services.additional.wedding'),
+    t('services.additional.group'),
+    t('services.additional.corporate'),
+    t('services.additional.event'),
   ];
 
   return (
@@ -179,11 +174,10 @@ const Services = () => {
           <div className="max-w-3xl">
             <div className="flex flex-col items-center justify-center text-center">
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                Our Services
+                {t('services.hero.title')}
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/90">
-                Comprehensive travel solutions for your perfect Sri Lankan
-                experience
+                {t('services.hero.subtitle')}
               </p>
             </div>
           </div>
@@ -195,17 +189,10 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
-              Everything You Need for an Unforgettable Journey
+              {t('services.intro.title')}
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed mb-8">
-              At{" "}
-              <span className="text-sunsetOrange font-semibold">
-                SD Tours & Travel
-              </span>
-              , we offer a complete range of services to ensure your Sri Lankan
-              adventure is seamless, comfortable, and memorable. From the moment
-              you arrive until your departure, we handle every detail with care
-              and professionalism.
+              {t('services.intro.description')}
             </p>
           </div>
         </div>
@@ -227,24 +214,20 @@ const Services = () => {
                 key={index}
                 className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105"
               >
-                {/* Icon */}
                 <div className="mb-6 flex justify-center">
                   <div className="bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center">
                     {service.icon}
                   </div>
                 </div>
 
-                {/* Title */}
                 <h3 className="text-2xl font-bold text-navy mb-4 text-center">
                   {service.title}
                 </h3>
 
-                {/* Description */}
                 <p className="text-gray-600 mb-6 text-center leading-relaxed">
                   {service.description}
                 </p>
 
-                {/* Features */}
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <li
@@ -267,7 +250,7 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold text-navy text-center mb-12">
-              Additional Services We Offer
+              {t('services.additional.title')}
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -286,63 +269,64 @@ const Services = () => {
       </section>
 
       {/* Why Choose Us */}
-      <motion.section variants={staggerContainer}
+      <motion.section 
+        variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }} className="py-16 bg-navy">
+        viewport={{ once: false, amount: 0.2 }} 
+        className="py-16 bg-navy"
+      >
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-navy text-center mb-12">
-            Why Choose SD Tours & Travel?
+          <h2 className="text-4xl font-bold text-white text-center mb-12">
+            {t('services.whyChoose.title')}
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {/* Reason 1 */}
             <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-skyBlue/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🏆</span>
               </div>
               <h3 className="text-xl font-bold text-navy mb-2">
-                Local Expertise
+                {t('services.whyChoose.expertise.title')}
               </h3>
               <p className="text-gray-600">
-                Sri Lanka-based company with deep knowledge of the island
+                {t('services.whyChoose.expertise.description')}
               </p>
             </motion.div>
 
-            {/* Reason 2 */}
             <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetOrange/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💎</span>
               </div>
               <h3 className="text-xl font-bold text-navy mb-2">
-                Quality Service
+                {t('services.whyChoose.quality.title')}
               </h3>
               <p className="text-gray-600">
-                High standards of service with attention to every detail
+                {t('services.whyChoose.quality.description')}
               </p>
             </motion.div>
 
-            {/* Reason 3 */}
             <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-sunsetYellow/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">💰</span>
               </div>
-              <h3 className="text-xl font-bold text-navy mb-2">Best Value</h3>
+              <h3 className="text-xl font-bold text-navy mb-2">
+                {t('services.whyChoose.value.title')}
+              </h3>
               <p className="text-gray-600">
-                Competitive prices without compromising on quality
+                {t('services.whyChoose.value.description')}
               </p>
             </motion.div>
 
-            {/* Reason 4 */}
             <motion.div variants={fadeUp} className="text-center bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition duration-300 hover:scale-105">
               <div className="bg-navy/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-4xl">🤝</span>
               </div>
               <h3 className="text-xl font-bold text-navy mb-2">
-                Personal Touch
+                {t('services.whyChoose.personal.title')}
               </h3>
               <p className="text-gray-600">
-                Customized experiences tailored to your preferences
+                {t('services.whyChoose.personal.description')}
               </p>
             </motion.div>
           </div>
@@ -354,11 +338,10 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-navy text-center mb-8">
-              Where We Operate
+              {t('services.areas.title')}
             </h2>
             <p className="text-gray-700 text-center text-lg mb-12">
-              We provide services throughout Sri Lanka, covering all major
-              destinations and hidden gems
+              {t('services.areas.subtitle')}
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -373,16 +356,10 @@ const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-3">
-                      Cultural Triangle
+                      {t('services.areas.cultural.title')}
                     </h3>
                     <div className="flex flex-wrap gap-2">
-                      {[
-                        "Anuradhapura",
-                        "Polonnaruwa",
-                        "Sigiriya",
-                        "Dambulla",
-                        "Kandy",
-                      ].map((place, idx) => (
+                      {["Anuradhapura", "Polonnaruwa", "Sigiriya", "Dambulla", "Kandy"].map((place, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
@@ -405,14 +382,11 @@ const Services = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold mb-3">Hill Places</h3>
+                    <h3 className="text-2xl font-bold mb-3">
+                      {t('services.areas.hill.title')}
+                    </h3>
                     <div className="flex flex-wrap gap-2">
-                      {[
-                        "Nuwara Eliya",
-                        "Ella",
-                        "Horton Plains",
-                        "Tea Plantations",
-                      ].map((place, idx) => (
+                      {["Nuwara Eliya", "Ella", "Horton Plains", "Tea Plantations"].map((place, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
@@ -435,15 +409,11 @@ const Services = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold mb-2">Coastal Areas</h3>
+                    <h3 className="text-2xl font-bold mb-2">
+                      {t('services.areas.coastal.title')}
+                    </h3>
                     <div className="flex flex-wrap gap-2">
-                      {[
-                        "Galle",
-                        "Mirissa",
-                        "Bentota",
-                        "Trincomalee",
-                        "Arugam Bay",
-                      ].map((place, idx) => (
+                      {["Galle", "Mirissa", "Bentota", "Trincomalee", "Arugam Bay"].map((place, idx) => (
                         <span
                           key={idx}
                           className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
@@ -466,18 +436,18 @@ const Services = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold mb-2">Wildlife Zones</h3>
+                    <h3 className="text-2xl font-bold mb-2">
+                      {t('services.areas.wildlife.title')}
+                    </h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Yala", "Udawalawa", "Minneriya", "Wilpattu"].map(
-                        (place, idx) => (
-                          <span
-                            key={idx}
-                            className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
-                          >
-                            {place}
-                          </span>
-                        )
-                      )}
+                      {["Yala", "Udawalawa", "Minneriya", "Wilpattu"].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
+                          {place}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -493,18 +463,18 @@ const Services = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <h3 className="text-2xl font-bold mb-2">Urban Centers</h3>
+                    <h3 className="text-2xl font-bold mb-2">
+                      {t('services.areas.urban.title')}
+                    </h3>
                     <div className="flex flex-wrap gap-2">
-                      {["Colombo", "Negombo", "Galle", "Kandy"].map(
-                        (place, idx) => (
-                          <span
-                            key={idx}
-                            className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
-                          >
-                            {place}
-                          </span>
-                        )
-                      )}
+                      {["Colombo", "Negombo", "Galle", "Kandy"].map((place, idx) => (
+                        <span
+                          key={idx}
+                          className="text-xs bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
+                        >
+                          {place}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -521,13 +491,13 @@ const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <h3 className="text-2xl font-bold mb-2">
-                      Off the Beaten Path
+                      {t('services.areas.hidden.title')}
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {[
-                        "Hidden temples",
-                        "Local villages",
-                        "Secret beaches",
+                        t('services.areas.hidden.places.0'),
+                        t('services.areas.hidden.places.1'),
+                        t('services.areas.hidden.places.2'),
                       ].map((place, idx) => (
                         <span
                           key={idx}
@@ -550,24 +520,23 @@ const Services = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Experience Sri Lanka?
+              {t('services.cta.title')}
             </h2>
             <p className="text-white text-xl mb-8">
-              Let us handle the details while you enjoy the journey. Contact us
-              today to plan your perfect Sri Lankan adventure!
+              {t('services.cta.subtitle')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href="/contact"
                 className="bg-white text-sunsetOrange hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-semibold transition duration-300 hover:scale-105 shadow-lg"
               >
-                Get in Touch
+                {t('services.cta.contact')}
               </a>
               <a
                 href="/tours"
                 className="bg-navy hover:bg-navy/90 text-white px-8 py-4 rounded-full text-lg font-semibold transition duration-300 hover:scale-105 shadow-lg"
               >
-                View Our Tours
+                {t('services.cta.viewTours')}
               </a>
               <a
                 href="https://wa.me/94774064437"
@@ -575,7 +544,7 @@ const Services = () => {
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition duration-300 hover:scale-105 shadow-lg flex items-center gap-2"
               >
-                <FaWhatsapp /> WhatsApp Us
+                <FaWhatsapp /> {t('services.cta.whatsapp')}
               </a>
             </div>
           </div>

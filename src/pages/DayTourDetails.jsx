@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { dayTourAPI } from "../services/api";
 import {
   FaClock,
@@ -15,6 +16,7 @@ import {
 } from "react-icons/fa";
 
 const DayTourDetails = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [dayTour, setDayTour] = useState(null);
@@ -23,7 +25,7 @@ const DayTourDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  },[]);
+  }, []);
 
   useEffect(() => {
     fetchDayTour();
@@ -37,7 +39,7 @@ const DayTourDetails = () => {
       setError(null);
     } catch (err) {
       console.error("Error fetching day tour:", err);
-      setError("Failed to load day tour details. Please try again later.");
+      setError(t('dayTourDetails.error'));
     } finally {
       setLoading(false);
     }
@@ -49,12 +51,12 @@ const DayTourDetails = () => {
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-sunsetOrange"></div>
           <p className="mt-4 text-gray-600 text-lg">
-            Loading day tour details...
+            {t('dayTourDetails.loading')}
           </p>
         </div>
       </div>
     );
-  }
+  };
 
   if (error || !dayTour) {
     return (
@@ -62,13 +64,13 @@ const DayTourDetails = () => {
         <div className="text-center max-w-md mx-auto p-8">
           <div className="bg-white rounded-xl shadow-lg p-8">
             <p className="text-red-600 text-lg mb-4">
-              {error || "Day tour not found"}
+              {error || t('dayTourDetails.notFound')}
             </p>
             <button
               onClick={() => navigate("/")}
               className="bg-sunsetOrange hover:bg-sunsetYellow text-white px-6 py-3 rounded-full font-semibold transition"
             >
-              Back to Home
+              {t('dayTourDetails.back')}
             </button>
           </div>
         </div>
@@ -90,7 +92,7 @@ const DayTourDetails = () => {
           onClick={() => navigate("/")}
           className="absolute top-6 left-6 bg-white/90 hover:bg-white text-navy px-4 py-2 rounded-full font-semibold transition flex items-center gap-2 shadow-lg z-10"
         >
-          <FaArrowLeft /> Back
+          <FaArrowLeft /> {t('dayTourDetails.back')}
         </button>
 
         {/* Tour Title Overlay */}
@@ -98,11 +100,11 @@ const DayTourDetails = () => {
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-sunsetOrange px-4 py-1 rounded-full text-sm font-semibold">
-                Day Tour
+                {t('dayTourDetails.dayTour')}
               </span>
               {dayTour.featured && (
                 <span className="bg-sunsetYellow px-4 py-1 rounded-full text-sm font-semibold">
-                  Popular
+                  {t('dayTourDetails.popular')}
                 </span>
               )}
             </div>
@@ -117,15 +119,9 @@ const DayTourDetails = () => {
               <div className="flex items-center gap-2">
                 <FaStar className="text-sunsetYellow" />
                 <span>
-                  {dayTour.rating ? dayTour.rating.toFixed(1) : "New"}
+                  {dayTour.rating ? dayTour.rating.toFixed(1) : t('dayTourDetails.new')}
                 </span>
               </div>
-              {/* {dayTour.maxGroupSize && (
-                <div className="flex items-center gap-2">
-                  <FaUsers className="text-sunsetYellow" />
-                  <span>Max {dayTour.maxGroupSize} people</span>
-                </div>
-              )} */}
             </div>
           </div>
         </div>
@@ -140,50 +136,17 @@ const DayTourDetails = () => {
               {/* Overview */}
               <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
                 <h2 className="text-3xl font-bold text-navy mb-4">
-                  Tour Overview
+                  {t('dayTourDetails.overview.title')}
                 </h2>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   {dayTour.description}
                 </p>
 
-                {/* Schedule */}
-                {/* {(dayTour.pickupTime || dayTour.dropoffTime) && (
-                  <div className="bg-skyBlue/10 rounded-xl p-6 mb-6">
-                    <h3 className="text-xl font-bold text-navy mb-3">
-                      Tour Schedule
-                    </h3>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {dayTour.pickupTime && (
-                        <div className="flex items-center gap-3">
-                          <FaClock className="text-sunsetOrange text-xl" />
-                          <div>
-                            <p className="text-sm text-gray-600">Pickup Time</p>
-                            <p className="font-semibold text-navy">
-                              {dayTour.pickupTime}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                      {dayTour.dropoffTime && (
-                        <div className="flex items-center gap-3">
-                          <FaClock className="text-sunsetOrange text-xl" />
-                          <div>
-                            <p className="text-sm text-gray-600">Return Time</p>
-                            <p className="font-semibold text-navy">
-                              {dayTour.dropoffTime}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )} */}
-
                 {/* Highlights */}
                 {dayTour.highlights && dayTour.highlights.length > 0 && (
                   <div className="mb-6">
                     <h3 className="text-2xl font-bold text-navy mb-4">
-                      Tour Highlights
+                      {t('dayTourDetails.overview.highlights')}
                     </h3>
                     <div className="grid md:grid-cols-2 gap-3">
                       {dayTour.highlights.map((highlight, index) => (
@@ -198,20 +161,6 @@ const DayTourDetails = () => {
                     </div>
                   </div>
                 )}
-
-                {/* Itinerary */}
-                {/* {dayTour.itinerary && (
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-navy mb-4">
-                      Day Itinerary
-                    </h3>
-                    <div className="bg-gray-50 rounded-xl p-6">
-                      <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                        {dayTour.itinerary}
-                      </p>
-                    </div>
-                  </div>
-                )} */}
               </div>
 
               {/* Included */}
@@ -220,7 +169,7 @@ const DayTourDetails = () => {
                   {/* Included */}
                   <div>
                     <h2 className="text-2xl font-bold text-navy mb-4">
-                      What's Included
+                      {t('dayTourDetails.included.title')}
                     </h2>
                     {dayTour.included && dayTour.included.length > 0 ? (
                       <ul className="space-y-3">
@@ -233,31 +182,10 @@ const DayTourDetails = () => {
                       </ul>
                     ) : (
                       <p className="text-gray-600">
-                        Information not available.
+                        {t('dayTourDetails.included.notAvailable')}
                       </p>
                     )}
                   </div>
-
-                  {/* Excluded */}
-                  {/* <div>
-                    <h2 className="text-2xl font-bold text-navy mb-4">
-                      What's Not Included
-                    </h2>
-                    {dayTour.excluded && dayTour.excluded.length > 0 ? (
-                      <ul className="space-y-3">
-                        {dayTour.excluded.map((item, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <FaTimes className="text-red-500 mt-1 flex-shrink-0" />
-                            <span className="text-gray-700">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-600">
-                        Information not available.
-                      </p>
-                    )}
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -265,46 +193,6 @@ const DayTourDetails = () => {
             {/* Right Column - Booking Card (Sticky) */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
-                {/* <div className="text-center mb-6 pb-6 border-b">
-                  <p className="text-gray-600 mb-2">Price per person</p>
-                  <div className="flex items-center justify-center gap-2">
-                    <FaDollarSign className="text-3xl text-sunsetOrange" />
-                    <span className="text-5xl font-bold text-navy">
-                      {dayTour.price}
-                    </span>
-                  </div>
-                </div> */}
-
-                {/* Quick Info */}
-                {/* <div className="space-y-4 mb-6">
-                  <div className="flex items-center justify-between py-3 border-b">
-                    <span className="text-gray-600 flex items-center gap-2">
-                      <FaClock className="text-sunsetOrange" /> Duration
-                    </span>
-                    <span className="font-semibold text-navy">
-                      {dayTour.duration}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b">
-                    <span className="text-gray-600 flex items-center gap-2">
-                      <FaUsers className="text-sunsetOrange" /> Group Size
-                    </span>
-                    <span className="font-semibold text-navy">
-                      Max {dayTour.maxGroupSize || "Flexible"}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b">
-                    <span className="text-gray-600 flex items-center gap-2">
-                      <FaStar className="text-sunsetOrange" /> Rating
-                    </span>
-                    <span className="font-semibold text-navy">
-                      {dayTour.rating
-                        ? `${dayTour.rating.toFixed(1)}/5`
-                        : "New Tour"}
-                    </span>
-                  </div>
-                </div> */}
-
                 {/* Booking Buttons */}
                 <div className="space-y-3">
                   <Link
@@ -312,7 +200,7 @@ const DayTourDetails = () => {
                     className="block w-full bg-sunsetYellow hover:bg-sunsetOrange text-white text-center py-4 rounded-full font-bold text-lg transition duration-300 shadow-lg hover:shadow-xl"
                   >
                     <FaCalendarAlt className="inline mr-2" />
-                    Book This Tour
+                    {t('dayTourDetails.booking.bookNow')}
                   </Link>
 
                   <a
@@ -322,14 +210,14 @@ const DayTourDetails = () => {
                     className="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-4 rounded-full font-bold text-lg transition duration-300 shadow-lg hover:shadow-xl"
                   >
                     <FaWhatsapp className="inline mr-2" />
-                    Chat on WhatsApp
+                    {t('dayTourDetails.booking.whatsapp')}
                   </a>
 
                   <Link
                     to="/contact"
                     className="block w-full bg-white hover:bg-gray-50 text-navy border-2 border-navy text-center py-4 rounded-full font-bold text-lg transition duration-300"
                   >
-                    Contact Us
+                    {t('dayTourDetails.booking.contact')}
                   </Link>
                 </div>
 
@@ -339,11 +227,10 @@ const DayTourDetails = () => {
                     <FaMapMarkerAlt className="text-sunsetOrange mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-navy mb-1">
-                        Pickup Available
+                        {t('dayTourDetails.booking.pickup.title')}
                       </p>
                       <p className="text-sm text-gray-600">
-                        We provide hotel pickup and drop-off. Location will be
-                        confirmed after booking.
+                        {t('dayTourDetails.booking.pickup.description')}
                       </p>
                     </div>
                   </div>
@@ -356,19 +243,25 @@ const DayTourDetails = () => {
                       <div className="text-sunsetOrange font-bold text-lg">
                         ✓
                       </div>
-                      <div className="text-gray-600">Best Price</div>
+                      <div className="text-gray-600">
+                        {t('dayTourDetails.badges.bestPrice')}
+                      </div>
                     </div>
                     <div>
                       <div className="text-sunsetOrange font-bold text-lg">
                         ✓
                       </div>
-                      <div className="text-gray-600">Local Guide</div>
+                      <div className="text-gray-600">
+                        {t('dayTourDetails.badges.localGuide')}
+                      </div>
                     </div>
                     <div>
                       <div className="text-sunsetOrange font-bold text-lg">
                         ✓
                       </div>
-                      <div className="text-gray-600">Flexible</div>
+                      <div className="text-gray-600">
+                        {t('dayTourDetails.badges.flexible')}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -382,14 +275,14 @@ const DayTourDetails = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-navy mb-8">
-            More Day Tours
+            {t('dayTourDetails.related.title')}
           </h2>
           <div className="text-center">
             <Link
               to="/"
               className="inline-block bg-sunsetYellow hover:bg-sunsetOrange text-white px-8 py-3 rounded-full font-semibold transition"
             >
-              View All Day Tours
+              {t('dayTourDetails.related.viewAll')}
             </Link>
           </div>
         </div>

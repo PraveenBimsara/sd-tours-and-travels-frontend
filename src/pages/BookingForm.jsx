@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { tourAPI, dayTourAPI, bookingAPI } from "../services/api";
 import {
   FaUser,
@@ -12,7 +13,8 @@ import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 
 const BookingForm = () => {
-  const { id, type } = useParams(); // type will be 'tour' or 'day-tour'
+  const { t } = useTranslation();
+  const { id, type } = useParams();
   const navigate = useNavigate();
 
   const [tour, setTour] = useState(null);
@@ -73,7 +75,7 @@ const BookingForm = () => {
       setError(null);
     } catch (err) {
       console.error("Error fetching tour:", err);
-      setError("Failed to load tour details");
+      setError(t('booking.errors.loadFailed'));
     } finally {
       setLoading(false);
     }
@@ -109,7 +111,6 @@ const BookingForm = () => {
       }));
     }
 
-    // Clear error for this field
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }));
     }
@@ -118,84 +119,74 @@ const BookingForm = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    // Customer Info Validation
     if (!formData.customerInfo.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = t('booking.errors.nameRequired');
     }
 
-    // Enhanced Email Validation
     if (!formData.customerInfo.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t('booking.errors.emailRequired');
     } else {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(formData.customerInfo.email)) {
-        newErrors.email = "Please enter a valid email address";
+        newErrors.email = t('booking.errors.emailInvalid');
       }
     }
 
-    // Phone Number Validation (with country code validation)
     if (!formData.customerInfo.phone) {
-      newErrors.phone = "Phone number is required";
+      newErrors.phone = t('booking.errors.phoneRequired');
     } else if (!formData.customerInfo.phone.startsWith("+")) {
-      newErrors.phone =
-        "Phone number must include country code (e.g., +94 for Sri Lanka)";
+      newErrors.phone = t('booking.errors.phoneCountryCode');
     } else {
       try {
         if (!isValidPhoneNumber(formData.customerInfo.phone)) {
-          newErrors.phone =
-            "Please enter a valid phone number for the selected country";
+          newErrors.phone = t('booking.errors.phoneInvalid');
         }
       } catch (error) {
-        newErrors.phone = "Invalid phone number format";
+        newErrors.phone = t('booking.errors.phoneInvalid');
       }
     }
 
-    // WhatsApp Validation (if provided)
     if (formData.customerInfo.whatsapp) {
       if (!formData.customerInfo.whatsapp.startsWith("+")) {
-        newErrors.whatsapp =
-          "WhatsApp number must include country code (e.g., +94 for Sri Lanka)";
+        newErrors.whatsapp = t('booking.errors.whatsappCountryCode');
       } else {
         try {
           if (!isValidPhoneNumber(formData.customerInfo.whatsapp)) {
-            newErrors.whatsapp =
-              "Please enter a valid WhatsApp number for the selected country";
+            newErrors.whatsapp = t('booking.errors.whatsappInvalid');
           }
         } catch (error) {
-          newErrors.whatsapp = "Invalid WhatsApp number format";
+          newErrors.whatsapp = t('booking.errors.whatsappInvalid');
         }
       }
     }
 
-    // Travel Details Validation
     if (!formData.travelDetails.startDate) {
-      newErrors.startDate = "Start date is required";
+      newErrors.startDate = t('booking.errors.startDateRequired');
     } else {
       const selectedDate = new Date(formData.travelDetails.startDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
       if (selectedDate < today) {
-        newErrors.startDate = "Start date cannot be in the past";
+        newErrors.startDate = t('booking.errors.startDatePast');
       }
     }
 
-    // Only validate end date for multi-day tours
     if (type === "tour") {
       if (!formData.travelDetails.endDate) {
-        newErrors.endDate = "End date is required";
+        newErrors.endDate = t('booking.errors.endDateRequired');
       } else if (formData.travelDetails.startDate) {
         const start = new Date(formData.travelDetails.startDate);
         const end = new Date(formData.travelDetails.endDate);
 
         if (end <= start) {
-          newErrors.endDate = "End date must be after start date";
+          newErrors.endDate = t('booking.errors.endDateInvalid');
         }
       }
     }
 
     if (formData.travelDetails.numberOfPeople.adults < 1) {
-      newErrors.adults = "At least 1 adult is required";
+      newErrors.adults = t('booking.errors.adultsRequired');
     }
 
     setErrors(newErrors);
@@ -224,15 +215,13 @@ const BookingForm = () => {
 
       setSuccess(true);
 
-      // Redirect after 3 seconds
       setTimeout(() => {
         navigate("/");
       }, 3000);
     } catch (err) {
       console.error("Booking error:", err);
       setError(
-        err.response?.data?.message ||
-          "Failed to submit booking. Please try again."
+        err.response?.data?.message || t('booking.errors.submitFailed')
       );
     } finally {
       setSubmitting(false);
@@ -244,7 +233,7 @@ const BookingForm = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-sunsetOrange"></div>
-          <p className="mt-4 text-gray-600 text-lg">Loading booking form...</p>
+          <p className="mt-4 text-gray-600 text-lg">{t('common.loading')}</p>
         </div>
       </div>
     );
@@ -258,16 +247,14 @@ const BookingForm = () => {
             <FaCheckCircle className="text-green-500 text-6xl mx-auto" />
           </div>
           <h2 className="text-3xl font-bold text-navy mb-4">
-            Booking Submitted!
+            {t('booking.success.title')}
           </h2>
           <p className="text-gray-600 mb-6">
-            Thank you for your booking inquiry! We have received your request
-            and will contact you within 24 hours to confirm your booking
-            details.
+            {t('booking.success.message')}
           </p>
           <div className="bg-sunsetYellow/10 rounded-xl p-4 mb-6">
             <p className="text-sm text-gray-700">
-              A confirmation email has been sent to{" "}
+              {t('booking.success.emailSent')}{" "}
               <span className="font-semibold">
                 {formData.customerInfo.email}
               </span>
@@ -277,7 +264,7 @@ const BookingForm = () => {
             onClick={() => navigate("/")}
             className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-8 py-3 rounded-full font-semibold transition duration-300"
           >
-            Back to Home
+            {t('booking.success.backHome')}
           </button>
         </div>
       </div>
@@ -290,14 +277,14 @@ const BookingForm = () => {
         <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center">
           <FaExclamationCircle className="text-red-500 text-6xl mx-auto mb-6" />
           <h2 className="text-2xl font-bold text-navy mb-4">
-            Unable to Load Tour
+            {t('booking.errors.unableToLoad')}
           </h2>
           <p className="text-gray-600 mb-6">{error}</p>
           <button
             onClick={() => navigate(-1)}
             className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-8 py-3 rounded-full font-semibold transition duration-300"
           >
-            Go Back
+            {t('booking.cancel')}
           </button>
         </div>
       </div>
@@ -308,18 +295,16 @@ const BookingForm = () => {
     <div className="booking-form-page bg-gray-50 py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-navy mb-4">
-              Book Your Adventure
+              {t('booking.title')}
             </h1>
             <p className="text-gray-600 text-lg">
-              Complete the form below to reserve your spot
+              {t('booking.subtitle')}
             </p>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Left Column - Form */}
             <div className="lg:col-span-2">
               <form
                 onSubmit={handleSubmit}
@@ -329,7 +314,7 @@ const BookingForm = () => {
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
                     <FaExclamationCircle className="text-red-500 text-xl mt-0.5" />
                     <div>
-                      <p className="text-red-800 font-semibold">Error</p>
+                      <p className="text-red-800 font-semibold">{t('contact.form.error')}</p>
                       <p className="text-red-600">{error}</p>
                     </div>
                   </div>
@@ -339,23 +324,19 @@ const BookingForm = () => {
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-navy mb-6 flex items-center gap-2">
                     <FaUser className="text-sunsetOrange" />
-                    Personal Information
+                    {t('booking.personalInfo')}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Full Name <span className="text-red-500">*</span>
+                        {t('booking.fullName')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
                         value={formData.customerInfo.name}
                         onChange={(e) =>
-                          handleInputChange(
-                            "customerInfo",
-                            "name",
-                            e.target.value
-                          )
+                          handleInputChange("customerInfo", "name", e.target.value)
                         }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.name ? "border-red-500" : "border-gray-300"
@@ -363,25 +344,19 @@ const BookingForm = () => {
                         placeholder="John Doe"
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.name}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Email Address <span className="text-red-500">*</span>
+                        {t('booking.emailAddress')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
                         value={formData.customerInfo.email}
                         onChange={(e) =>
-                          handleInputChange(
-                            "customerInfo",
-                            "email",
-                            e.target.value
-                          )
+                          handleInputChange("customerInfo", "email", e.target.value)
                         }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.email ? "border-red-500" : "border-gray-300"
@@ -389,30 +364,22 @@ const BookingForm = () => {
                         placeholder="john@example.com"
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.email}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Phone Number <span className="text-red-500">*</span>
+                        {t('booking.phoneNumber')} <span className="text-red-500">*</span>
                       </label>
                       <PhoneInput
                         international
                         defaultCountry="LK"
                         value={formData.customerInfo.phone}
                         onChange={(value) =>
-                          handleInputChange(
-                            "customerInfo",
-                            "phone",
-                            value || ""
-                          )
+                          handleInputChange("customerInfo", "phone", value || "")
                         }
-                        className={`w-full ${
-                          errors.phone ? "phone-input-error" : ""
-                        }`}
+                        className={`w-full ${errors.phone ? "phone-input-error" : ""}`}
                         numberInputProps={{
                           className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                             errors.phone ? "border-red-500" : "border-gray-300"
@@ -420,25 +387,19 @@ const BookingForm = () => {
                         }}
                       />
                       {errors.phone && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.phone}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Country
+                        {t('booking.country')}
                       </label>
                       <input
                         type="text"
                         value={formData.customerInfo.country}
                         onChange={(e) =>
-                          handleInputChange(
-                            "customerInfo",
-                            "country",
-                            e.target.value
-                          )
+                          handleInputChange("customerInfo", "country", e.target.value)
                         }
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
                         placeholder="United States"
@@ -447,37 +408,27 @@ const BookingForm = () => {
 
                     <div className="md:col-span-2">
                       <label className="block text-gray-700 font-semibold mb-2">
-                        WhatsApp Number (Optional)
+                        {t('booking.whatsapp')}
                       </label>
                       <PhoneInput
                         international
                         defaultCountry="LK"
                         value={formData.customerInfo.whatsapp}
                         onChange={(value) =>
-                          handleInputChange(
-                            "customerInfo",
-                            "whatsapp",
-                            value || ""
-                          )
+                          handleInputChange("customerInfo", "whatsapp", value || "")
                         }
-                        className={`w-full ${
-                          errors.whatsapp ? "phone-input-error" : ""
-                        }`}
+                        className={`w-full ${errors.whatsapp ? "phone-input-error" : ""}`}
                         numberInputProps={{
                           className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                            errors.whatsapp
-                              ? "border-red-500"
-                              : "border-gray-300"
+                            errors.whatsapp ? "border-red-500" : "border-gray-300"
                           }`,
                         }}
                       />
                       {errors.whatsapp && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.whatsapp}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.whatsapp}</p>
                       )}
                       <p className="text-gray-500 text-sm mt-1">
-                        We can contact you via WhatsApp for faster communication
+                        {t('booking.whatsappHelp')}
                       </p>
                     </div>
                   </div>
@@ -487,141 +438,110 @@ const BookingForm = () => {
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-navy mb-6 flex items-center gap-2">
                     <FaCalendarAlt className="text-sunsetOrange" />
-                    Travel Details
+                    {t('booking.travelDetails')}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Start Date <span className="text-red-500">*</span>
+                        {t('booking.startDate')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="date"
                         value={formData.travelDetails.startDate}
                         onChange={(e) =>
-                          handleInputChange(
-                            "travelDetails",
-                            "startDate",
-                            e.target.value
-                          )
+                          handleInputChange("travelDetails", "startDate", e.target.value)
                         }
                         min={new Date().toISOString().split("T")[0]}
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                          errors.startDate
-                            ? "border-red-500"
-                            : "border-gray-300"
+                          errors.startDate ? "border-red-500" : "border-gray-300"
                         }`}
                       />
                       {errors.startDate && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.startDate}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.startDate}</p>
                       )}
                     </div>
 
                     {type === "tour" && (
                       <div>
                         <label className="block text-gray-700 font-semibold mb-2">
-                          End Date <span className="text-red-500">*</span>
+                          {t('booking.endDate')} <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="date"
                           value={formData.travelDetails.endDate}
                           onChange={(e) =>
-                            handleInputChange(
-                              "travelDetails",
-                              "endDate",
-                              e.target.value
-                            )
+                            handleInputChange("travelDetails", "endDate", e.target.value)
                           }
                           min={
                             formData.travelDetails.startDate ||
                             new Date().toISOString().split("T")[0]
                           }
                           className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                            errors.endDate
-                              ? "border-red-500"
-                              : "border-gray-300"
+                            errors.endDate ? "border-red-500" : "border-gray-300"
                           }`}
                         />
                         {errors.endDate && (
-                          <p className="text-red-500 text-sm mt-1">
-                            {errors.endDate}
-                          </p>
+                          <p className="text-red-500 text-sm mt-1">{errors.endDate}</p>
                         )}
                       </div>
                     )}
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Number of Adults <span className="text-red-500">*</span>
+                        {t('booking.adults')} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="number"
                         min="1"
                         value={formData.travelDetails.numberOfPeople.adults}
                         onChange={(e) =>
-                          handleInputChange(
-                            "numberOfPeople",
-                            "adults",
-                            e.target.value
-                          )
+                          handleInputChange("numberOfPeople", "adults", e.target.value)
                         }
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.adults ? "border-red-500" : "border-gray-300"
                         }`}
                       />
                       {errors.adults && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.adults}
-                        </p>
+                        <p className="text-red-500 text-sm mt-1">{errors.adults}</p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Number of Children
+                        {t('booking.children')}
                       </label>
                       <input
                         type="number"
                         min="0"
                         value={formData.travelDetails.numberOfPeople.children}
                         onChange={(e) =>
-                          handleInputChange(
-                            "numberOfPeople",
-                            "children",
-                            e.target.value
-                          )
+                          handleInputChange("numberOfPeople", "children", e.target.value)
                         }
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition"
                       />
                       <p className="text-gray-500 text-sm mt-1">
-                        Under 12 years old
+                        {t('booking.childrenNote')}
                       </p>
                     </div>
 
                     <div className="md:col-span-2">
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Special Requests or Requirements
+                        {t('booking.specialRequests')}
                       </label>
                       <textarea
                         value={formData.travelDetails.specialRequests}
                         onChange={(e) =>
-                          handleInputChange(
-                            "travelDetails",
-                            "specialRequests",
-                            e.target.value
-                          )
+                          handleInputChange("travelDetails", "specialRequests", e.target.value)
                         }
                         rows="4"
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition resize-none"
-                        placeholder="Dietary restrictions, accessibility needs, special occasions, etc."
+                        placeholder={t('booking.specialRequestsPlaceholder')}
                       ></textarea>
                     </div>
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
                     type="submit"
@@ -631,10 +551,10 @@ const BookingForm = () => {
                     {submitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-                        Processing...
+                        {t('booking.processing')}
                       </span>
                     ) : (
-                      "Submit"
+                      t('booking.submit')
                     )}
                   </button>
 
@@ -643,12 +563,12 @@ const BookingForm = () => {
                     onClick={() => navigate(-1)}
                     className="px-8 py-4 border-2 border-gray-300 hover:border-gray-400 text-gray-700 rounded-full font-bold transition duration-300"
                   >
-                    Cancel
+                    {t('booking.cancel')}
                   </button>
                 </div>
 
                 <p className="text-gray-500 text-sm mt-4 text-center">
-                  By submitting this form, you agree to our terms and conditions
+                  {t('booking.termsText')}
                 </p>
               </form>
             </div>
@@ -658,7 +578,7 @@ const BookingForm = () => {
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
                   <h3 className="text-xl font-bold text-navy mb-4">
-                    Booking Summary
+                    {t('booking.bookingSummary')}
                   </h3>
 
                   <div className="mb-4">
@@ -673,82 +593,15 @@ const BookingForm = () => {
                     {tour.title}
                   </h4>
 
-                  {/* <div className="space-y-3 mb-6">
-                    {type === "tour" && tour.duration && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Duration:</span>
-                        <span className="font-semibold text-navy">
-                          {tour.duration.days} Days / {tour.duration.nights}{" "}
-                          Nights
-                        </span>
-                      </div>
-                    )}
-
-                    {type === "day-tour" && tour.duration && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Duration:</span>
-                        <span className="font-semibold text-navy">
-                          {tour.duration}
-                        </span>
-                      </div>
-                    )}
-
-                    <div className="flex justify-between text-sm">
-                      <span className="text-gray-600">Price per person:</span>
-                      <span className="font-semibold text-sunsetOrange text-lg">
-                        ${tour.price}
-                      </span>
-                    </div>
-
-                    {formData.travelDetails.numberOfPeople.adults > 0 && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">
-                          Adults: {formData.travelDetails.numberOfPeople.adults}
-                        </span>
-                        <span className="font-semibold text-navy">
-                          $
-                          {tour.price *
-                            formData.travelDetails.numberOfPeople.adults}
-                        </span>
-                      </div>
-                    )}
-
-                    {formData.travelDetails.startDate && (
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Start Date:</span>
-                        <span className="font-semibold text-navy">
-                          {new Date(
-                            formData.travelDetails.startDate
-                          ).toLocaleDateString()}
-                        </span>
-                      </div>
-                    )}
-                  </div> */}
-
-                  {/* <div className="border-t pt-4">
-                    <div className="flex justify-between text-lg font-bold">
-                      <span className="text-gray-700">Estimated Total:</span>
-                      <span className="text-sunsetOrange">
-                        $
-                        {tour.price *
-                          (formData.travelDetails.numberOfPeople.adults +
-                            formData.travelDetails.numberOfPeople.children)}
-                      </span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2">
-                      Final price will be confirmed by our team
-                    </p>
-                  </div> */}
-
                   <div className="mt-6 p-4 bg-skyBlue/10 rounded-lg">
                     <div className="flex items-start gap-2">
                       <FaWhatsapp className="text-green-500 text-xl mt-0.5" />
                       <div className="text-sm">
                         <p className="font-semibold text-navy mb-1">
-                          Need Help?
+                          {t('booking.needHelp')}
                         </p>
                         <p className="text-gray-600">
-                          Contact us on WhatsApp for instant support
+                          {t('booking.needHelpText')}
                         </p>
                         <a
                           href="https://wa.me/94778875696"
@@ -756,7 +609,7 @@ const BookingForm = () => {
                           rel="noopener noreferrer"
                           className="text-green-600 hover:text-green-700 font-semibold mt-1 inline-block"
                         >
-                          Chat Now →
+                          {t('booking.chatNow')}
                         </a>
                       </div>
                     </div>
