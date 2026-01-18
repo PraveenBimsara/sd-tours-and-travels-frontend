@@ -153,7 +153,7 @@ const Contact = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://www.shutterstock.com/image-photo/using-laptop-show-icon-address-600nw-2521386695.jpg')",
+              "url('https://t3.ftcdn.net/jpg/05/30/96/04/360_F_530960431_c8fPd3HansYvrSJ4fJxZqp9OhjQmYoll.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>

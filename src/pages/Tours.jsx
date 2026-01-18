@@ -58,7 +58,7 @@ const Tours = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1600&q=80')",
+              "url('https://miraritours.com/images/tours/a-swift-tour-of-sri-lanka/nextImageExportOptimizer/a-swift-tour-of-sri-lanka-opt-3840.WEBP')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>

@@ -170,7 +170,7 @@ const AboutUs = () => {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YWJvdXQlMjB1c3xlbnwwfHwwfHx8MA%3D%3D')",
+              "url('https://niqcgroup.com/assets/uploads/2020/07/images/1593624295aboutus.jpg')",
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-transparent"></div>
