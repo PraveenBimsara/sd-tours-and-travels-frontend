@@ -201,7 +201,7 @@ const Services = () => {
       {/* Main Services Grid */}
       <motion.section
         variants={staggerContainer}
-        initial="hidden"
+        initial="visible"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="py-16 bg-navy"
