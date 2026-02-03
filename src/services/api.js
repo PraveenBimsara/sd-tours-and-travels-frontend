@@ -61,4 +61,8 @@ export const adminAPI = {
   getDashboardStats: () => api.get('/admin/dashboard/stats'),
 };
 
+export const galleryAPI = {
+  getAllImages: () => api.get('/gallery')
+};
+
 export default api;

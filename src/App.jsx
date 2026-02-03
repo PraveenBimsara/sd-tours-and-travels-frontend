@@ -10,6 +10,7 @@ import BookingForm from './pages/BookingForm';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
 import Testimonials from './pages/Testimonials';
+import Gallery from './pages/Gallery';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/tours/:id" element={<TourDetails />} />
             <Route path="/day-tours/:id" element={<DayTourDetails />} />
             <Route path="/booking/:type/:id" element={<BookingForm />} />

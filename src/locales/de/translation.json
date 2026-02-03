@@ -1,12 +1,13 @@
 {
   "nav": {
-    "home": "Startseite",
-    "about": "Über uns",
-    "services": "Unsere Dienstleistungen",
-    "tours": "Tourpakete",
-    "reviews": "Bewertungen",
-    "contact": "Kontakt"
-  },
+  "home": "Startseite",
+  "about": "Über uns",
+  "services": "Unsere Dienstleistungen",
+  "tours": "Tourpakete",
+  "gallery": "Galerie",
+  "reviews": "Bewertungen",
+  "contact": "Kontakt"
+},
   "home": {
     "hero": {
       "title": "SD Tours & Travel",
