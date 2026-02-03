@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { galleryAPI } from '../services/api';
 import { FaTimes } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { galleryImages } from '../assets/gallery'; 
 
 const Gallery = () => {
   const { t } = useTranslation();
@@ -9,26 +9,14 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // ✅ Backend URL - matches your API base URL
-  // const BACKEND_URL = 'http://localhost:5000';
-  const BACKEND_URL = import.meta.env.VITE_API_URL;
-
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchImages();
-  }, []);
-
-  const fetchImages = async () => {
-    try {
-      const response = await galleryAPI.getAllImages();
-      console.log('Gallery response:', response.data); // Debug log
-      setImages(response.data.data);
-    } catch (error) {
-      console.error('Error fetching gallery:', error);
-    } finally {
+    // Simulate loading for smooth UX
+    setTimeout(() => {
+      setImages(galleryImages);
       setLoading(false);
-    }
-  };
+    }, 500);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -69,20 +57,16 @@ const Gallery = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {images.map((image, index) => (
                 <div
-                  key={image._id}
+                  key={image.id}
                   className="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition duration-300"
                   onClick={() => setSelectedImage(image)}
                 >
                   <div className="aspect-square">
                     <img
-                      src={`${BACKEND_URL}${image.imageUrl}`}
+                      src={image.src}
                       alt={image.caption || `Gallery image ${index + 1}`}
                       className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                       loading="lazy"
-                      onError={(e) => {
-                        console.error('Image failed to load:', image.imageUrl);
-                        e.target.src = 'https://via.placeholder.com/400?text=Image+Not+Found';
-                      }}
                     />
                   </div>
                   {image.caption && (
@@ -113,7 +97,7 @@ const Gallery = () => {
           
           <div className="relative max-w-6xl w-full">
             <img
-              src={`${BACKEND_URL}${selectedImage.imageUrl}`}
+              src={selectedImage.src}
               alt={selectedImage.caption || 'Gallery image'}
               className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
