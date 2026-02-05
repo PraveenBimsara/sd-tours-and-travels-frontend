@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import Services from './pages/Services';
 import Testimonials from './pages/Testimonials';
 import Gallery from './pages/Gallery';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/booking/:type/:id" element={<BookingForm />} />
             <Route path="/reviews" element={<Testimonials />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
