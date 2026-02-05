@@ -389,36 +389,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-navy to-navy/90 rounded-2xl shadow-lg p-6 text-white">
-                  <h3 className="text-xl font-bold mb-4">{t('contact.social.title')}</h3>
-                  <p className="text-white/80 mb-4 text-sm">
-                    {t('contact.social.subtitle')}
-                  </p>
-                  <div className="flex gap-3">
-                    <a
-                      href="#"
-                      className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition"
-                      aria-label="Facebook"
-                    >
-                      <FaFacebook className="text-xl" />
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition"
-                      aria-label="Instagram"
-                    >
-                      <FaInstagram className="text-xl" />
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-white/10 hover:bg-white/20 p-3 rounded-lg transition"
-                      aria-label="Twitter"
-                    >
-                      <FaTwitter className="text-xl" />
-                    </a>
-                  </div>
-                </div>
-
                 <div className="bg-sunsetYellow/10 border-l-4 border-sunsetYellow rounded-lg p-6">
                   <h4 className="font-bold text-navy mb-2">
                     {t('contact.quickResponse.title')}

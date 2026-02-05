@@ -1,13 +1,13 @@
 {
   "nav": {
-  "home": "Startseite",
-  "about": "Über uns",
-  "services": "Unsere Dienstleistungen",
-  "tours": "Tourpakete",
-  "gallery": "Galerie",
-  "reviews": "Bewertungen",
-  "contact": "Kontakt"
-},
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Unsere Dienstleistungen",
+    "tours": "Tourpakete",
+    "gallery": "Galerie",
+    "reviews": "Bewertungen",
+    "contact": "Kontakt"
+  },
   "home": {
     "hero": {
       "title": "SD Tours & Travel",
@@ -464,11 +464,7 @@
       },
       "hidden": {
         "title": "Abseits der ausgetretenen Pfade",
-        "places": [
-          "Versteckte Tempel",
-          "Lokale Dörfer",
-          "Geheime Strände"
-        ]
+        "places": ["Versteckte Tempel", "Lokale Dörfer", "Geheime Strände"]
       }
     },
     "cta": {
@@ -554,70 +550,6 @@
       }
     }
   },
-  "contact": {
-    "hero": {
-      "title": "Kontaktieren Sie uns",
-      "subtitle": "Haben Sie eine Frage oder möchten Sie Ihr Traum-Sri-Lanka-Abenteuer buchen? Wir sind hier, um zu helfen!"
-    },
-    "form": {
-      "title": "Senden Sie uns eine Nachricht",
-      "success": {
-        "title": "Erfolg!",
-        "message": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden."
-      },
-      "error": "Fehler",
-      "name": "Ihr Name",
-      "namePlaceholder": "Max Mustermann",
-      "email": "E-Mail-Adresse",
-      "emailPlaceholder": "max@beispiel.de",
-      "phone": "Telefonnummer",
-      "subject": "Betreff",
-      "subjectPlaceholder": "Anfrage zu Touren",
-      "message": "Ihre Nachricht",
-      "messagePlaceholder": "Erzählen Sie uns von Ihren Reiseplänen, Fragen oder besonderen Wünschen...",
-      "sending": "Wird gesendet...",
-      "send": "Nachricht senden",
-      "errors": {
-        "nameRequired": "Name ist erforderlich",
-        "emailRequired": "E-Mail ist erforderlich",
-        "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
-        "phoneRequired": "Telefonnummer ist erforderlich",
-        "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer für das ausgewählte Land ein",
-        "phoneCountryCode": "Telefonnummer muss Ländervorwahl enthalten (z.B. +94 für Sri Lanka)",
-        "subjectRequired": "Betreff ist erforderlich",
-        "messageRequired": "Nachricht ist erforderlich",
-        "messageMinLength": "Nachricht muss mindestens 10 Zeichen lang sein"
-      }
-    },
-    "info": {
-      "title": "Kontaktinformationen",
-      "phone": "Telefon",
-      "whatsapp": "WhatsApp",
-      "email": "E-Mail",
-      "location": "Standort",
-      "locationText": "Aluthgama, Sri Lanka"
-    },
-    "social": {
-      "title": "Folgen Sie uns",
-      "subtitle": "Bleiben Sie über unsere neuesten Touren und Reisetipps auf dem Laufenden"
-    },
-    "quickResponse": {
-      "title": "Schnelle Antwort garantiert",
-      "description": "Wir antworten in der Regel innerhalb von 24 Stunden auf alle Anfragen. Für dringende Angelegenheiten rufen Sie uns bitte an oder kontaktieren Sie uns per WhatsApp."
-    },
-    "faq": {
-      "title": "Häufig gestellte Fragen",
-      "subtitle": "Schnelle Antworten auf häufige Fragen zu unseren Touren und Dienstleistungen",
-      "q1": {
-        "question": "Wie buche ich eine Tour?",
-        "answer": "Sie können direkt über unsere Website buchen, indem Sie Ihre bevorzugte Tour auswählen und das Buchungsformular ausfüllen. Alternativ kontaktieren Sie uns per WhatsApp oder Telefon für persönliche Unterstützung."
-      },
-      "q2": {
-        "question": "Können Touren angepasst werden?",
-        "answer": "Ja! Wir sind spezialisiert auf maßgeschneiderte Touren, die auf Ihre Interessen, Ihr Budget und Ihren Zeitplan zugeschnitten sind. Kontaktieren Sie uns, um Ihre Wünsche zu besprechen."
-      }
-    }
-  },
   "tourDetails": {
     "loading": "Tourdetails werden geladen...",
     "error": "Fehler beim Laden der Tourdetails. Bitte versuchen Sie es später erneut.",
@@ -686,6 +618,15 @@
       "title": "Weitere Tagestouren",
       "viewAll": "Alle Tagestouren anzeigen"
     }
+  },
+  "gallery": {
+    "hero": {
+      "title": "Unsere Galerie",
+      "subtitle": "Erinnerungen an unsere fantastischen Touren mit wunderbaren Reisenden aus der ganzen Welt"
+    },
+    "loading": "Galerie wird geladen...",
+    "noImages": "Noch keine Bilder in der Galerie.",
+    "imageAlt": "Galeriebild",
+    "close": "Schließen"
   }
-
 }

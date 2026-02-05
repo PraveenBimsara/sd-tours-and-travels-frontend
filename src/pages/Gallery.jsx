@@ -33,10 +33,10 @@ const Gallery = () => {
 
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            Our Gallery
+            {t('gallery.hero.title')}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            Memories from our amazing tours with wonderful travelers from around the world
+            {t('gallery.hero.subtitle')}
           </p>
         </div>
       </section>
@@ -46,11 +46,11 @@ const Gallery = () => {
         {loading ? (
           <div className="text-center py-20">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-sunsetOrange"></div>
-            <p className="text-gray-600 mt-4">Loading gallery...</p>
+            <p className="text-gray-600 mt-4">{t('gallery.loading')}</p>
           </div>
         ) : images.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-gray-600 text-lg">No images in the gallery yet.</p>
+            <p className="text-gray-600 text-lg">{t('gallery.noImages')}</p>
           </div>
         ) : (
           <>
@@ -64,7 +64,7 @@ const Gallery = () => {
                   <div className="aspect-square">
                     <img
                       src={image.src}
-                      alt={image.caption || `Gallery image ${index + 1}`}
+                      alt={image.caption || `${t('gallery.imageAlt')} ${index + 1}`}
                       className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                       loading="lazy"
                     />
@@ -90,7 +90,7 @@ const Gallery = () => {
           <button
             className="absolute top-4 right-4 text-white text-4xl hover:text-sunsetYellow transition z-10"
             onClick={() => setSelectedImage(null)}
-            aria-label="Close"
+            aria-label={t('gallery.close')}
           >
             <FaTimes />
           </button>
@@ -98,7 +98,7 @@ const Gallery = () => {
           <div className="relative max-w-6xl w-full">
             <img
               src={selectedImage.src}
-              alt={selectedImage.caption || 'Gallery image'}
+              alt={selectedImage.caption || t('gallery.imageAlt')}
               className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
