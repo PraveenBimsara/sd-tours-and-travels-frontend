@@ -7,9 +7,6 @@ import {
   FaMapMarkerAlt,
   FaCheckCircle,
   FaExclamationCircle,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
@@ -30,6 +27,13 @@ const Contact = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+  if (success) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}, [success]);
+
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -48,7 +52,7 @@ const Contact = () => {
   const handlePhoneChange = (value) => {
     setFormData((prev) => ({
       ...prev,
-      phone: value || '',
+      phone: value || "",
     }));
 
     if (errors.phone) {
@@ -60,40 +64,38 @@ const Contact = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = t('contact.form.errors.nameRequired');
+      newErrors.name = "Name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = t('contact.form.errors.emailRequired');
+      newErrors.email = "Email is required";
     } else {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!emailRegex.test(formData.email)) {
-        newErrors.email = t('contact.form.errors.emailInvalid');
+        newErrors.email = "Please enter a valid email address";
       }
     }
 
     if (!formData.phone) {
-      newErrors.phone = t('contact.form.errors.phoneRequired');
-    } else if (!formData.phone.startsWith('+')) {
-      newErrors.phone = t('contact.form.errors.phoneCountryCode');
+      newErrors.phone = "Phone number is required";
     } else {
       try {
         if (!isValidPhoneNumber(formData.phone)) {
-          newErrors.phone = t('contact.form.errors.phoneInvalid');
+          newErrors.phone = "Please enter a valid phone number";
         }
       } catch (error) {
-        newErrors.phone = t('contact.form.errors.phoneInvalid');
+        newErrors.phone = "Please enter a valid phone number";
       }
     }
 
     if (!formData.subject.trim()) {
-      newErrors.subject = t('contact.form.errors.subjectRequired');
+      newErrors.subject = "Subject is required";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = t('contact.form.errors.messageRequired');
+      newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = t('contact.form.errors.messageMinLength');
+      newErrors.message = "Message must be at least 10 characters";
     }
 
     setErrors(newErrors);
@@ -133,10 +135,6 @@ const Contact = () => {
         subject: "",
         message: "",
       });
-
-      setTimeout(() => {
-        setSuccess(false);
-      }, 5000);
     } catch (err) {
       console.error("Contact form error:", err);
       setError(err.message || "Failed to send message. Please try again.");
@@ -144,6 +142,31 @@ const Contact = () => {
       setSubmitting(false);
     }
   };
+
+  if (success) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center">
+        <div className="mb-6">
+          <FaCheckCircle className="text-green-500 text-6xl mx-auto" />
+        </div>
+        <h2 className="text-3xl font-bold text-navy mb-4">
+          {t("contact.success.title")}
+        </h2>
+        <p className="text-gray-600 mb-6">
+          {t("contact.success.message")}
+        </p>
+
+        <button
+          onClick={() => setSuccess(false)}
+          className="bg-sunsetYellow hover:bg-sunsetOrange text-white px-8 py-3 rounded-full font-semibold transition duration-300"
+        >
+          {t("common.back")}
+        </button>
+      </div>
+    </div>
+  );
+}
 
   return (
     <div className="contact-page">
@@ -160,10 +183,10 @@ const Contact = () => {
 
         <div className="relative z-10 container mx-auto px-4 text-center text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">
-            {t('contact.hero.title')}
+            {t("contact.hero.title")}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-            {t('contact.hero.subtitle')}
+            {t("contact.hero.subtitle")}
           </p>
         </div>
       </section>
@@ -176,26 +199,16 @@ const Contact = () => {
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-3xl font-bold text-navy mb-6">
-                  {t('contact.form.title')}
+                  {t("contact.form.title")}
                 </h2>
-
-                {success && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3">
-                    <FaCheckCircle className="text-green-500 text-xl mt-0.5" />
-                    <div>
-                      <p className="text-green-800 font-semibold">{t('contact.form.success.title')}</p>
-                      <p className="text-green-600">
-                        {t('contact.form.success.message')}
-                      </p>
-                    </div>
-                  </div>
-                )}
 
                 {error && (
                   <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
                     <FaExclamationCircle className="text-red-500 text-xl mt-0.5" />
                     <div>
-                      <p className="text-red-800 font-semibold">{t('contact.form.error')}</p>
+                      <p className="text-red-800 font-semibold">
+                        {t("contact.form.error")}
+                      </p>
                       <p className="text-red-600">{error}</p>
                     </div>
                   </div>
@@ -205,7 +218,8 @@ const Contact = () => {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        {t('contact.form.name')} <span className="text-red-500">*</span>
+                        {t("contact.form.name")}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -215,16 +229,19 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.name ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder={t('contact.form.namePlaceholder')}
+                        placeholder={t("contact.form.name")}
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.name}
+                        </p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        {t('contact.form.email')} <span className="text-red-500">*</span>
+                        {t("contact.form.email")}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="email"
@@ -234,10 +251,12 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.email ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder={t('contact.form.emailPlaceholder')}
+                        placeholder={t("contact.form.email")}
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -245,28 +264,32 @@ const Contact = () => {
                   <div className="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        {t('contact.form.phone')} <span className="text-red-500">*</span>
+                        {t("contact.form.phone")}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <PhoneInput
                         international
                         defaultCountry="LK"
                         value={formData.phone}
                         onChange={handlePhoneChange}
-                        className={`w-full ${errors.phone ? 'phone-input-error' : ''}`}
+                        className={`w-full ${errors.phone ? "phone-input-error" : ""}`}
                         numberInputProps={{
                           className: `w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
-                            errors.phone ? 'border-red-500' : 'border-gray-300'
-                          }`
+                            errors.phone ? "border-red-500" : "border-gray-300"
+                          }`,
                         }}
                       />
                       {errors.phone && (
-                        <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.phone}
+                        </p>
                       )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        {t('contact.form.subject')} <span className="text-red-500">*</span>
+                        {t("contact.form.subject")}{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -276,17 +299,20 @@ const Contact = () => {
                         className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition ${
                           errors.subject ? "border-red-500" : "border-gray-300"
                         }`}
-                        placeholder={t('contact.form.subjectPlaceholder')}
+                        placeholder={t("contact.form.subject")}
                       />
                       {errors.subject && (
-                        <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.subject}
+                        </p>
                       )}
                     </div>
                   </div>
 
                   <div className="mb-6">
                     <label className="block text-gray-700 font-semibold mb-2">
-                      {t('contact.form.message')} <span className="text-red-500">*</span>
+                      {t("contact.form.message")}{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       name="message"
@@ -296,10 +322,12 @@ const Contact = () => {
                       className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sunsetOrange transition resize-none ${
                         errors.message ? "border-red-500" : "border-gray-300"
                       }`}
-                      placeholder={t('contact.form.messagePlaceholder')}
+                      placeholder={t("contact.form.messagePlaceholder")}
                     ></textarea>
                     {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.message}
+                      </p>
                     )}
                   </div>
 
@@ -311,10 +339,10 @@ const Contact = () => {
                     {submitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
-                        {t('contact.form.sending')}
+                        {t("contact.form.sending")}
                       </span>
                     ) : (
-                      t('contact.form.send')
+                      t("contact.form.send")
                     )}
                   </button>
                 </form>
@@ -326,7 +354,7 @@ const Contact = () => {
               <div className="space-y-6">
                 <div className="bg-white rounded-2xl shadow-lg p-6">
                   <h3 className="text-2xl font-bold text-navy mb-6">
-                    {t('contact.info.title')}
+                    {t("contact.info.title")}
                   </h3>
 
                   <div className="space-y-4">
@@ -335,7 +363,9 @@ const Contact = () => {
                         <FaPhone className="text-skyBlue text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.phone')}</h4>
+                        <h4 className="font-semibold text-navy mb-1">
+                          {t("contact.info.phone")}
+                        </h4>
                         <a
                           href="tel:+94778875696"
                           className="text-gray-600 hover:text-sunsetOrange transition"
@@ -350,7 +380,9 @@ const Contact = () => {
                         <FaWhatsapp className="text-green-500 text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.whatsapp')}</h4>
+                        <h4 className="font-semibold text-navy mb-1">
+                          {t("contact.info.whatsapp")}
+                        </h4>
                         <a
                           href="https://wa.me/94778875696"
                           target="_blank"
@@ -367,7 +399,9 @@ const Contact = () => {
                         <FaEnvelope className="text-sunsetOrange text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.email')}</h4>
+                        <h4 className="font-semibold text-navy mb-1">
+                          {t("contact.info.email")}
+                        </h4>
                         <a
                           href="mailto:sdtoursandtravelcompany@gmail.com"
                           className="text-gray-600 hover:text-sunsetOrange transition break-all"
@@ -382,8 +416,12 @@ const Contact = () => {
                         <FaMapMarkerAlt className="text-sunsetYellow text-xl" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-navy mb-1">{t('contact.info.location')}</h4>
-                        <p className="text-gray-600">{t('contact.info.locationText')}</p>
+                        <h4 className="font-semibold text-navy mb-1">
+                          {t("contact.info.location")}
+                        </h4>
+                        <p className="text-gray-600">
+                          {t("contact.info.locationText")}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -391,10 +429,10 @@ const Contact = () => {
 
                 <div className="bg-sunsetYellow/10 border-l-4 border-sunsetYellow rounded-lg p-6">
                   <h4 className="font-bold text-navy mb-2">
-                    {t('contact.quickResponse.title')}
+                    {t("contact.quickResponse.title")}
                   </h4>
                   <p className="text-gray-600 text-sm">
-                    {t('contact.quickResponse.description')}
+                    {t("contact.quickResponse.description")}
                   </p>
                 </div>
               </div>
@@ -408,30 +446,26 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-navy mb-4">
-              {t('contact.faq.title')}
+              {t("contact.faq.title")}
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              {t('contact.faq.subtitle')}
+              {t("contact.faq.subtitle")}
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid gap-6">
             <div className="bg-white rounded-xl p-6 shadow-md">
               <h3 className="text-lg font-bold text-navy mb-2">
-                {t('contact.faq.q1.question')}
+                {t("contact.faq.q1.question")}
               </h3>
-              <p className="text-gray-600">
-                {t('contact.faq.q1.answer')}
-              </p>
+              <p className="text-gray-600">{t("contact.faq.q1.answer")}</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-md">
               <h3 className="text-lg font-bold text-navy mb-2">
-                {t('contact.faq.q2.question')}
+                {t("contact.faq.q2.question")}
               </h3>
-              <p className="text-gray-600">
-                {t('contact.faq.q2.answer')}
-              </p>
+              <p className="text-gray-600">{t("contact.faq.q2.answer")}</p>
             </div>
           </div>
         </div>

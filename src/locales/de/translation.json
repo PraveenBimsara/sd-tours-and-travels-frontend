@@ -138,6 +138,20 @@
       "error": "Fehler",
       "required": "*"
     },
+    "errors": {
+      "nameRequired": "Name ist erforderlich",
+      "emailRequired": "E-Mail ist erforderlich",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "phoneRequired": "Telefonnummer ist erforderlich",
+      "phoneInvalid": "Bitte geben Sie eine gültige Telefonnummer ein",
+      "subjectRequired": "Betreff ist erforderlich",
+      "messageRequired": "Nachricht ist erforderlich",
+      "messageMinLength": "Nachricht muss mindestens 10 Zeichen lang sein"
+    },
+    "success": {
+      "title": "Erfolg!",
+      "message": "Vielen Dank für Ihre Kontaktaufnahme! Wir werden uns innerhalb von 24 Stunden bei Ihnen melden."
+    },
     "info": {
       "title": "Kontaktinformationen",
       "phone": "Telefon",
@@ -223,7 +237,8 @@
     "loading": "Laden...",
     "chatWithUs": "Chatten Sie mit uns!",
     "required": "*",
-    "phoneHelper": "Ländervorwahl angeben (z.B. +94 77 123 4567 für Sri Lanka)"
+    "phoneHelper": "Ländervorwahl angeben (z.B. +94 77 123 4567 für Sri Lanka)",
+    "back": "Zurück"
   },
   "footer": {
     "companyDescription": "SD Tours & Travel bietet sorgfältig gestaltete Reisen durch Sri Lanka, die beliebte Reiseziele mit versteckten Orten kombinieren.",
