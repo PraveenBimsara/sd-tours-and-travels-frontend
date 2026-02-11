@@ -33,9 +33,6 @@ const NotFound = () => {
           <p className="text-lg md:text-xl text-gray-600 mb-2">
             We can't seem to find the page you're looking for.
           </p>
-          <p className="text-gray-500">
-            Don't worry! Even the best explorers get lost sometimes.
-          </p>
         </div>
 
         {/* Action Buttons */}
@@ -63,39 +60,6 @@ const NotFound = () => {
             <FaPhoneAlt />
             <span>Contact Us</span>
           </Link>
-        </div>
-
-        {/* Popular Links */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <h3 className="text-xl font-semibold text-navy mb-6">
-            Popular Destinations
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link
-              to="/about"
-              className="text-gray-600 hover:text-sunsetOrange transition py-2"
-            >
-              About Us
-            </Link>
-            <Link
-              to="/services"
-              className="text-gray-600 hover:text-sunsetOrange transition py-2"
-            >
-              Our Services
-            </Link>
-            <Link
-              to="/gallery"
-              className="text-gray-600 hover:text-sunsetOrange transition py-2"
-            >
-              Gallery
-            </Link>
-            <Link
-              to="/reviews"
-              className="text-gray-600 hover:text-sunsetOrange transition py-2"
-            >
-              Reviews
-            </Link>
-          </div>
         </div>
       </div>
     </div>

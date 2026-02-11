@@ -48,8 +48,8 @@ const Home = () => {
 
   const fetchTrendingTours = async () => {
     try {
-      const response = await tourAPI.getFeaturedTours();
-      setTrendingTours(response.data.data.slice(0, 6));
+      const response = await tourAPI.getAllTours();
+      setTrendingTours(response.data.data);
     } catch (error) {
       console.error("Error fetching trending tours:", error);
     } finally {
